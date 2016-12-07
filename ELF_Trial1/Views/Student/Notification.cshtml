@@ -1,0 +1,227 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Student-Notification</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+    <script>
+            function navinside(page) {
+                window.location.href = '/Student/' + page;
+            }
+    </script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    @*Heading Header*@
+    <style>
+        #topname {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middletext {
+        }
+
+            .icon_middletext span {
+                display: block;
+                color: white;
+                font-size: 24px;
+            }
+
+        .icon_middletextSmall {
+        }
+
+            .icon_middletextSmall span {
+                display: block;
+                color: white;
+                font-size: 12px;
+            }
+    </style>
+    <style>
+        .icon_middleicon {
+            display: block;
+            margin-top: -100px;
+            margin-left: 370px;
+            width: 110px;
+            height: 97px;
+        }
+
+            .icon_middleicon img {
+                margin-top: -13px;
+            }
+
+        #tophelp {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #helpicon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 30px;
+        }
+
+        #topsignout {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #signouticon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 20px;
+        }
+
+        #topsettings {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #settingsicon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 20px;
+        }
+    </style>
+
+
+    <script>
+    function SearchStudent() {
+        var StudentID = document.getElementById('ELFStudentID').value;
+        $('#StudentDetails').show();
+
+    }
+    var app = angular.module('NotificationPage', []);
+    app.controller('Notification', function ($scope) {
+        $scope.Notification = [
+          { "badges": "success", "Date": "11-07-2016 07:45", "Heading": "Notification", "Description": "Public Test 14 is Open", "WriteTestID": "TA123" },
+          { "badges": "default", "Date": "12-07-2016 09:48", "Heading": "Test", "Description": "Your Test 14 Score is 22/30" },
+          { "badges": "default", "Date": "12-07-2016 17:25", "Heading": "Test", "Description": "Your Test 18 Score is 14/30 ", "GetReportID": "R123456" },
+          { "badges": "warning", "Date": "14-07-2016 11:35", "Heading": "Request", "Description": "Mam Latha wants to add you to her network" }
+        ];
+
+    });
+    </script>
+    <script>
+        function PageNav(Page) {
+            debugger;
+            window.location.href = '/Student/' + Page;
+        }
+    </script>
+    <style>
+        .NotificationDetails {
+            font-size: 28px;
+        }
+    </style>
+    <style>
+        div#Navigationbars img:hover {
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
+    </div>
+    <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
+        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" onclick="navinside('Dashboard')" />
+        <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
+        <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
+        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;border:2px solid #e4008c" onclick="navinside('Notification')">
+    </div>
+    <div>
+        <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
+    </div>
+    <div style="margin-left:460px;margin-top:-250px">
+        <div class="icon_middletext">
+            <img src="~/Images/Student/Dashboard/Name_Banner.png" />
+            <span style="margin-top:-50px;margin-left:50px;">Krishnan RA</span>
+        </div>
+        <div style="margin-top:20px">
+            <div class="icon_middletext">
+                <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
+                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">12th</span>
+            </div>
+            <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
+                <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Samacheer</span>
+            </div>
+            <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
+                <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Ranga Matriculation</span>
+            </div>
+            <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
+                <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Coimbatore</span>
+            </div>
+        </div>
+        <div style="margin-top:-215px;margin-left:710px;">
+            <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
+                <img src="~/Images/Student/Dashboard/State_Rank.png" />
+                <span style="margin-top:-30px;margin-left:40px;">11017</span>
+            </div>
+            <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
+                <img src="~/Images/Student/Dashboard/District_Rank.png" />
+                <span style="margin-top:-30px;margin-left:50px;">96</span>
+            </div>
+            <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
+                <img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">
+                <span style="margin-top:-30px;margin-left:-180px;">618</span>
+            </div>
+            <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
+                <img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">
+                <span style="margin-top:-30px;margin-left:40px;">2.0</span>
+            </div>
+        </div>
+        <div style="margin-top:-360px;margin-left:940px;">
+            <img src="~/Images/Student/Dashboard/Help_Icon.png" />
+            <img src="~/Images/Student/Dashboard/Settings_Icon.png" style="margin-top:155px;margin-left:-80px" />
+            <img src="~/Images/Student/Dashboard/LogOut_Icon.png" style="margin-top:305px;margin-left:-80px" />
+        </div>
+    </div>
+    <div ng-app="NotificationPage" style="margin-top:100px;" class="col-md-10 col-md-offset-1">
+        <div ng-controller="Notification">
+            <div ng-repeat="x in Notification">
+                <ul style="list-style:none">
+
+                    <li>
+                        <label>{{x.Date}}</label>
+                        <span class="label label-{{x.badges}}">{{x.Heading}}</span>
+                    </li>
+                    <li>
+                        <label class="NotificationDetails">{{x.Description}}</label>
+
+                        <label style="float:right"><button id="{{x.WriteTestID}}" onclick="alert(this.id)">Write Test</button></label>
+                        <label style="float:right"><button id="{{x.GetReportID}}" onclick="alert(this.id)">Get Report</button></label>
+                    </li>
+                    <hr>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

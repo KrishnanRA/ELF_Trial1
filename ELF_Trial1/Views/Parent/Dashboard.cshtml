@@ -1,0 +1,590 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+     <title>Student Dashboard</title>
+    <style>
+        html {
+        background-color:white;
+
+        }
+
+    </style>
+     <style>
+        table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddeed;
+}
+    </style>
+   
+    <script>
+        function navinside(page) {
+            window.location.href = '/Student/' + page;
+        }
+
+    </script>
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+
+      <script>
+
+          window.onload = function () {
+              var ctx = document.getElementById("canvas").getContext("2d");
+              var ctx1 = document.getElementById("chart1").getContext("2d");
+              var myBarChart = new Chart(ctx, {
+                  type: 'bar',
+                  data: data
+              });
+              var myLineChart = new Chart(ctx1, {
+                  type: 'line',
+                  data: data1
+              });
+          }
+          var data = {
+              labels: ["Maths", "Physics", "Chemistry", "Computer Science"],
+              datasets: [
+                  {
+                      label: "My First dataset",
+                      backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                      ],
+                      borderColor: [
+                          'rgba(255,99,132,1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 1,
+                      data: [82, 76, 42, 65],
+
+                      options: {
+                          scales: {
+                              yAxes: [{
+                                  ticks: {
+                                      beginAtZero: true
+                                  }
+                              }]
+                          }
+                      }
+                  }
+              ]
+          };
+          var data1 = {
+              labels: ["January", "February", "March", "April", "May", "June", "July"],
+              datasets: [
+                  {
+                      label: "Overal",
+                      fill: false,
+                      lineTension: 0.1,
+                      backgroundColor: "rgba(75,192,192,0.4)",
+                      borderColor: "rgba(75,192,192,1)",
+                      borderCapStyle: 'butt',
+                      borderDash: [],
+                      borderDashOffset: 0.0,
+                      borderJoinStyle: 'miter',
+                      pointBorderColor: "rgba(75,192,192,1)",
+                      pointBackgroundColor: "#fff",
+                      pointBorderWidth: 1,
+                      pointHoverRadius: 5,
+                      pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                      pointHoverBorderColor: "rgba(220,220,220,1)",
+                      pointHoverBorderWidth: 2,
+                      pointRadius: 1,
+                      pointHitRadius: 10,
+                      data: [65, 59, 80, 81, 56, 55, 40],
+                      spanGaps: false,
+                  }
+              ]
+          };
+    </script>
+    <script>
+        function PageNav(Page) {
+            window.location.href = '/Parent/' + Page;
+
+        }
+    </script>
+     <script>
+         var app = angular.module('DashboardMainPage', []);
+         app.controller('ReportSubject1', function ($scope) {
+             $scope.Physics = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('ReportSubject2', function ($scope) {
+             $scope.Chemistry = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('Performingbaddashboard', function ($scope) {
+             $scope.Physics = [
+               { "SubjectCode": "P", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "SubjectCode": "P", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "SubjectCode": "CH", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "SubjectCode": "CS", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "SubjectCode": "M", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('Performinggooddashboard', function ($scope) {
+             $scope.Physics = [
+               { "SubjectCode": "CS", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "SubjectCode": "CS", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "SubjectCode": "M", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "SubjectCode": "CH", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "SubjectCode": "P", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('Needtobeconcentrateddashboard', function ($scope) {
+             $scope.Physics = [
+               { "SubjectCode": "CS", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "SubjectCode": "CH", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "SubjectCode": "M", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "SubjectCode": "M", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "SubjectCode": "CH", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+
+         app.controller('AvailableTestSubject1', function ($scope) {
+             $scope.Physics = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('LastFiveTestSubject2', function ($scope) {
+             $scope.Chemistry = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('AvailableTestSubject2', function ($scope) {
+             $scope.Chemistry = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('OverallTestCtrl', function ($scope) {
+             $scope.Physics = [
+               { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
+               { "TestID": "02", "Subject": "Vector Algebra", "Description": "33", "WarningColor": "blue" },
+               { "TestID": "03", "Subject": "Set Language", "Description": "44", "WarningColor": "yellow" },
+               { "TestID": "04", "Subject": "Algebra", "Description": "55", "WarningColor": "green" },
+                { "TestID": "05", "Subject": "Trignomentry", "Description": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('Scopeofimprovement', function ($scope) {
+             $scope.Scopeofimprovement = [
+               { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+               { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+               { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+               { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+               { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" }
+             ]
+         });
+         app.controller('TestReport', function ($scope) {
+             $scope.TestCompleted = [
+               { "TestID": "1235", "SubjectName": "Physics", "TotalQuestion": "50", "Answered": "25", "Percentage": "50", "Detail": "Details" },
+               { "TestID": "1277", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "15", "Percentage": "50", "Detail": "Details" },
+               { "TestID": "2335", "SubjectName": "Maths", "TotalQuestion": "20", "Answered": "4", "Percentage": "20", "Detail": "Details" },
+               { "TestID": "8635", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "9", "Percentage": "30", "Detail": "Details" },
+               { "TestID": "7723", "SubjectName": "Maths", "TotalQuestion": "30", "Answered": "3", "Percentage": "10", "Detail": "Details" }
+             ]
+         });
+         app.controller('CompletedTestDashboard', function ($scope) {
+             $scope.Physics = [
+               { "SubjectCode": "P", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "SubjectCode": "P", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "SubjectCode": "CH", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "SubjectCode": "CS", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "SubjectCode": "M", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('AvailableTestDashboard', function ($scope) {
+             $scope.Physics = [
+               { "SubjectCode": "CS", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "SubjectCode": "CS", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "SubjectCode": "M", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "SubjectCode": "CH", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "SubjectCode": "P", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         //app.controller('Test', function ($scope) {
+         //    $scope.persons = [{ type: 1, name: 'Caio' }, { type: 2, name: 'Ary' }, { type: 1, name: 'Camila' }, { type: 3, name: 'Daniel' }];
+         //    $scope.myFunction = function (val) {
+
+         //        return (val.type != 2);
+         //    };
+         //});
+    </script>
+    <style>
+        .row {
+        margin-top:auto;
+        }
+    </style>
+  </head>    
+<body>
+    <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Student Name</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li><a href="#">Dashboard</a></li>
+                  <li><a href="#">Report</a></li>
+                  <li><a href="#">Test</a></li> 
+                  <li><a href="#">Notifications</a></li> 
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+              </div>
+     </nav>
+
+     <div class="col-md-12" style="margin-top:10px;text-align:center">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Homeicon" src="~/Images/Dashboard/Dashboard_Home_Active.png" height="90" width="90" onclick="PageNav('Dashboard')" />
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Reporticon" src="~/Images/Dashboard/Dashboard_Report_InActive.png" height="90" width="90" onclick="PageNav('Report')" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4    ">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Notificationicon" src="~/Images/Dashboard/Dashboard_Notification_InActive.png" height="90" width="90" onclick="PageNav('Notification')" />
+                    </div>
+                </div>
+           </div>
+        </div>
+    <div ng-app="DashboardMainPage">
+        <div class="col-md-12" style="margin-top:50px;" >
+            <div class="col-md-3">
+                <div class="row">
+                    <p>Student Name</p>
+                </div>
+                <div class="row">
+                    <h3>Krishnan RA</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <p>Student Institution</p>
+                </div>
+                <div class="row">
+                    <h3>Sri Ramakrishna Matrc</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <p>Student Board</p>
+                </div>
+                <div class="row">
+                    <h3>Samacheer Kalvi</h3>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <p>Student Class</p>
+                </div>
+                <div class="row">
+                    <h3>12th Std</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-top:20px; margin-left:20px;">
+                <div class="col-xs-12">
+                
+                         <div class="col-xs-3" style="margin-left:20px;">
+                            <div class="col-xs-6">
+                                <div class="wrap">
+                                <img src="~/Images/Student/StateRank.png"  class="iconimg" />
+                                <p class="text_over_image TotalStudents">State Rank</p>
+                                </div>
+                            </div>    
+                            <div class="col-xs-6">
+                                <div class="text_over_image1 TotalStudents">
+                                    <p>272</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                         <div class="col-xs-3" style="margin-left:60px;">
+                            <div class="col-xs-6">
+                            <div class="wrap">
+                                <img src="~/Images/Student/DistrictRank.png" class="iconimg" />
+                                <p class="text_over_image InstitutionRank">District Rank</p>
+                            </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text_over_image1 InstitutionRank">
+                                    <p>19</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                         <div class="col-xs-3" style="margin-left:100px;">
+                            <div class="col-xs-6">
+                            <div class="wrap">
+                            <img src="~/Images/Student/InstitutionRank.png"  class="iconimg" />
+                            <p class="text_over_image TopRank">Institution Rank</p>
+                        </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text_over_image1 TopRank">
+                                    <p>11</p>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="col-xs-3" style="margin-left:80px;">
+                            <div class="col-xs-6">
+                            <div class="wrap">
+                                <img src="~/Images/Growth.png" class="iconimg" />
+                                <p class="text_over_image Growth">Growth</p>
+                            </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="text_over_image1 Growth">
+                                    <p>2.3%</p>
+                                </div>
+                            </div>
+        
+                        </div>
+                </div>    
+        </div>
+        <div class="col-md-12" style="margin-top:20px;">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">% Split on Students</div>
+                <div class="panel-body">
+                    <div id="canvas-holder2" style="width: 600px;">
+                     <canvas id="canvas"></canvas>
+                    </div>
+                 </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                 <div class="panel-heading">Overall Student Growth</div>
+                    <div class="panel-body">
+                        <div id="canvas-holder1" style="width:600px;">
+                            <canvas id="chart1"/>
+                         </div>
+                    </div>
+                 </div>
+            </div>
+         </div>
+        
+        <div class="col-md-12" style="margin-top:280px;">
+              <div class="col-md-4">
+                                <div ng-controller="Performingbaddashboard">
+                                    <div class="panel panel-danger">
+                                        <div class="panel-heading">Highly to be Concentrated</div>
+                                        <div class="panel-body">
+                                                    <table>
+                                                        <tr ng-repeat="x in Physics">
+                                                            <td>{{x.SubjectCode}}</td>
+                                                            <td>{{x.LessonName}}</td>
+                                                            <td><span">{{x.Percentage}}</span></td>
+                                                          <td><span class="label label-danger">Danger Label</span></td>
+                                                        </tr>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                 </div>
+                            </div>
+              <div class="col-md-4">
+                                <div ng-controller="Performinggooddashboard">
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">Performing Good</div>
+                                        <div class="panel-body">
+                                                    <table>
+                                                        <tr ng-repeat="x in Physics">
+                                                            <td>{{x.SubjectCode}}</td>
+                                                            <td>{{x.LessonName}}</td>
+                                                            <td><span">{{x.Percentage}}</span></td>
+                                                          <td><span class="label label-success">Danger Label</span></td>
+                                                        </tr>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                 </div>
+                            </div>
+              <div class="col-md-4">
+                                <div ng-controller="Needtobeconcentrateddashboard">
+                                    <div class="panel panel-warning">
+                                        <div class="panel-heading">Need to concentrated</div>
+                                        <div class="panel-body">
+                                                    <table>
+                                                        <tr ng-repeat="x in Physics">
+                                                            <td>{{x.SubjectCode}}</td>
+                                                            <td>{{x.LessonName}}</td>
+                                                            <td><span">{{x.Percentage}}</span></td>
+                                                          <td><span class="label label-warning">Danger Label</span></td>
+                                                        </tr>
+                                                    </table>
+                                            </div>
+                                        </div>
+                                 </div>
+                            </div>
+        </div>
+       
+       
+     </div>   
+    <style>
+        body {
+        background-color:whitesmoke;
+        }
+        .row {
+        text-align:center;
+        }
+        
+        .col-md-12 {
+            margin-left:5px;
+            margin-top:4px;
+            height:100px;
+        }
+        
+        .col-xs-3 {
+            margin-left:15px;
+        width:250px;
+        height:100px;
+       
+        }
+        .stdheading {
+            text-align: center;
+            margin-top: 20px;
+            font-size:20px;
+        } 
+        .navigationbar {
+            height: 20px;
+           
+        }
+
+       .text_over_image.navigationbar {
+            position: absolute;
+            top: auto;
+            left: 38px;
+            right: 0;
+            bottom: 50px;
+            color:white;
+            height: 0px;
+        } 
+        .iconimg {
+        width:48px;
+        margin-top:38px;
+        height:48px;
+        }
+        .wrap {
+            height: 20px;
+            text-align: center;
+        }
+        
+        .text_over_image {
+            position: absolute;
+            top: auto;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: #5C5147;
+            height: 0px;
+        }
+            .text_over_image.Growth {
+            color: green;
+            }
+            .text_over_image1.Growth {
+            color: green;
+            }
+            .text_over_image.TotalStudents {
+            color: saddlebrown;
+            }
+            .text_over_image1.TotalStudents {
+            color: saddlebrown;
+            }
+            .text_over_image.TopRank {
+            color: #2D85C4;
+            }
+            .text_over_image1.TopRank {
+            color: #2D85C4;
+            }
+            .text_over_image.InstitutionRank {
+            color: #F02626;
+            }
+            .text_over_image1.InstitutionRank {
+            color: #F02626;
+            }
+        .text_over_image1 {
+            position: relative;
+            margin: auto;
+            top: 35px;
+            left: 0px;
+            text-align: center;
+            right: 0;
+            font-size: 36px;
+            bottom: 0;
+            color: #5C5147;
+            height: 0px;
+        }
+    </style>
+</body>
+</html>

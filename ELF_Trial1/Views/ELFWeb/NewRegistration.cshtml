@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>New Registration</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @*<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/ELFWeb/GetClasses',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify({ BoardId: 1 }),
+                datatype: 'json',
+                success: function (data) {
+                    $.each(JSON.parse(data).Table, function (i, record) {
+                        alert(record.ClassId + '---------' + record.ClassName + '---------' + record.BoardId + '---------' + record.BoardName);
+                    });
+                },
+                error: function (err) {
+                    if (err.status == 200) {
+                        ParseResult(err);
+                    }
+                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                }
+            });
+        });
+       </script>*@
+</head>
+<body>
+
+<div class="container">
+  <h2>New Registration</h2>
+        <ul class="nav nav-pills nav-justified">
+         <li class="active"><a data-toggle="pill" href="#Student">Student</a></li>
+         <li><a data-toggle="pill" href="#Parent">Parent</a></li>
+         <li><a data-toggle="pill" href="#Staff">Staff</a></li>
+         <li><a data-toggle="pill" href="#Institutions">Institutions</a></li>
+        </ul>
+        <div class="tab-content">
+             <div id="Student" class="tab-pane fade in active">
+                 <div class="form-group">
+                     <label for="namestudent">Enter Name:</label>
+                     <input type="text" class="form-control" id="namestudent" placeholder="Enter Name">
+                </div>
+                 <div class="form-group">
+                     <label for="phonenosstudent">Enter Phone Number:</label>
+                     <input type="text" class="form-control" id="phonenosstudent" placeholder="Enter Phone Number">
+                </div>
+                 <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" class="form-control" id="emailstudent" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="passwordstudent" placeholder="Enter password">
+                </div>
+                <div class="form-group">
+                    <label for="reenterpassword">Re-Enter Password:</label>
+                    <input type="password" class="form-control" id="reenterpasswordstudent" placeholder="Re-Enter password">
+                </div>
+                <div class="form-group">
+                  <label for="Statestudent">Select State:</label>
+                  <select class="form-control" id="Statestudent">
+                    <option>Tamilnadu</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="Boardstudent">Select list:</label>
+                  <select class="form-control" id="Boardstudent">
+                    <option>Samacheer</option>
+                    <option>CBSC</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="Classstudent">Select Class:</label>
+                  <select class="form-control" id="Classstudent">
+                    <option>10th</option>
+                    <option>12th</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                     <label for="pincodestudent">Enter Pincode:</label>
+                     <input type="text" class="form-control" id="pincodestudent" placeholder="Enter Pincode">
+                </div>
+             </div>
+             <div id="Parent" class="tab-pane fade">
+                <div class="form-group">
+                     <label for="nameparent">Enter Name:</label>
+                     <input type="text" class="form-control" id="nameparent" placeholder="Enter Name">
+                </div>
+                <div class="form-group">
+                     <label for="phonenosparent">Enter Phone Number:</label>
+                     <input type="text" class="form-control" id="phonenosparent" placeholder="Enter Phone Number">
+                </div>
+                <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" class="form-control" id="emailparent" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="passwordparent" placeholder="Enter password">
+                </div> 
+                <div class="form-group ">
+                    <label for="password">Re-Enter Password:</label>
+                    <input type="password" class="form-control" id="reenterpasswordstaff" placeholder="Re-Enter password">
+                </div>
+                <div class="form-group">
+                     <label for="pincodeparent">Enter Pincode:</label>
+                     <input type="text" class="form-control" id="pincodeparent" placeholder="Enter Pincode">
+                </div>
+            </div>
+             <div id="Staff" class="tab-pane fade">
+                <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" class="form-control" id="emailstaff" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="passwordstaff" placeholder="Enter password">
+                </div>
+                <div class="form-group ">
+                    <label for="password">Re-Enter Password:</label>
+                    <input type="password" class="form-control" id="reenterpasswordstaff" placeholder="Re-Enter password">
+                </div>
+
+                <label class="checkbox-inline"><input type="checkbox" value="samacheer">Samacheer</label>
+                <label class="checkbox-inline"><input type="checkbox" value="cbsc">CBSC</label></br>
+
+                <label class="checkbox-inline"><input type="checkbox" value="tenthstd">10th Standard</label>
+                <label class="checkbox-inline"><input type="checkbox" value="twelthstd">12th Standard</label></br>
+
+                <label class="checkbox-inline"><input type="checkbox" value="">Physics</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Chemistry</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Maths</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Biology</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Computer Science</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Social(10th)</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Sciene(10th)</label>
+                <label class="checkbox-inline"><input type="checkbox" value="">Maths(10th)</label>
+                
+             </div>
+             <div id="Institutions" class="tab-pane fade">
+                 <div class="form-group">
+                     <label for="nameinstitution">Institution Name:</label>
+                     <input type="text" class="form-control" id="nameinstitution" placeholder="Enter Name">
+                </div>
+                 <div class="form-group">
+                     <label for="email">Email:</label>
+                     <input type="email" class="form-control" id="emailinstitutions" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="passwordinstitutions" placeholder="Enter password">
+                </div>  
+             </div>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</body>
+</html>
+

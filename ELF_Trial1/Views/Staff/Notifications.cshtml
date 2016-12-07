@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Parent-Notifications</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+  <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style> 
+</head>
+    <script>
+        function SearchStudent() {
+            var StudentID = document.getElementById('ELFStudentID').value;
+            $('#StudentDetails').show();
+
+        }
+        var app = angular.module('myApp', []);
+        app.controller('customersCtrl', function ($scope) {
+            $scope.names = [
+              { "Notification": "Your Son Completed Test Test 14", "icon": "yellow", "time": "24-08-2016 10:26 am" },
+              { "Notification": "Your Son Test 14 Score is 17/20", "icon": "yellow", "time": "24-08-2016 10:28 am" },
+              { "Notification": "Your Son Average Score in Physics is 82%", "icon": "red", "time": "25-08-2016 11:45 am" },
+              { "Notification": "Your Son Growing at 82 % month on month", "icon": "blue", "time": "24-08-2016 12:00 am" }
+            ];
+        });
+    </script>
+    
+<body>
+
+<div class="container">
+  <h2>Parent-Notifications</h2>
+        <ul class="nav nav-pills nav-justified">
+         <li class="active"><a data-toggle="pill" href="#Notification">Notifcations</a></li>
+         <li><a data-toggle="pill" href="#AddStudent">AddStudent</a></li>
+        </ul>
+        <div class="tab-content">
+             <div id="Notification" class="tab-pane fade in active">
+            <div class="container">
+                <div ng-app="myApp" ng-controller="customersCtrl">
+                    <table  >
+                    <tr ng-repeat="x in names">
+                    <td>{{x.icon}}</td>
+                    <td>{{x.Notification}}</td>
+                    <td>{{x.time}}</td></tr>
+                    </table>
+                 </div>
+             </div>
+            </div>
+            <div id="AddStudent" class="tab-pane fade">
+                <div class="form-group">
+                     <label for="ELFStudentID">Enter ELF StudentID:</label>
+                     <input type="text" class="form-control" id="ELFStudentID" placeholder="Enter ELF ID">
+                </div>
+                <button type="button" class="btn btn-default" onclick="SearchStudent()">Search Student</button>
+                <div id="StudentDetails" style="display:none">
+                    <p>ELF ID:<span>1012368</span></p>
+                    <p>Student Name:<span>Krishnan RA</span></p>
+                    <p>Student Board:<span>Samacheer</span></p>
+                    <p>Student Class:<span>12th Std</span></p>
+                    <button type="button" class="btn btn-default">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

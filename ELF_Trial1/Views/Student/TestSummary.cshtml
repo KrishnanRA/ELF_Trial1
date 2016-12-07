@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>TestSummary</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+    <script>
+        var app = angular.module('TestSummary', []);
+        app.controller('Public', function ($scope) {
+            $scope.QuestionAnswered = [{ "Question": "What is ECMO", "QuestionNos": "1", "RightAnswer": 'Physics', "StudentAnswered": "Wrong" },
+                { "QuestionNos": "2", "Question": "Who is PM of INDIA", "RightAnswer": "Chemistry", "StudentAnswered": "Right" },
+                { "QuestionNos": "3", "Question": "What is capital on Australia", "RightAnswer": "Maths", "StudentAnswered": "Right" },
+                { "QuestionNos": "4", "Question": "WHich is Terrorist country", "RightAnswer": "Computer Science", "StudentAnswered": "Wrong" }];
+            $scope.OverallSummary = [{ "TotalQuestionAnswered": "20", "TotalRightAnswered": "16", "TotalWrongAnswered": "4" }];
+            
+        });
+    </script>
+</head>
+<body>
+    <div ng-app="TestSummary">
+        <div ng-controller="Public">
+                <table>
+                    <tr>
+                        <td>Total Question Asked</td>
+                        <td>Total Question Right Answered</td>
+                        <td>Total Question Wrong Answered</td>
+                    </tr>
+                    <tr ng-repeat="Oversum in OverallSummary">
+                        <td>{{Oversum.TotalQuestionAnswered}}</td> 
+                        <td>{{Oversum.TotalRightAnswered}}</td> 
+                        <td>{{Oversum.TotalWrongAnswered}}</td> 
+                    </tr>
+                </table>
+            <h1 ng-bind="TotalQuestionAnswered"></h1>
+            <table style="margin-top:50px;">
+                <tr ng-repeat="quest in QuestionAnswered">
+                    <td>{{quest.QuestionNos}}</td>
+                    <td>{{quest.Question}}</td>
+                    <td>{{quest.RightAnswer}}</td>
+                    <td>{{quest.StudentAnswered}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
