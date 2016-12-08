@@ -165,6 +165,14 @@
     <script>
             var app = angular.module('DashboardMainPage', []);
             app.controller('ReportSubject1', function ($scope) {
+                $scope.GetAllData = function () {
+                    $http.get('/Student/StudentLogin', {params:{"StudentID":@Model.StudentID }})
+                    .success(function (data, status, headers, config) {
+                        debugger;
+                        $scope.Details = data;
+                       
+                    })
+              
                 $scope.Physics = [
                   { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
                   { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },

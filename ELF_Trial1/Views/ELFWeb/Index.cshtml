@@ -109,10 +109,32 @@
     </style>
     <script>
     function Login() {
-        UsName = document.getElementById('username').value;
-        Password = document.getElementById('password').value;
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
         var User = $('input[name=User]:checked').val();
-        window.location.href = '/' + User + '/Dashboard';
+        //window.location.href = '/' + User + '/Dashboard';
+
+        debugger;
+            $.ajax({
+                type: 'POST',
+                url: '/ELFWeb/Login',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify({ Username: username, Password: password,UserType:User }),
+                datatype: 'json',
+                success: function (data) {
+                    $.each(JSON.parse(data).Table, function (i, record) {
+
+                        alert(record.ClassId + '---------' + record.ClassName + '---------' + record.BoardId + '---------' + record.BoardName);
+                    });
+                },
+                error: function (err) {
+                    if (err.status == 200) {
+                        ParseResult(err);
+                    }
+                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                }
+            });
+
     }
     function navsignup() {
         window.location.href = '/ELFWeb/NewRegistration';

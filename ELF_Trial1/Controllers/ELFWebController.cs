@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HtmlAgilityPack;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using ELF_Trial1.Models;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace ELF_Trial1.Controllers
 {
+
     public class ELFWebController : Controller
     {
+        
+        HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
         web_ws.Ielf_web_wsClient objweb = new web_ws.Ielf_web_wsClient();
         //
         // GET: /ELFWeb/
@@ -34,6 +39,20 @@ namespace ELF_Trial1.Controllers
         public JsonResult GetClasses(int BoardId)
         {
             string output = objweb.GetClasses(BoardId);
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult Login(String Username, String Password,String UserType)
+        {
+            
+            string output="";
+            if (UserType=="Student")
+            {
+                output = objweb.CheckStudentLogin(Username, Password);
+            }
+           
+            Newtonsoft.Json.Linq.JObject pp = Newtonsoft.Json.Linq.JObject.Parse(output);
+            string rssTitle = (string)pp["Table1"][0]["OutputStatus"];
+           
             return Json(output, JsonRequestBehavior.AllowGet);
         }
     }
