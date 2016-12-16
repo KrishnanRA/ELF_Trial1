@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="elf_web_ws" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/elf_ws.Model" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Ielf_web_ws_CheckParentLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckParentLogin" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckParentLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckParentLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetLessionWiseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLessionWiseReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetLessionWiseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLessionWiseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StudentRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:StudentRegistration" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StudentRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StudentRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ParentRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:ParentRegistration" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ParentRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ParentRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffRegistration_InputMessage">
+    <wsdl:part name="parameters" element="tns:StaffRegistration" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffRegistration_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StaffRegistrationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetCommonData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonData" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetCommonData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCommonDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetClasses_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClasses" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetClasses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClassesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetDistrict_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrict" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetDistrict_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetCities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCities" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetCities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetInstitutions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstitutions" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetInstitutions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstitutionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStudentLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStudentLogin" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStudentLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStudentLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStaffLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStaffLogin" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStaffLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStaffLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentDashboard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentDashboard" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentDashboard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentDashboardResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestions" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_SaveUserFeedback_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserFeedback" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_SaveUserFeedback_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserFeedbackResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ParentStudentRelation_InputMessage">
+    <wsdl:part name="parameters" element="tns:ParentStudentRelation" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ParentStudentRelation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ParentStudentRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckUserDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckUserDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_UpdatePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_UpdatePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentRelations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentRelations" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentRelations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentRelationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_AcceptParentRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptParentRequest" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_AcceptParentRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptParentRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetPendingTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTests" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetPendingTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPendingTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestQuestions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestions" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestQuestions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestQuestionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffStudentRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:StaffStudentRequest" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffStudentRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StaffStudentRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_AcceptStaffStudentRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptStaffStudentRequest" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_AcceptStaffStudentRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AcceptStaffStudentRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffStudentList_InputMessage">
+    <wsdl:part name="parameters" element="tns:StaffStudentList" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StaffStudentList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StaffStudentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetInstitutionList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstitutionList" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetInstitutionList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInstitutionListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStudentEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStudentEmail" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStudentEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStudentEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTopicwiseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopicwiseReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTopicwiseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopicwiseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetDetailedTestReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailedTestReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetDetailedTestReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDetailedTestReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentNotification_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentNotification" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentNotification_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentNotificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_SubmitTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitTest" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_SubmitTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SubmitTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStates" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetBoards_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoards" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetBoards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBoardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetAllSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSubjects" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetAllSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetClasswiseSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClasswiseSubjects" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetClasswiseSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClasswiseSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetWritenTestDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWritenTestDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetWritenTestDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWritenTestDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetSubjectWiseReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectWiseReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetSubjectWiseReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectWiseReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestStatusReport_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestStatusReport" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestStatusReport_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestStatusReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestOverview_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestOverview" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTestOverview_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTestOverviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStudentDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStudentDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStaffStudentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStaffStudentStatus" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckStaffStudentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckStaffStudentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStaffStudents_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaffStudents" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetStaffStudents_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStaffStudentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTopicWisePerformance_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopicWisePerformance" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetTopicWisePerformance_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTopicWisePerformanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StudentDashboardDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:StudentDashboardDetails" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_StudentDashboardDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StudentDashboardDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckCoupenCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCoupenCode" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_CheckCoupenCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckCoupenCodeResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Ielf_web_ws">
+    <wsdl:operation name="CheckParentLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckParentLogin" message="tns:Ielf_web_ws_CheckParentLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckParentLoginResponse" message="tns:Ielf_web_ws_CheckParentLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetSubjects" message="tns:Ielf_web_ws_GetSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetSubjectsResponse" message="tns:Ielf_web_ws_GetSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestReport" message="tns:Ielf_web_ws_GetTestReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestReportResponse" message="tns:Ielf_web_ws_GetTestReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLessionWiseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetLessionWiseReport" message="tns:Ielf_web_ws_GetLessionWiseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetLessionWiseReportResponse" message="tns:Ielf_web_ws_GetLessionWiseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/StudentRegistration" message="tns:Ielf_web_ws_StudentRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/StudentRegistrationResponse" message="tns:Ielf_web_ws_StudentRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ParentRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/ParentRegistration" message="tns:Ielf_web_ws_ParentRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/ParentRegistrationResponse" message="tns:Ielf_web_ws_ParentRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StaffRegistration">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffRegistration" message="tns:Ielf_web_ws_StaffRegistration_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffRegistrationResponse" message="tns:Ielf_web_ws_StaffRegistration_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommonData">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetCommonData" message="tns:Ielf_web_ws_GetCommonData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetCommonDataResponse" message="tns:Ielf_web_ws_GetCommonData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClasses">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetClasses" message="tns:Ielf_web_ws_GetClasses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetClassesResponse" message="tns:Ielf_web_ws_GetClasses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrict">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetDistrict" message="tns:Ielf_web_ws_GetDistrict_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetDistrictResponse" message="tns:Ielf_web_ws_GetDistrict_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetCities" message="tns:Ielf_web_ws_GetCities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetCitiesResponse" message="tns:Ielf_web_ws_GetCities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutions">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetInstitutions" message="tns:Ielf_web_ws_GetInstitutions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetInstitutionsResponse" message="tns:Ielf_web_ws_GetInstitutions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckStudentLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStudentLogin" message="tns:Ielf_web_ws_CheckStudentLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStudentLoginResponse" message="tns:Ielf_web_ws_CheckStudentLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckStaffLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStaffLogin" message="tns:Ielf_web_ws_CheckStaffLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStaffLoginResponse" message="tns:Ielf_web_ws_CheckStaffLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDashboard">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentDashboard" message="tns:Ielf_web_ws_GetStudentDashboard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentDashboardResponse" message="tns:Ielf_web_ws_GetStudentDashboard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetQuestions" message="tns:Ielf_web_ws_GetQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetQuestionsResponse" message="tns:Ielf_web_ws_GetQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserFeedback">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/SaveUserFeedback" message="tns:Ielf_web_ws_SaveUserFeedback_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/SaveUserFeedbackResponse" message="tns:Ielf_web_ws_SaveUserFeedback_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ParentStudentRelation">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/ParentStudentRelation" message="tns:Ielf_web_ws_ParentStudentRelation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/ParentStudentRelationResponse" message="tns:Ielf_web_ws_ParentStudentRelation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckUserDetails" message="tns:Ielf_web_ws_CheckUserDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckUserDetailsResponse" message="tns:Ielf_web_ws_CheckUserDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/UpdatePassword" message="tns:Ielf_web_ws_UpdatePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/UpdatePasswordResponse" message="tns:Ielf_web_ws_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentRelations">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentRelations" message="tns:Ielf_web_ws_GetStudentRelations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentRelationsResponse" message="tns:Ielf_web_ws_GetStudentRelations_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptParentRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/AcceptParentRequest" message="tns:Ielf_web_ws_AcceptParentRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/AcceptParentRequestResponse" message="tns:Ielf_web_ws_AcceptParentRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetPendingTests" message="tns:Ielf_web_ws_GetPendingTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetPendingTestsResponse" message="tns:Ielf_web_ws_GetPendingTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestions">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestQuestions" message="tns:Ielf_web_ws_GetTestQuestions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestQuestionsResponse" message="tns:Ielf_web_ws_GetTestQuestions_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StaffStudentRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffStudentRequest" message="tns:Ielf_web_ws_StaffStudentRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffStudentRequestResponse" message="tns:Ielf_web_ws_StaffStudentRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AcceptStaffStudentRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequest" message="tns:Ielf_web_ws_AcceptStaffStudentRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequestResponse" message="tns:Ielf_web_ws_AcceptStaffStudentRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StaffStudentList">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffStudentList" message="tns:Ielf_web_ws_StaffStudentList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/StaffStudentListResponse" message="tns:Ielf_web_ws_StaffStudentList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutionList">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetInstitutionList" message="tns:Ielf_web_ws_GetInstitutionList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetInstitutionListResponse" message="tns:Ielf_web_ws_GetInstitutionList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckStudentEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStudentEmail" message="tns:Ielf_web_ws_CheckStudentEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStudentEmailResponse" message="tns:Ielf_web_ws_CheckStudentEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicwiseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTopicwiseReport" message="tns:Ielf_web_ws_GetTopicwiseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTopicwiseReportResponse" message="tns:Ielf_web_ws_GetTopicwiseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailedTestReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetDetailedTestReport" message="tns:Ielf_web_ws_GetDetailedTestReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetDetailedTestReportResponse" message="tns:Ielf_web_ws_GetDetailedTestReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentNotification">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentNotification" message="tns:Ielf_web_ws_GetStudentNotification_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentNotificationResponse" message="tns:Ielf_web_ws_GetStudentNotification_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SubmitTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/SubmitTest" message="tns:Ielf_web_ws_SubmitTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/SubmitTestResponse" message="tns:Ielf_web_ws_SubmitTest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStates" message="tns:Ielf_web_ws_GetStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStatesResponse" message="tns:Ielf_web_ws_GetStates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBoards">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetBoards" message="tns:Ielf_web_ws_GetBoards_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetBoardsResponse" message="tns:Ielf_web_ws_GetBoards_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetAllSubjects" message="tns:Ielf_web_ws_GetAllSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetAllSubjectsResponse" message="tns:Ielf_web_ws_GetAllSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClasswiseSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjects" message="tns:Ielf_web_ws_GetClasswiseSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjectsResponse" message="tns:Ielf_web_ws_GetClasswiseSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWritenTestDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetWritenTestDetails" message="tns:Ielf_web_ws_GetWritenTestDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetWritenTestDetailsResponse" message="tns:Ielf_web_ws_GetWritenTestDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectWiseReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReport" message="tns:Ielf_web_ws_GetSubjectWiseReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReportResponse" message="tns:Ielf_web_ws_GetSubjectWiseReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestStatusReport">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestStatusReport" message="tns:Ielf_web_ws_GetTestStatusReport_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestStatusReportResponse" message="tns:Ielf_web_ws_GetTestStatusReport_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTestOverview">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestOverview" message="tns:Ielf_web_ws_GetTestOverview_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTestOverviewResponse" message="tns:Ielf_web_ws_GetTestOverview_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentDetails" message="tns:Ielf_web_ws_GetStudentDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentDetailsResponse" message="tns:Ielf_web_ws_GetStudentDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckStaffStudentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatus" message="tns:Ielf_web_ws_CheckStaffStudentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatusResponse" message="tns:Ielf_web_ws_CheckStaffStudentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffStudents">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStaffStudents" message="tns:Ielf_web_ws_GetStaffStudents_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStaffStudentsResponse" message="tns:Ielf_web_ws_GetStaffStudents_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicWisePerformance">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformance" message="tns:Ielf_web_ws_GetTopicWisePerformance_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformanceResponse" message="tns:Ielf_web_ws_GetTopicWisePerformance_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StudentDashboardDetails">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/StudentDashboardDetails" message="tns:Ielf_web_ws_StudentDashboardDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/StudentDashboardDetailsResponse" message="tns:Ielf_web_ws_StudentDashboardDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCoupenCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckCoupenCode" message="tns:Ielf_web_ws_CheckCoupenCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckCoupenCodeResponse" message="tns:Ielf_web_ws_CheckCoupenCode_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_Ielf_web_ws" type="tns:Ielf_web_ws">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckParentLogin">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckParentLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTestReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLessionWiseReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetLessionWiseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentRegistration">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/StudentRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ParentRegistration">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/ParentRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StaffRegistration">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/StaffRegistration" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommonData">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetCommonData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClasses">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetClasses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrict">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetDistrict" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCities">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetCities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutions">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetInstitutions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStudentLogin">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckStudentLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStaffLogin">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckStaffLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDashboard">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStudentDashboard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetQuestions">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserFeedback">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/SaveUserFeedback" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ParentStudentRelation">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/ParentStudentRelation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUserDetails">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckUserDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentRelations">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStudentRelations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptParentRequest">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/AcceptParentRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPendingTests">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetPendingTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestQuestions">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTestQuestions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StaffStudentRequest">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/StaffStudentRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AcceptStaffStudentRequest">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StaffStudentList">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/StaffStudentList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutionList">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetInstitutionList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStudentEmail">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckStudentEmail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicwiseReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTopicwiseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDetailedTestReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetDetailedTestReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentNotification">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStudentNotification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SubmitTest">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/SubmitTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBoards">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetBoards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSubjects">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetAllSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClasswiseSubjects">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWritenTestDetails">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetWritenTestDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectWiseReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestStatusReport">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTestStatusReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTestOverview">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTestOverview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStudentDetails">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStudentDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckStaffStudentStatus">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStaffStudents">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStaffStudents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTopicWisePerformance">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StudentDashboardDetails">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/StudentDashboardDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCoupenCode">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/CheckCoupenCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="elf_web_ws">
+    <wsdl:port name="BasicHttpBinding_Ielf_web_ws" binding="tns:BasicHttpBinding_Ielf_web_ws">
+      <soap:address location="http://www.elfanalysis.net/elf_web_ws.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

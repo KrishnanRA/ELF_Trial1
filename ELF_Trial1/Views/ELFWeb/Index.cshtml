@@ -10,6 +10,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="~/Script/aes.js"></script>
 </head>
 <body>
     <style>
@@ -107,39 +109,52 @@
             box-sizing: border-box;
         }
     </style>
-    <script>
-    function Login() {
-        var username = document.getElementById('username').value;
-        var password = document.getElementById('password').value;
-        var User = $('input[name=User]:checked').val();
-        //window.location.href = '/' + User + '/Dashboard';
-
-        debugger;
-            $.ajax({
-                type: 'POST',
-                url: '/ELFWeb/Login',
-                contentType: 'application/json;charset=utf-8',
-                data: JSON.stringify({ Username: username, Password: password,UserType:User }),
-                datatype: 'json',
-                success: function (data) {
-                    $.each(JSON.parse(data).Table, function (i, record) {
-
-                        alert(record.ClassId + '---------' + record.ClassName + '---------' + record.BoardId + '---------' + record.BoardName);
-                    });
-                },
-                error: function (err) {
-                    if (err.status == 200) {
-                        ParseResult(err);
+   
+        <script type="text/javascript">
+            function Login() {
+                
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                var User = $('input[name=User]:checked').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/ELFWeb/Login',
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify({ Username: username, Password: password, UserType: User }),
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data == 'success') {
+                            if (User == 'Student') {
+                                window.location.href = '../Student/Dashboard';
+                            }
+                            else if (User == 'Parent') {
+                                window.location.href = '../Parent/Dashboard';
+                            }
+                            else if (User == 'Staff') {
+                                window.location.href = incomimg + '/Dashboard';
+                            }
+                            //else if (User == '') {
+                            //    window.location.href = incomimg + '/Dashboard';
+                            //}
+                            
+                        }
+                        else if (data == 'Failed') {
+                            debugger;
+                            alert("Enter Username and Password correctly");
+                        }
+                    },
+                    error: function (err) {
+                        if (err.status == 200) {
+                            ParseResult(err);
+                        }
+                        else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
                     }
-                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
-                }
-            });
+                });
 
-    }
-    function navsignup() {
-        window.location.href = '/ELFWeb/NewRegistration';
-    }
-    </script>
+            }
+            
+        </script>
+    
     <img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />
     <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-900px; margin-left:-190px;" />
 
@@ -171,10 +186,10 @@
 
             </div>
             <div class="row fields">
-                <input type="text" class="inputfielddashboard" placeholder="Username" id="username">
+                <input type="text" class="inputfielddashboard" placeholder="Username" value="sbk.bharath93@gmail.com" id="username">
             </div>
             <div class="row fields">
-                <input type="password" class="inputfielddashboard" placeholder="Password" id="password">
+                <input type="password" class="inputfielddashboard" placeholder="Password" value="bharathkumar"  id="password">
             </div>
             <div class="row fields">
                 <input type="button" class="butnblacknobg" value="Log In" id="login" onclick="Login()">
@@ -185,8 +200,8 @@
                 </a>
             </div>
             <div class="row fields" style="margin-left:auto">
-                <a>
-                    <span onclick="navsignup();">Sign Up</span>
+                <a href="../ELFWeb/NewRegistration">
+                   <span>Sign Up</span>
                 </a>
             </div>
         </div>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ELF_Trial1.Models.Student.TestMain
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Test Main page</title>
@@ -257,15 +258,20 @@
         var app = angular.module('TestMainPage', []);
 
         app.controller('Overall', function ($scope) {
-            $scope.OverallTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "Description": "Thermodynamics" },
-                { "Subject": "2", name: 'Chemistry', "TestID": "OT01", "Description": "Vector Algebra" },
-                { "Subject": "3", name: 'Maths', "TestID": "OT01", "Description": "Matrices" },
-                { "Subject": "4", name: 'Computer Science', "TestID": "OT01", "Description": "Trignomentry" }];
+            @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var OverallTestjson = serializer.Serialize(Model.OverallTest);
+                var SubjectListjson = serializer.Serialize(Model.GlobalStudentSubjectDetails);
+             }
+             $scope.OverallTest =@Html.Raw(OverallTestjson);
             $scope.myFunction = function (val) {
 
                 return (val.Subject != 2);
             };
-            $scope.tab = 'Physics';
+            //$scope.tab = 'Physics';
+            debugger;
+            $scope.SubjectList=@Html.Raw(SubjectListjson);
+            $scope.tab = '@Model.GlobalStudentSubjectDetails[0].SubjectName';
         });
         app.controller('Recommended', function ($scope) {
             $scope.RecommendedTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "Description": "Thermodynamics" },
@@ -275,7 +281,7 @@
         });
 
         app.controller('Public', function ($scope) {
-            $scope.PublicTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "EndDate": "08-11-2016","EndDateTime":"06:00 PM" },
+            $scope.PublicTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "EndDate": "08-11-2016", "EndDateTime": "06:00 PM" },
                 { "Subject": "2", "name": "Chemistry", "TestID": "OT01", "EndDate": "19-11-2016", "EndDateTime": "06:00 PM" },
                 { "Subject": "3", "name": "Maths", "TestID": "OT01", "EndDate": "14-11-2016", "EndDateTime": "08:00 PM" },
                     { "Subject": "4", "name": "Computer Science", "TestID": "OT01", "EndDate": "12-11-2016", "EndDateTime": "09:00 AM" }];
@@ -288,6 +294,16 @@
             window.location.href = '/Student/' + Page;
         }
     </script>
+    <script>
+        function GoToTest(TestID)
+        {
+            var TakeTest=confirm("Are you sure want to write Test now");
+            if(TakeTest==true){
+                window.location.href = '/Student/Test?TestID=' + TestID;
+            }
+            
+        }
+        </script>
     <style>
         #UserNameH {
             margin-top: -150px;
@@ -398,18 +414,22 @@
                 <li><a class="navbuttons" data-toggle="tab" href="#Public">Public</a></li>
             </ul>
             <div class="tab-content" style="margin-top:30px;margin-left:-250px;">
-                <div id="Overall" class="tab-pane fade in active" style="text-align:center">
+                <div id="Overall" class="tab-pane fade in active" style="text-align:center"  >
                     <div ng-controller="Overall">
-                        <div style="margin-left:250px;">
+                        @*<div style="margin-left:250px;">
                             <input type="text" class="filtertextbox" ng-model="FilteronDescription" placeholder="Any Details">
-                        </div></br>
-                        <div style="margin-left:250px;">
-                            <input type="button" ng-class="{activesubbutton: tab == 'Physics'}" ng-click="tab='Physics'; myFilter = {Subject: 1}" value="Phy" />
-                            <input type="button" ng-class="{activesubbutton: tab == 'Chemistry'}" ng-click="tab='Chemistry'; myFilter = {Subject: 2}" value="Chem" />
-                            <input type="button" ng-class="{activesubbutton: tab == 'Maths'}" ng-click="tab='Maths';myFilter = {Subject: 3}" value="Maths" />
-                            <input type="button" ng-class="{activesubbutton: tab == 'cs'}" ng-click="tab='cs';myFilter = myFunction" Value="CS" />
-                            <input type="button" ng-class="{activesubbutton: tab == 'nofilter'}" ng-click="tab='nofilter';myFilter = null" Value="No Filter" />
-                        </div>
+                        </div></br>*@
+                        @*<ul>
+                            <li style="display:inline" ng-repeat="Subjects in SubjectList">
+                                <input type="button" ng-class="{activesubbutton: tab == {{Subjects.SubjectName}}}" ng-click="tab={{Subjects.SubjectName}}; myFilter = {Subject: {{Subjects.SubjectID}}}" value="{{Subjects.SubjectName}}" />
+
+                            </li>
+                        </ul>*@
+                                @*<input type="button" ng-class="{activesubbutton: tab == 'nofilter'}" ng-click="tab='nofilter';myFilter = null" Value="No Filter" />
+                        
+                                </div>*@
+                    
+
                         <table style="margin-top:30px;">
                             <tr>
                                 <th>Subject</th>
@@ -418,10 +438,10 @@
                                 <th>Write Test</th>
                             </tr>
                             <tr ng-repeat="person in OverallTest | filter:myFilter |  filter:{Description:FilteronDescription}">
-                                <td>{{person.name}}</td>
+                                <td>{{person.SubjectName}}</td>
                                 <td>{{person.TestID}}</td>
                                 <td>{{person.Description}}</td>
-                                <td><button id="{{person.TestID}}" class="writetestbutn" onclick="alert(this.id)">Write Test</button></td>
+                                <td><button id="{{person.TestID}}" class="writetestbutn" onclick="GoToTest(this.id)">Write Test</button></td>
                             </tr>
                         </table>
                     </div>
@@ -446,7 +466,7 @@
                         <input type="button" ng-click="myFilter = {Subject: 3}" value="Maths" />
                         <input type="button" ng-click="myFilter = null" Value="No Filter" />
                     </div>
-                    <div ng-controller="Public">
+                    <div ng-controller="PublicTest">
                         <table style="margin-top:50px;">
                             <tr ng-repeat="person in PublicTest | filter:myFilter |  filter:{Description:FilteronDescription}" ">
                                 <td>{{person.name}}</td>

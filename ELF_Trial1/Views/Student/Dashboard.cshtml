@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ELF_Trial1.Models.Student.StudentDashboard
+    
+@{
     Layout = null;
 }
 
@@ -71,91 +73,111 @@
                 }
             });
 
-            window.onload = function () {
-                var ctx = document.getElementById("canvas").getContext("2d");
-                var ctx1 = document.getElementById("chart1").getContext("2d");
-                var myBarChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: data,
-                    options: {
-                        chartArea: {
-                            backgroundColor: 'rgba(72,72,72,1)'
-                        }
+        $(document).ready(function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            var ctx1 = document.getElementById("chart1").getContext("2d");
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    chartArea: {
+                        backgroundColor: 'rgba(72,72,72,1)'
                     }
-                });
-                var myLineChart = new Chart(ctx1, {
-                    type: 'line',
-                    data: data1,
-                    options: {
-                        chartArea: {
-                            backgroundColor: 'rgba(72,72,72,1)'
-                        }
+                }
+            });
+            var myLineChart = new Chart(ctx1, {
+                type: 'line',
+                data: data1,
+                options: {
+                    chartArea: {
+                        backgroundColor: 'rgba(72,72,72,1)'
                     }
-                });
-            }
-            var data = {
-                labels: ["Maths", "Physics", "Chemistry", "Computer Science"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        backgroundColor: [
-                            'rgba(251, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(119, 136, 153, 1)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(251,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1,
-                        data: [82, 76, 42, 65],
+                }
+            });
+        });
+        debugger;
+        @{
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var Reportjson = serializer.Serialize(Model.SubjectPercentage);
+        }
+        
+        var SubjectList =@Html.Raw(Reportjson);
+        var SubjectNameList = [];
+        var SubjectPercentageList = [];
+        var subjectcount=SubjectList.length;
 
-                        options: {
-                            scales: {
-                                yAxes: [{
-                                    ticks: {
-                                        beginAtZero: true
-                                    }
-                                }]
+        for(i=0;i<subjectcount;i++)
+        {
+            debugger;
+
+             SubjectNameList[i] = SubjectList[i].SubjectName;
+            SubjectPercentageList[i] = SubjectList[i].SubjectName.Percentage;
+          
+        }
+       
+            var data = {
+                labels: SubjectNameList,
+                    datasets: [
+                        {
+            label: "Subject Percentage List",
+                            backgroundColor: [
+                                'rgba(251, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(119, 136, 153, 1)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(251,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1,
+                            data: SubjectPercentageList,
+
+                            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                                        }
+                                    }]
+                                }
                             }
                         }
-                    }
-                ]
-            };
-            var data1 = {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "Overal",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        spanGaps: false,
-                    }
-                ]
-            };
+                    ]
+                };
+                var data1 = {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [
+                        {
+                            label: "Overal",
+                            fill: false,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [65, 59, 80, 81, 56, 55, 40],
+                            spanGaps: false,
+                        }
+                    ]
+                };
     </script>
     <script>
             function PageNav(Page) {
@@ -165,21 +187,23 @@
     <script>
             var app = angular.module('DashboardMainPage', []);
             app.controller('ReportSubject1', function ($scope) {
+              
+
+
                 $scope.GetAllData = function () {
-                    $http.get('/Student/StudentLogin', {params:{"StudentID":@Model.StudentID }})
+                    $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
                     .success(function (data, status, headers, config) {
-                        debugger;
                         $scope.Details = data;
                        
                     })
-              
-                $scope.Physics = [
-                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                ]
+                }
+                    $scope.Physics = [
+                      { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+                      { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+                      { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+                      { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                       { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+                    ];
             });
             app.controller('ReportSubject2', function ($scope) {
                 $scope.Chemistry = [
@@ -218,33 +242,7 @@
                 ]
             });
 
-            app.controller('AvailableTestSubject1', function ($scope) {
-                $scope.Physics = [
-                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                ]
-            });
-            app.controller('LastFiveTestSubject2', function ($scope) {
-                $scope.Chemistry = [
-                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                ]
-            });
-            app.controller('AvailableTestSubject2', function ($scope) {
-                $scope.Chemistry = [
-                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                ]
-            });
+          
             app.controller('OverallTestCtrl', function ($scope) {
                 $scope.Physics = [
                   { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
@@ -273,22 +271,21 @@
                 ]
             });
             app.controller('CompletedTestDashboard', function ($scope) {
-                $scope.Physics = [
-                  { "SubjectCode": "Physics", "TestID": "P1212", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red", "SubjectCodeValue": "danger" },
-                  { "SubjectCode": "Physics", "TestID": "P1213", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue", "SubjectCodeValue": "danger" },
-                  { "SubjectCode": "Chemistry", "TestID": "C1287", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow", "SubjectCodeValue": "warning" },
-                  { "SubjectCode": "ComputerSc", "TestID": "CS1255", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green", "SubjectCodeValue": "success" },
-                   { "SubjectCode": "Maths", "TestID": "M1266", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green", "SubjectCodeValue": "info" }
-                ]
+                  @{
+                      var serializerLastFive = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      var LastFiveTestjson = serializerLastFive.Serialize(Model.OverallLastFiveTest);
+                  }
+                   $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
+
             });
             app.controller('AvailableTestDashboard', function ($scope) {
-                $scope.Physics = [
-                  { "SubjectCode": "ComputerSc", "TestID": "CS1265", "LessonName": "Matrics", "TestTime": "15", "WarningColor": "red", "SubjectCodeValue": "success" },
-                  { "SubjectCode": "ComputerSc", "TestID": "CS1219", "LessonName": "Vector Algebra", "TestTime": "30", "WarningColor": "blue", "SubjectCodeValue": "success" },
-                  { "SubjectCode": "Maths", "TestID": "M1242", "LessonName": "Set Language", "TestTime": "15", "WarningColor": "yellow", "SubjectCodeValue": "info" },
-                  { "SubjectCode": "Chemistry", "TestID": "C1222", "LessonName": "Algebra", "TestTime": "15", "WarningColor": "green", "SubjectCodeValue": "warning" },
-                   { "SubjectCode": "Physics", "TestID": "P1212", "LessonName": "Trignomentry", "TestTime": "30", "WarningColor": "green", "SubjectCodeValue": "danger" }
-                ]
+                
+                @{
+                    var serializerAvailableTest = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    var AvailableTestjson = serializerAvailableTest.Serialize(Model.OverallAvailableTest);
+                }
+                $scope.AvailableTest =@Html.Raw(AvailableTestjson);
+
             });
     </script>
     <style>
@@ -437,6 +434,12 @@
             color: white;
         }
     </style>
+    <script>
+        function TestSummaryPage(TestID)
+        {
+            window.location.href='/Student/TestSummary?TestId='+TestID;
+        }
+    </script>
 </head>
 <body>
     <div>
@@ -454,38 +457,38 @@
     <div style="margin-left:460px;margin-top:-250px">
         <div class="icon_middletext">
             <img src="~/Images/Student/Dashboard/Name_Banner.png" />
-            <span style="margin-top:-50px;margin-left:50px;">Krishnan RA</span>
+            <span style="margin-top:-50px;margin-left:50px;">@Model.StudentGeneralDetails.Name</span>
         </div>
         <div style="margin-top:20px">
             <div class="icon_middletext">
                 <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">12th</span>
+                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">@Model.StudentGeneralDetails.ClassName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
                 <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Samacheer</span>
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.BoardName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
                 <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Ranga Matriculation</span>
+                <span style="margin-top:-40px;margin-left:0px;font-size:16px;">@Model.StudentGeneralDetails.InstitutionName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
                 <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Coimbatore</span>
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.DistrictName</span>
             </div>
         </div>
         <div style="margin-top:-215px;margin-left:710px;">
             <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
                 <img src="~/Images/Student/Dashboard/State_Rank.png" />
-                <span style="margin-top:-30px;margin-left:40px;">11017</span>
+                <span style="margin-top:-30px;margin-left:40px;">@Model.StudentRank.StateRank</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
                 <img src="~/Images/Student/Dashboard/District_Rank.png" />
-                <span style="margin-top:-30px;margin-left:50px;">96</span>
+                <span style="margin-top:-30px;margin-left:50px;">@Model.StudentRank.DistrictRank</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
                 <img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">
-                <span style="margin-top:-30px;margin-left:-180px;">618</span>
+                <span style="margin-top:-30px;margin-left:-180px;">@Model.StudentRank.InstitutionRank</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
                 <img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">
@@ -513,7 +516,7 @@
                 </div>
             </div>
         </div>
-        <div style="margin-top:450px;">
+        <div style="margin-top:450px;">            
             <div class="col-md-12" style="margin-top:10px;">
                 <div class="col-md-4">
                     <div ng-controller="Performinggooddashboard">
@@ -577,16 +580,16 @@
                                 <table>
                                     <tr>
                                         <th>Subject</th>
-                                        <th>Lesson</th>
+                                        <th>Type</th>
                                         <th>Test ID</th>
-                                        <th>Mark</th>
+                                        <th>Percentage</th>
                                     </tr>
-                                    <tr ng-repeat="x in Physics">
-                                        <td><span>{{x.SubjectCode}}</span></td>
-                                        <td>{{x.LessonName}}</td>
-                                        <td>{{x.TestID}}</td>
+                                    <tr ng-repeat="x in LastTestFiveTestList">
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td>{{x.TestType}}</td>
+                                        <td>{{x.TestId}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
-                                        <td><button onclick="alert('Hi')" style="background-color:#808080;border-color:#808080">Get Detail</button></td>
+                                        <td><button onclick="TestSummaryPage({{x.TestID}})"style="background-color:#808080;border-color:#808080">Get Detail</button></td>
                                     </tr>
                                 </table>
                             </div>
@@ -606,12 +609,11 @@
                                         <th>Test ID</th>
                                         <th>Test Time</th>
                                     </tr>
-                                    <tr ng-repeat="x in Physics">
-                                        <td><span>{{x.SubjectCode}}</span></td>
-                                        <td>{{x.LessonName}}</td>
-                                        <td>{{x.TestID}}</td>
-                                        <td><span>{{x.TestTime}}</span></td>
-                                        <td><button style="background-color:#808080;border-color:#808080" onclick="alert('Hi')">Write Test</button></td>
+                                    <tr ng-repeat="x in AvailableTest">
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td>{{x.TestType}}</td>
+                                        <td>{{x.TestId}}</td>
+                                        <td><button style="background-color:#808080;border-color:#808080" onclick="WriteTest({{x.TestId}})">Write Test</button></td>
                                     </tr>
                                 </table>
                             </div>

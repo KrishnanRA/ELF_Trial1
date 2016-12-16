@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="fjQAnKZYaIFne/eXCjVMVoCpDrg=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="GMnVhjMYHrrkFuUpzBHF/H+4dlU=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_Ielf_web_ws">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_Ielf_web_ws" contract="web_ws.Ielf_web_ws" bindingType="basicHttpBinding" address="http://www.hijazboutique.com/elf_web_ws.svc" bindingConfiguration="BasicHttpBinding_Ielf_web_ws">
+    <endpoint name="BasicHttpBinding_Ielf_web_ws" contract="web_ws.Ielf_web_ws" bindingType="basicHttpBinding" address="http://www.elfanalysis.net/elf_web_ws.svc" bindingConfiguration="BasicHttpBinding_Ielf_web_ws">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://www.hijazboutique.com/elf_web_ws.svc</serializedValue>
+          <serializedValue>http://www.elfanalysis.net/elf_web_ws.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

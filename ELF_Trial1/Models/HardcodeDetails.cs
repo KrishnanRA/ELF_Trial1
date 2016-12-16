@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json.Linq;
+using System.Web.Helpers;
 
 namespace ELF_Trial1.Models
 {
-    public class StudentLoginDetails
+    public class HardcodeDetails
     {
-        public String OutputStatus { get; set; }
+       
     }
+    
+    
 }

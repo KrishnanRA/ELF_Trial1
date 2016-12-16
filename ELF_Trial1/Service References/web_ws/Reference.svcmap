@@ -19,13 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://www.hijazboutique.com/elf_web_ws.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://www.elfanalysis.net/elf_web_ws.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="elf_web_ws.xsd" MetadataType="Schema" ID="17a51911-91e5-4363-933d-e5260d6c148e" SourceId="1" SourceUrl="http://www.hijazboutique.com/elf_web_ws.svc?xsd=xsd1" />
-    <MetadataFile FileName="elf_web_ws.wsdl" MetadataType="Wsdl" ID="c392a37e-657a-4b4e-b139-485afa03c1ef" SourceId="1" SourceUrl="http://www.hijazboutique.com/elf_web_ws.svc?wsdl" />
-    <MetadataFile FileName="elf_web_ws.disco" MetadataType="Disco" ID="e602a308-d0ee-445e-98f0-f6ff62063f50" SourceId="1" SourceUrl="http://www.hijazboutique.com/elf_web_ws.svc?disco" />
-    <MetadataFile FileName="elf_web_ws1.xsd" MetadataType="Schema" ID="67d72bb9-c25a-4ade-904f-236d87a71d09" SourceId="1" SourceUrl="http://www.hijazboutique.com/elf_web_ws.svc?xsd=xsd0" />
+    <MetadataFile FileName="elf_web_ws1.disco" MetadataType="Disco" ID="0c0bb4ef-3251-46cf-9bd6-70a009cefeea" SourceId="1" SourceUrl="http://www.elfanalysis.net/elf_web_ws.svc?disco" />
+    <MetadataFile FileName="elf_web_ws3.xsd" MetadataType="Schema" ID="2d9a60c5-7be8-4c23-820b-42a3467dea25" SourceId="1" SourceUrl="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd0" />
+    <MetadataFile FileName="elf_web_ws31.xsd" MetadataType="Schema" ID="204a0916-5314-447c-a237-4910575ae772" SourceId="1" SourceUrl="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd2" />
+    <MetadataFile FileName="elf_web_ws1.wsdl" MetadataType="Wsdl" ID="6f347a70-bd2e-4c07-8f13-1fbf9da58b3e" SourceId="1" SourceUrl="http://www.elfanalysis.net/elf_web_ws.svc?wsdl" />
+    <MetadataFile FileName="elf_web_ws32.xsd" MetadataType="Schema" ID="953e7d03-4ad0-4577-a0b5-52489893e806" SourceId="1" SourceUrl="http://www.elfanalysis.net/elf_web_ws.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

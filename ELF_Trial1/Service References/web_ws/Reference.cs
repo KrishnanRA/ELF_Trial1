@@ -9,7 +9,70 @@
 //------------------------------------------------------------------------------
 
 namespace ELF_Trial1.web_ws {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Answers", Namespace="http://schemas.datacontract.org/2004/07/elf_ws.Model")]
+    [System.SerializableAttribute()]
+    public partial class Answers : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AnswerSelectedField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int QuestionIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string AnswerSelected {
+            get {
+                return this.AnswerSelectedField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AnswerSelectedField, value) != true)) {
+                    this.AnswerSelectedField = value;
+                    this.RaisePropertyChanged("AnswerSelected");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int QuestionId {
+            get {
+                return this.QuestionIdField;
+            }
+            set {
+                if ((this.QuestionIdField.Equals(value) != true)) {
+                    this.QuestionIdField = value;
+                    this.RaisePropertyChanged("QuestionId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="web_ws.Ielf_web_ws")]
@@ -40,10 +103,10 @@ namespace ELF_Trial1.web_ws {
         System.Threading.Tasks.Task<string> GetLessionWiseReportAsync(int studentId, int subjectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StudentRegistration", ReplyAction="http://tempuri.org/Ielf_web_ws/StudentRegistrationResponse")]
-        string StudentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId);
+        string StudentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId, int GroupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StudentRegistration", ReplyAction="http://tempuri.org/Ielf_web_ws/StudentRegistrationResponse")]
-        System.Threading.Tasks.Task<string> StudentRegistrationAsync(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId);
+        System.Threading.Tasks.Task<string> StudentRegistrationAsync(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId, int GroupId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ParentRegistration", ReplyAction="http://tempuri.org/Ielf_web_ws/ParentRegistrationResponse")]
         string ParentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int CityId, int DistrictId, int StateId);
@@ -116,6 +179,186 @@ namespace ELF_Trial1.web_ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/SaveUserFeedback", ReplyAction="http://tempuri.org/Ielf_web_ws/SaveUserFeedbackResponse")]
         System.Threading.Tasks.Task<string> SaveUserFeedbackAsync(int UserId, string Feedback, string UserType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ParentStudentRelation", ReplyAction="http://tempuri.org/Ielf_web_ws/ParentStudentRelationResponse")]
+        string ParentStudentRelation(int StudentId, int ParentId, int RelationshipId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ParentStudentRelation", ReplyAction="http://tempuri.org/Ielf_web_ws/ParentStudentRelationResponse")]
+        System.Threading.Tasks.Task<string> ParentStudentRelationAsync(int StudentId, int ParentId, int RelationshipId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckUserDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckUserDetailsResponse")]
+        string CheckUserDetails(string Email, string PhoneNumber, string UserType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckUserDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckUserDetailsResponse")]
+        System.Threading.Tasks.Task<string> CheckUserDetailsAsync(string Email, string PhoneNumber, string UserType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/UpdatePassword", ReplyAction="http://tempuri.org/Ielf_web_ws/UpdatePasswordResponse")]
+        string UpdatePassword(int UserId, string NewPassword, string UserType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/UpdatePassword", ReplyAction="http://tempuri.org/Ielf_web_ws/UpdatePasswordResponse")]
+        System.Threading.Tasks.Task<string> UpdatePasswordAsync(int UserId, string NewPassword, string UserType);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentRelations", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentRelationsResponse")]
+        string GetStudentRelations(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentRelations", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentRelationsResponse")]
+        System.Threading.Tasks.Task<string> GetStudentRelationsAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/AcceptParentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/AcceptParentRequestResponse")]
+        string AcceptParentRequest(int StudentId, int ParentId, string Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/AcceptParentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/AcceptParentRequestResponse")]
+        System.Threading.Tasks.Task<string> AcceptParentRequestAsync(int StudentId, int ParentId, string Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetPendingTests", ReplyAction="http://tempuri.org/Ielf_web_ws/GetPendingTestsResponse")]
+        string GetPendingTests(int StudentId, string Type);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetPendingTests", ReplyAction="http://tempuri.org/Ielf_web_ws/GetPendingTestsResponse")]
+        System.Threading.Tasks.Task<string> GetPendingTestsAsync(int StudentId, string Type);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestQuestions", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestQuestionsResponse")]
+        string GetTestQuestions(int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestQuestions", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestQuestionsResponse")]
+        System.Threading.Tasks.Task<string> GetTestQuestionsAsync(int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StaffStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/StaffStudentRequestResponse")]
+        string StaffStudentRequest(int StudentId, int StaffId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StaffStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/StaffStudentRequestResponse")]
+        System.Threading.Tasks.Task<string> StaffStudentRequestAsync(int StudentId, int StaffId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequestResponse")]
+        string AcceptStaffStudentRequest(int StudentId, int StaffId, string Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/AcceptStaffStudentRequestResponse")]
+        System.Threading.Tasks.Task<string> AcceptStaffStudentRequestAsync(int StudentId, int StaffId, string Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StaffStudentList", ReplyAction="http://tempuri.org/Ielf_web_ws/StaffStudentListResponse")]
+        string StaffStudentList(int StaffId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StaffStudentList", ReplyAction="http://tempuri.org/Ielf_web_ws/StaffStudentListResponse")]
+        System.Threading.Tasks.Task<string> StaffStudentListAsync(int StaffId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetInstitutionList", ReplyAction="http://tempuri.org/Ielf_web_ws/GetInstitutionListResponse")]
+        string GetInstitutionList(int StateId, int BoardId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetInstitutionList", ReplyAction="http://tempuri.org/Ielf_web_ws/GetInstitutionListResponse")]
+        System.Threading.Tasks.Task<string> GetInstitutionListAsync(int StateId, int BoardId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckStudentEmail", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckStudentEmailResponse")]
+        string CheckStudentEmail(string EmailAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckStudentEmail", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckStudentEmailResponse")]
+        System.Threading.Tasks.Task<string> CheckStudentEmailAsync(string EmailAddress);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTopicwiseReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTopicwiseReportResponse")]
+        string GetTopicwiseReport(int StudentId, int SubjectId, string LessionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTopicwiseReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTopicwiseReportResponse")]
+        System.Threading.Tasks.Task<string> GetTopicwiseReportAsync(int StudentId, int SubjectId, string LessionId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetDetailedTestReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetDetailedTestReportResponse")]
+        string GetDetailedTestReport(int StudentId, int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetDetailedTestReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetDetailedTestReportResponse")]
+        System.Threading.Tasks.Task<string> GetDetailedTestReportAsync(int StudentId, int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentNotification", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentNotificationResponse")]
+        string GetStudentNotification(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentNotification", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentNotificationResponse")]
+        System.Threading.Tasks.Task<string> GetStudentNotificationAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/SubmitTest", ReplyAction="http://tempuri.org/Ielf_web_ws/SubmitTestResponse")]
+        string SubmitTest(int StudentId, int TestId, ELF_Trial1.web_ws.Answers[] Answers);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/SubmitTest", ReplyAction="http://tempuri.org/Ielf_web_ws/SubmitTestResponse")]
+        System.Threading.Tasks.Task<string> SubmitTestAsync(int StudentId, int TestId, ELF_Trial1.web_ws.Answers[] Answers);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStates", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStatesResponse")]
+        string GetStates();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStates", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStatesResponse")]
+        System.Threading.Tasks.Task<string> GetStatesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetBoards", ReplyAction="http://tempuri.org/Ielf_web_ws/GetBoardsResponse")]
+        string GetBoards();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetBoards", ReplyAction="http://tempuri.org/Ielf_web_ws/GetBoardsResponse")]
+        System.Threading.Tasks.Task<string> GetBoardsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetAllSubjects", ReplyAction="http://tempuri.org/Ielf_web_ws/GetAllSubjectsResponse")]
+        string GetAllSubjects();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetAllSubjects", ReplyAction="http://tempuri.org/Ielf_web_ws/GetAllSubjectsResponse")]
+        System.Threading.Tasks.Task<string> GetAllSubjectsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjects", ReplyAction="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjectsResponse")]
+        string GetClasswiseSubjects(int ClassId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjects", ReplyAction="http://tempuri.org/Ielf_web_ws/GetClasswiseSubjectsResponse")]
+        System.Threading.Tasks.Task<string> GetClasswiseSubjectsAsync(int ClassId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetWritenTestDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetWritenTestDetailsResponse")]
+        string GetWritenTestDetails(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetWritenTestDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetWritenTestDetailsResponse")]
+        System.Threading.Tasks.Task<string> GetWritenTestDetailsAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReportResponse")]
+        string GetSubjectWiseReport(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetSubjectWiseReportResponse")]
+        System.Threading.Tasks.Task<string> GetSubjectWiseReportAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestStatusReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestStatusReportResponse")]
+        string GetTestStatusReport(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestStatusReport", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestStatusReportResponse")]
+        System.Threading.Tasks.Task<string> GetTestStatusReportAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestOverview", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestOverviewResponse")]
+        string GetTestOverview(int StudentId, int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTestOverview", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTestOverviewResponse")]
+        System.Threading.Tasks.Task<string> GetTestOverviewAsync(int StudentId, int TestId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentDetailsResponse")]
+        string GetStudentDetails(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentDetailsResponse")]
+        System.Threading.Tasks.Task<string> GetStudentDetailsAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatus", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatusResponse")]
+        string CheckStaffStudentStatus(int StaffId, int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatus", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckStaffStudentStatusResponse")]
+        System.Threading.Tasks.Task<string> CheckStaffStudentStatusAsync(int StaffId, int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStaffStudents", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStaffStudentsResponse")]
+        string GetStaffStudents(int StaffId, int Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStaffStudents", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStaffStudentsResponse")]
+        System.Threading.Tasks.Task<string> GetStaffStudentsAsync(int StaffId, int Status);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformance", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformanceResponse")]
+        string GetTopicWisePerformance(int StudentId, int SubjectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformance", ReplyAction="http://tempuri.org/Ielf_web_ws/GetTopicWisePerformanceResponse")]
+        System.Threading.Tasks.Task<string> GetTopicWisePerformanceAsync(int StudentId, int SubjectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StudentDashboardDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/StudentDashboardDetailsResponse")]
+        string StudentDashboardDetails(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/StudentDashboardDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/StudentDashboardDetailsResponse")]
+        System.Threading.Tasks.Task<string> StudentDashboardDetailsAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckCoupenCode", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckCoupenCodeResponse")]
+        string CheckCoupenCode(int StudentId, string CoupenCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckCoupenCode", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckCoupenCodeResponse")]
+        System.Threading.Tasks.Task<string> CheckCoupenCodeAsync(int StudentId, string CoupenCode);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -177,12 +420,12 @@ namespace ELF_Trial1.web_ws {
             return base.Channel.GetLessionWiseReportAsync(studentId, subjectId);
         }
         
-        public string StudentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId) {
-            return base.Channel.StudentRegistration(FirstName, LastName, EmailAddress, Password, PhoneNumber, InstitutionId, BoardId, ClassId, CityId, DistrictId, StateId);
+        public string StudentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId, int GroupId) {
+            return base.Channel.StudentRegistration(FirstName, LastName, EmailAddress, Password, PhoneNumber, InstitutionId, BoardId, ClassId, CityId, DistrictId, StateId, GroupId);
         }
         
-        public System.Threading.Tasks.Task<string> StudentRegistrationAsync(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId) {
-            return base.Channel.StudentRegistrationAsync(FirstName, LastName, EmailAddress, Password, PhoneNumber, InstitutionId, BoardId, ClassId, CityId, DistrictId, StateId);
+        public System.Threading.Tasks.Task<string> StudentRegistrationAsync(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int InstitutionId, int BoardId, int ClassId, int CityId, int DistrictId, int StateId, int GroupId) {
+            return base.Channel.StudentRegistrationAsync(FirstName, LastName, EmailAddress, Password, PhoneNumber, InstitutionId, BoardId, ClassId, CityId, DistrictId, StateId, GroupId);
         }
         
         public string ParentRegistration(string FirstName, string LastName, string EmailAddress, string Password, string PhoneNumber, int CityId, int DistrictId, int StateId) {
@@ -279,6 +522,246 @@ namespace ELF_Trial1.web_ws {
         
         public System.Threading.Tasks.Task<string> SaveUserFeedbackAsync(int UserId, string Feedback, string UserType) {
             return base.Channel.SaveUserFeedbackAsync(UserId, Feedback, UserType);
+        }
+        
+        public string ParentStudentRelation(int StudentId, int ParentId, int RelationshipId) {
+            return base.Channel.ParentStudentRelation(StudentId, ParentId, RelationshipId);
+        }
+        
+        public System.Threading.Tasks.Task<string> ParentStudentRelationAsync(int StudentId, int ParentId, int RelationshipId) {
+            return base.Channel.ParentStudentRelationAsync(StudentId, ParentId, RelationshipId);
+        }
+        
+        public string CheckUserDetails(string Email, string PhoneNumber, string UserType) {
+            return base.Channel.CheckUserDetails(Email, PhoneNumber, UserType);
+        }
+        
+        public System.Threading.Tasks.Task<string> CheckUserDetailsAsync(string Email, string PhoneNumber, string UserType) {
+            return base.Channel.CheckUserDetailsAsync(Email, PhoneNumber, UserType);
+        }
+        
+        public string UpdatePassword(int UserId, string NewPassword, string UserType) {
+            return base.Channel.UpdatePassword(UserId, NewPassword, UserType);
+        }
+        
+        public System.Threading.Tasks.Task<string> UpdatePasswordAsync(int UserId, string NewPassword, string UserType) {
+            return base.Channel.UpdatePasswordAsync(UserId, NewPassword, UserType);
+        }
+        
+        public string GetStudentRelations(int StudentId) {
+            return base.Channel.GetStudentRelations(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentRelationsAsync(int StudentId) {
+            return base.Channel.GetStudentRelationsAsync(StudentId);
+        }
+        
+        public string AcceptParentRequest(int StudentId, int ParentId, string Status) {
+            return base.Channel.AcceptParentRequest(StudentId, ParentId, Status);
+        }
+        
+        public System.Threading.Tasks.Task<string> AcceptParentRequestAsync(int StudentId, int ParentId, string Status) {
+            return base.Channel.AcceptParentRequestAsync(StudentId, ParentId, Status);
+        }
+        
+        public string GetPendingTests(int StudentId, string Type) {
+            return base.Channel.GetPendingTests(StudentId, Type);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetPendingTestsAsync(int StudentId, string Type) {
+            return base.Channel.GetPendingTestsAsync(StudentId, Type);
+        }
+        
+        public string GetTestQuestions(int TestId) {
+            return base.Channel.GetTestQuestions(TestId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTestQuestionsAsync(int TestId) {
+            return base.Channel.GetTestQuestionsAsync(TestId);
+        }
+        
+        public string StaffStudentRequest(int StudentId, int StaffId) {
+            return base.Channel.StaffStudentRequest(StudentId, StaffId);
+        }
+        
+        public System.Threading.Tasks.Task<string> StaffStudentRequestAsync(int StudentId, int StaffId) {
+            return base.Channel.StaffStudentRequestAsync(StudentId, StaffId);
+        }
+        
+        public string AcceptStaffStudentRequest(int StudentId, int StaffId, string Status) {
+            return base.Channel.AcceptStaffStudentRequest(StudentId, StaffId, Status);
+        }
+        
+        public System.Threading.Tasks.Task<string> AcceptStaffStudentRequestAsync(int StudentId, int StaffId, string Status) {
+            return base.Channel.AcceptStaffStudentRequestAsync(StudentId, StaffId, Status);
+        }
+        
+        public string StaffStudentList(int StaffId) {
+            return base.Channel.StaffStudentList(StaffId);
+        }
+        
+        public System.Threading.Tasks.Task<string> StaffStudentListAsync(int StaffId) {
+            return base.Channel.StaffStudentListAsync(StaffId);
+        }
+        
+        public string GetInstitutionList(int StateId, int BoardId) {
+            return base.Channel.GetInstitutionList(StateId, BoardId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetInstitutionListAsync(int StateId, int BoardId) {
+            return base.Channel.GetInstitutionListAsync(StateId, BoardId);
+        }
+        
+        public string CheckStudentEmail(string EmailAddress) {
+            return base.Channel.CheckStudentEmail(EmailAddress);
+        }
+        
+        public System.Threading.Tasks.Task<string> CheckStudentEmailAsync(string EmailAddress) {
+            return base.Channel.CheckStudentEmailAsync(EmailAddress);
+        }
+        
+        public string GetTopicwiseReport(int StudentId, int SubjectId, string LessionId) {
+            return base.Channel.GetTopicwiseReport(StudentId, SubjectId, LessionId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTopicwiseReportAsync(int StudentId, int SubjectId, string LessionId) {
+            return base.Channel.GetTopicwiseReportAsync(StudentId, SubjectId, LessionId);
+        }
+        
+        public string GetDetailedTestReport(int StudentId, int TestId) {
+            return base.Channel.GetDetailedTestReport(StudentId, TestId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetDetailedTestReportAsync(int StudentId, int TestId) {
+            return base.Channel.GetDetailedTestReportAsync(StudentId, TestId);
+        }
+        
+        public string GetStudentNotification(int StudentId) {
+            return base.Channel.GetStudentNotification(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentNotificationAsync(int StudentId) {
+            return base.Channel.GetStudentNotificationAsync(StudentId);
+        }
+        
+        public string SubmitTest(int StudentId, int TestId, ELF_Trial1.web_ws.Answers[] Answers) {
+            return base.Channel.SubmitTest(StudentId, TestId, Answers);
+        }
+        
+        public System.Threading.Tasks.Task<string> SubmitTestAsync(int StudentId, int TestId, ELF_Trial1.web_ws.Answers[] Answers) {
+            return base.Channel.SubmitTestAsync(StudentId, TestId, Answers);
+        }
+        
+        public string GetStates() {
+            return base.Channel.GetStates();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStatesAsync() {
+            return base.Channel.GetStatesAsync();
+        }
+        
+        public string GetBoards() {
+            return base.Channel.GetBoards();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetBoardsAsync() {
+            return base.Channel.GetBoardsAsync();
+        }
+        
+        public string GetAllSubjects() {
+            return base.Channel.GetAllSubjects();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAllSubjectsAsync() {
+            return base.Channel.GetAllSubjectsAsync();
+        }
+        
+        public string GetClasswiseSubjects(int ClassId) {
+            return base.Channel.GetClasswiseSubjects(ClassId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetClasswiseSubjectsAsync(int ClassId) {
+            return base.Channel.GetClasswiseSubjectsAsync(ClassId);
+        }
+        
+        public string GetWritenTestDetails(int StudentId) {
+            return base.Channel.GetWritenTestDetails(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetWritenTestDetailsAsync(int StudentId) {
+            return base.Channel.GetWritenTestDetailsAsync(StudentId);
+        }
+        
+        public string GetSubjectWiseReport(int StudentId) {
+            return base.Channel.GetSubjectWiseReport(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetSubjectWiseReportAsync(int StudentId) {
+            return base.Channel.GetSubjectWiseReportAsync(StudentId);
+        }
+        
+        public string GetTestStatusReport(int StudentId) {
+            return base.Channel.GetTestStatusReport(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTestStatusReportAsync(int StudentId) {
+            return base.Channel.GetTestStatusReportAsync(StudentId);
+        }
+        
+        public string GetTestOverview(int StudentId, int TestId) {
+            return base.Channel.GetTestOverview(StudentId, TestId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTestOverviewAsync(int StudentId, int TestId) {
+            return base.Channel.GetTestOverviewAsync(StudentId, TestId);
+        }
+        
+        public string GetStudentDetails(int StudentId) {
+            return base.Channel.GetStudentDetails(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentDetailsAsync(int StudentId) {
+            return base.Channel.GetStudentDetailsAsync(StudentId);
+        }
+        
+        public string CheckStaffStudentStatus(int StaffId, int StudentId) {
+            return base.Channel.CheckStaffStudentStatus(StaffId, StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> CheckStaffStudentStatusAsync(int StaffId, int StudentId) {
+            return base.Channel.CheckStaffStudentStatusAsync(StaffId, StudentId);
+        }
+        
+        public string GetStaffStudents(int StaffId, int Status) {
+            return base.Channel.GetStaffStudents(StaffId, Status);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStaffStudentsAsync(int StaffId, int Status) {
+            return base.Channel.GetStaffStudentsAsync(StaffId, Status);
+        }
+        
+        public string GetTopicWisePerformance(int StudentId, int SubjectId) {
+            return base.Channel.GetTopicWisePerformance(StudentId, SubjectId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetTopicWisePerformanceAsync(int StudentId, int SubjectId) {
+            return base.Channel.GetTopicWisePerformanceAsync(StudentId, SubjectId);
+        }
+        
+        public string StudentDashboardDetails(int StudentId) {
+            return base.Channel.StudentDashboardDetails(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> StudentDashboardDetailsAsync(int StudentId) {
+            return base.Channel.StudentDashboardDetailsAsync(StudentId);
+        }
+        
+        public string CheckCoupenCode(int StudentId, string CoupenCode) {
+            return base.Channel.CheckCoupenCode(StudentId, CoupenCode);
+        }
+        
+        public System.Threading.Tasks.Task<string> CheckCoupenCodeAsync(int StudentId, string CoupenCode) {
+            return base.Channel.CheckCoupenCodeAsync(StudentId, CoupenCode);
         }
     }
 }
