@@ -8,6 +8,7 @@ namespace ELF_Trial1.Models.Student
     {
         public Int32 TestID { get;set;}
         public List<GetParticularTestDetail> QuestionLists { get; set; }
+        
     }
     
     public class GetParticularTestDetail
@@ -33,7 +34,15 @@ namespace ELF_Trial1.Models.Student
         public Int32 QuestionID{ get; set; }
         public String optionsSelected{ get; set; }
 
-        
+        public Int32 TrueQuestionID { get; set; }
+    }
+
+    public class StudentChosen
+    {
+        public Int32 QuestionID { get; set; }
+        public String optionsSelected { get; set; }
+
+        public Int32 TrueQuestionID { get; set; }
     }
     public class StudentAnsweredList
     {
@@ -50,13 +59,13 @@ namespace ELF_Trial1.Models.Student
         public String SubmitTestQuestions(Int32 StudentID,Int32 TestID,StudentAnswered[] StudentAnsweredTestDetails)
         {
 
-            web_ws.Answers AnsweredObj = new web_ws.Answers();
-            web_ws.Answers[] AnsweredArray = new web_ws.Answers[20];
+            
+             web_ws.Answers[] AnsweredArray = new web_ws.Answers[20];
             int i = 0;
             foreach (var dd in StudentAnsweredTestDetails)
             {
-               
-                AnsweredObj.QuestionId = dd.QuestionID;
+                web_ws.Answers AnsweredObj = new web_ws.Answers();
+                AnsweredObj.QuestionId = dd.TrueQuestionID;
                 AnsweredObj.AnswerSelected = dd.optionsSelected;
                 AnsweredArray[i] = AnsweredObj;
                 i++;

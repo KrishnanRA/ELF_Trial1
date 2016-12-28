@@ -13,6 +13,7 @@ namespace ELF_Trial1.Controllers
 
         public ActionResult Dashboard()
         {
+
             return View();
         }
 

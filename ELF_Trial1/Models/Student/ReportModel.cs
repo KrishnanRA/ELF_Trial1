@@ -6,11 +6,13 @@ using System.Web;
 namespace ELF_Trial1.Models.Student
 {
     
-    public class ReportModel : StudentDashboard
+    public class ReportModel : StudentGeneralDetails
     {
         public List<LessionWiseReportModel> LessonWiseReportList { get; set; }
-
+        public StudentGeneralDetails StudentGeneralDetails { get; set; }
         public List<SubjectDetails> StudentSubjectList { get; set; }
+
+        public List<CompletedTestList> CompletedTestList { get; set; }
     }
 
         public class LessionWiseReportModel 
@@ -30,6 +32,15 @@ namespace ELF_Trial1.Models.Student
             return "";
         }
     }
-    
+    public class CompletedTestList
+    {
+        public String Description { get; set; }
+        public int MarksScored { get; set; }
+        public int SubjectId { get; set; }
+        public int TestId { get; set; }
+
+        public String SubjectName { get; set; }
+
+    }
 
 }

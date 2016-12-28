@@ -1,34 +1,75 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+<!DOCTYPE html>
+
+<html>
 <head>
-    <title>Student-Notification</title>
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <title>Student Dashboard</title>
+
+
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #555555;
+            color: whitesmoke;
+        }
+
+        td, th {
+            border: 0.1px solid #808080;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #555555;
+        }
+    </style>
     <script>
             function navinside(page) {
                 window.location.href = '/Student/' + page;
             }
     </script>
     <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td, th {
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
         }
     </style>
+
+    <style>
+        .buttoncss {
+            background-color: #808080;
+            color: white;
+            border: 0.1px solid #555555;
+            height: 40px;
+            width: 250px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+            .buttoncss:hover {
+                background-color: black;
+                color: white;
+            }
+    </style>
+
     @*Heading Header*@
     <style>
         #topname {
@@ -109,46 +150,65 @@
         }
     </style>
 
-
-    <script>
-    function SearchStudent() {
-        var StudentID = document.getElementById('ELFStudentID').value;
-        $('#StudentDetails').show();
-
-    }
-    var app = angular.module('NotificationPage', []);
-    app.controller('Notification', function ($scope) {
-        $scope.Notification = [
-          { "badges": "success", "Date": "21-12-2016 07:45", "Heading": "Notification", "Description": "Public Test 14 is Open", "WriteTestID": "TA123" }
-        ];
-
-    });
-    </script>
-    <script>
-        function PageNav(Page) {
-            debugger;
-            window.location.href = '/Student/' + Page;
-        }
-    </script>
+    @*Panels*@
     <style>
-        .NotificationDetails {
-            font-size: 28px;
+        .panel-body {
+            background-color: #555555;
+            color: snow;
+        }
+
+        .panel-danger > .panel-heading {
+            background-color: #fe1e1e;
+            background: -moz-linear-gradient(right, red, #b90000);
+            border-color: #b90000;
+            color: white;
+        }
+
+        .panel-success > .panel-heading {
+            background-color: #48a500;
+            background: -moz-linear-gradient(right, green, #48a500);
+            border-color: #48a500;
+            color: white;
+        }
+
+        .panel-warning > .panel-heading {
+            background-color: #fabf2d;
+            background: -moz-linear-gradient(right, yellow, #fabf2d);
+            border-color: #fabf2d;
+            color: white;
         }
     </style>
     <style>
-        div#Navigationbars img:hover {
+        div#headavailabletest {
+            background-color: cornflowerblue;
+            background: -moz-linear-gradient(right, red, #b90000);
+            border-color: #b90000;
+            color: white;
+        }
+
+        div#headlastfive {
+            background-color: cornflowerblue;
+            background: -moz-linear-gradient(right, green, #48a500);
+            border-color: #48a500;
+            color: white;
         }
     </style>
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
 </head>
 <body>
+
     <div>
         <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
     </div>
     <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
-        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" onclick="navinside('Dashboard')" />
+        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" style="border:2px solid red" onclick="navinside('Dashboard')" />
         <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
         <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
-        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;border:2px solid #e4008c" onclick="navinside('Notification')">
+        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;" onclick="navinside('Notification')">
     </div>
     <div>
         <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
@@ -156,24 +216,24 @@
     <div style="margin-left:460px;margin-top:-250px">
         <div class="icon_middletext">
             <img src="~/Images/Student/Dashboard/Name_Banner.png" />
-            <span style="margin-top:-50px;margin-left:50px;">Krishnan RA</span>
+            <span style="margin-top:-50px;margin-left:50px;">@Model.StudentGeneralDetails.Name</span>
         </div>
         <div style="margin-top:20px">
             <div class="icon_middletext">
                 <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">12th</span>
+                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">@Model.StudentGeneralDetails.ClassName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
                 <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Samacheer</span>
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.BoardName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
                 <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Ranga Matriculation</span>
+                <span style="margin-top:-40px;margin-left:0px;font-size:16px;">@Model.StudentGeneralDetails.InstitutionName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
                 <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Coimbatore</span>
+                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.DistrictName</span>
             </div>
         </div>
         <div style="margin-top:-215px;margin-left:710px;">
@@ -200,25 +260,14 @@
             <img src="~/Images/Student/Dashboard/LogOut_Icon.png" style="margin-top:305px;margin-left:-80px" />
         </div>
     </div>
-    <div ng-app="NotificationPage" style="margin-top:100px;" class="col-md-10 col-md-offset-1">
-        <div ng-controller="Notification">
-            <div ng-repeat="x in Notification">
-                <ul style="list-style:none">
 
-                    <li>
-                        <label>{{x.Date}}</label>
-                        <span class="label label-{{x.badges}}">{{x.Heading}}</span>
-                    </li>
-                    <li>
-                        <label class="NotificationDetails">{{x.Description}}</label>
+  
+        @*Chart*@
+       
 
-                        <label style="float:right"><button id="{{x.WriteTestID}}" onclick="alert('Coming Soon')">Write Test</button></label>
-                        <label style="float:right"><button id="{{x.GetReportID}}" onclick="alert('Coming Soon')">Get Report</button></label>
-                    </li>
-                    <hr>
-                </ul>
-            </div>
-        </div>
+   
+    <div>
+        @RenderBody()
     </div>
 </body>
 </html>

@@ -154,52 +154,9 @@
         //Will Stop Reload
         window.onbeforeunload = function () { if (confirm('Are you...?')) alert('Po'); return false };
        
-        var AnswersSelected = {
-            "QA": [{ "QuestionID": "1", "optionsSelected": ""},
-                { "QuestionID": "2", "optionsSelected": ""},
-                { "QuestionID": "3", "optionsSelected": ""},
-                { "QuestionID": "4", "optionsSelected": ""},
-                { "QuestionID": "5", "optionsSelected": ""},
-                { "QuestionID": "6", "optionsSelected": ""},
-                { "QuestionID": "7", "optionsSelected": ""},
-                { "QuestionID": "8", "optionsSelected": ""},
-                { "QuestionID": "9", "optionsSelected": ""},
-                { "QuestionID": "10", "optionsSelected": ""},
-                { "QuestionID": "11", "optionsSelected": ""},
-                { "QuestionID": "12", "optionsSelected": ""},
-                { "QuestionID": "13", "optionsSelected": ""},
-                { "QuestionID": "14", "optionsSelected": ""},
-                { "QuestionID": "15", "optionsSelected": ""},
-                { "QuestionID": "16", "optionsSelected": ""},
-                { "QuestionID": "17", "optionsSelected": ""},
-                { "QuestionID": "18", "optionsSelected": ""},
-                { "QuestionID": "19", "optionsSelected": ""},
-                { "QuestionID": "20", "optionsSelected": ""}
-            ]
-        }
-
-        //Question Number Radio Button Event handling
-        $(document).ready(function () {
-            function getid()
-            {
-                var CurrentQuestionID=$(".QuestionID").attr("id");
-                debugger;
-                return CurrentQuestionID;
-            }
-            
-            $(".checkbox_div .answer_div input:radio").change(function () {
-                var dd=getid();
-                alert('Check: '+dd);
-                AnswersSelected.QA[($(this).attr('name'))-1].QuestionID=($(this).attr('name'));
-                AnswersSelected.QA[($(this).attr('name'))-1].optionsSelected=($(this).val());
-                
-            });
-
-        })
-
+       
         function TestSubmit()
         {
-            debugger;
             var Answers=AnswersSelected.QA;
             $.ajax({
                 type: "POST",
@@ -211,7 +168,7 @@
                     if(data=="success")
                     {
                         var TestID=document.getElementById('TestIDName').innerHTML;
-                        window.location.href='/Student/TestSummary?='+TestID;
+                        window.location.href='/Student/TestSummary?TestId='+TestID;
                     }
                     else{
                         alert("Please Resubmit Test");
@@ -281,46 +238,91 @@
     </style>
     @*Receiving Questions*@
     <script>
+        var AnswersSelected = {
+            "QA": [{ "QuestionID": "1","TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "2", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "3","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "4", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "5","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "6", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "7","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "8", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "9", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "10","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "11", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "12", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "13", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "14","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "15","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "16","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "17","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "18","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "19", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "20", "TrueQuestionID": "" ,"optionsSelected": ""}
+            ]
+        }
+
+        //Question Number Radio Button Event handling
+        $(document).ready(function () {
+            
+            $(".checkbox_div .answer_div input:radio").change(function () {
+                var QuestioArrayNos = parseInt(($(this).attr('class')));
+                var QuestioNos=($(this).attr('class'));
+
+                //alert('Check: '+dd);
+                AnswersSelected.QA[QuestioArrayNos-1].QuestionID=QuestioNos;
+                AnswersSelected.QA[QuestioArrayNos-1].optionsSelected=($(this).val());
+                AnswersSelected.QA[QuestioArrayNos-1].TrueQuestionID=($(this).attr('name'));
+
+            });
+
+        })
 
     var app = angular.module('TestPage', []);
     app.controller('Test', function ($scope) {
         @{
              var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
              var TestQuestionjson = serializer.Serialize(Model);
-            
+
          }
         
         $scope.TestQuestions =@Html.Raw(TestQuestionjson);
-        debugger;
         $scope.TestID=$scope.TestQuestions.TestID;
     });
-   
+
     </script>
 </head>
 <body>
     <div ng-app="TestPage">
+        
         <div ng-controller="Test">
-            <div>
-                <h1 ng-bind="TestID" id="TestIDName"></h1>
+            <div style="color:white">
+                <h2>Rules</h2>
+                <ul style="list-style-type:disc">
+                    <p>You should never submit test withouy unattending a question </p>
+                    <p>Test Timing is 20 Minutes</p>
+                    <p>After Submit Button Click Leave on Pop up code</p>
+                </ul>
+                <span>Test ID</span><h3 ng-bind="TestID" style="color:white" id="TestIDName"></h3>
             </div>
             <div id="TimePanel" style="margin-top:50px;margin-left:100px;">
                 <img src="~/Images/Student/QuestionPaper/QuestionPaper_Top_Panel.png" />
                 <img src="~/Images/Student/QuestionPaper/QuestionPaper_Time_Panel.png" style="margin-left:-280px" />
                 <div id="actionbutns" style="margin-left:20px;margin-top:-120px;">
-                    <input type="button" id="Diagrambutn" value="Diagram" />
+                    <input type="button" id="Diagrambutn" disabled="true" value="Diagram" />
 
-                    <input type="button" id="Referencebutn" value="Reference" />
+                    <input type="button" id="Referencebutn" disabled="true" value="Reference" />
 
                     <input type="button" id="Quitbutn" value="Submit" onclick="TestSubmit()"/>
                 </div>
                 <div style="margin-top:-00px;margin-left:920px;"><span style="font-size:40px;" id="time">05:00</span></div>
             </div>
-            
-                <div ng-repeat="Questions in TestQuestions.QuestionLists">
+            <div ng-repeat="Questions in TestQuestions.QuestionLists">
                     <div class="checkbox_div" style="margin-top:10px;margin-left:50px;">
                         <div >
-                            <input class="QuestionID" type="radio" name="type" id="{{Questions.QuestionNos}}" value="{{Questions.QuestionNos}}" />
-                            <label for="{{Questions.QuestionID}}">{{Questions.QuestionNos}}</label>
+                            <input class="QuestionID" type="radio" name="type" id="{{Questions.QuestionId}}" value="{{Questions.QuestionId}}" />
+                            <input style="display:none" class="QuestionNos" type="radio" name="type" id="{{Questions.QuestionNos}}" value="{{Questions.QuestionNos}}" />
+                            <label for="{{Questions.QuestionId}}">{{Questions.QuestionNos}}</label>
                         </div>
                         <div class="col-md-12" style="margin-top:50px;margin-left:50px;">
                             <div>
@@ -332,24 +334,23 @@
                             <div class="answer_div" style="margin-top:50px;margin-left:000px;color:whitesmoke">
                                 <ul style="color:whitesmoke">
                                     <li>
-                                        <input type="radio" id="'First-option'+{{Questions.QuestionNos}}" value="a" name="{{Questions.QuestionNos}}">
-                                        <label id="choicelabela" for="'First-option'+{{Questions.QuestionNos}}"  style="color:whitesmoke">{{Questions.OptionA}}</label>
-                                        <div class="check"></div>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="'Second-option'+{{Questions.QuestionNos}}" value="b" name="{{Questions.QuestionNos}}">
-                                        <label id="choicelabelb" for="'Second-option'+{{Questions.QuestionNos}}" style="color:whitesmoke">{{Questions.OptionB}}</label>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'First-option'+{{Questions.QuestionId}}" value="a" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabela" for="'First-option'+{{Questions.QuestionId}}"  style="color:whitesmoke">{{Questions.OptionA}}</label>
                                         <div class="check"><div class="inside"></div></div>
                                     </li>
                                     <li>
-                                        <input type="radio" id="'Three-option'+{{Questions.QuestionNos}}" value="c" name="{{Questions.QuestionNos}}">
-                                        <label id="choicelabelc" for="'Three-option'+{{Questions.QuestionNos}}" style="color:whitesmoke">{{Questions.OptionC}}</label>
-
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Second-option'+{{Questions.QuestionId}}" value="b" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabelb" for="'Second-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionB}}</label>
                                         <div class="check"><div class="inside"></div></div>
                                     </li>
                                     <li>
-                                        <input type="radio" id="'Four-option'+{{Questions.QuestionNos}}" value="d" name="{{Questions.QuestionNos}}">
-                                        <label id="choicelabeld" for="'Four-option'+{{Questions.QuestionNos}}" style="color:whitesmoke">{{Questions.OptionD}}</label>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Three-option'+{{Questions.QuestionId}}" value="c" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabelc" for="'Three-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionC}}</label>
+                                        <div class="check"><div class="inside"></div></div>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Four-option'+{{Questions.QuestionId}}" value="d" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabeld" for="'Four-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionD}}</label>
 
                                         <div class="check"><div class="inside"></div></div>
                                     </li>

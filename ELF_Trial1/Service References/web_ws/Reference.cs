@@ -359,6 +359,24 @@ namespace ELF_Trial1.web_ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/CheckCoupenCode", ReplyAction="http://tempuri.org/Ielf_web_ws/CheckCoupenCodeResponse")]
         System.Threading.Tasks.Task<string> CheckCoupenCodeAsync(int StudentId, string CoupenCode);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentUnderParent", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentUnderParentResponse")]
+        string GetStudentUnderParent(int ParentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentUnderParent", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentUnderParentResponse")]
+        System.Threading.Tasks.Task<string> GetStudentUnderParentAsync(int ParentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ParentStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/ParentStudentRequestResponse")]
+        string ParentStudentRequest(int ParentId, int StudentId, int RequestStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ParentStudentRequest", ReplyAction="http://tempuri.org/Ielf_web_ws/ParentStudentRequestResponse")]
+        System.Threading.Tasks.Task<string> ParentStudentRequestAsync(int ParentId, int StudentId, int RequestStatus);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetailsResponse")]
+        string GetStudentBasicDetails(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetailsResponse")]
+        System.Threading.Tasks.Task<string> GetStudentBasicDetailsAsync(int StudentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -762,6 +780,30 @@ namespace ELF_Trial1.web_ws {
         
         public System.Threading.Tasks.Task<string> CheckCoupenCodeAsync(int StudentId, string CoupenCode) {
             return base.Channel.CheckCoupenCodeAsync(StudentId, CoupenCode);
+        }
+        
+        public string GetStudentUnderParent(int ParentId) {
+            return base.Channel.GetStudentUnderParent(ParentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentUnderParentAsync(int ParentId) {
+            return base.Channel.GetStudentUnderParentAsync(ParentId);
+        }
+        
+        public string ParentStudentRequest(int ParentId, int StudentId, int RequestStatus) {
+            return base.Channel.ParentStudentRequest(ParentId, StudentId, RequestStatus);
+        }
+        
+        public System.Threading.Tasks.Task<string> ParentStudentRequestAsync(int ParentId, int StudentId, int RequestStatus) {
+            return base.Channel.ParentStudentRequestAsync(ParentId, StudentId, RequestStatus);
+        }
+        
+        public string GetStudentBasicDetails(int StudentId) {
+            return base.Channel.GetStudentBasicDetails(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetStudentBasicDetailsAsync(int StudentId) {
+            return base.Channel.GetStudentBasicDetailsAsync(StudentId);
         }
     }
 }

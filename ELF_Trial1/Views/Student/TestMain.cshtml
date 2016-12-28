@@ -1,4 +1,11 @@
 ﻿@model ELF_Trial1.Models.Student.TestMain
+
+@{
+    ViewBag.Title = "Rerport";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +15,6 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
     <script>
             function navinside(page) {
                 window.location.href = '/Student/' + page;
@@ -167,86 +173,7 @@
         }
     </style>
     @*Heading Header*@
-    <style>
-        #topname {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middletext {
-        }
-
-            .icon_middletext span {
-                display: block;
-                color: white;
-                font-size: 24px;
-            }
-
-        .icon_middletextSmall {
-        }
-
-            .icon_middletextSmall span {
-                display: block;
-                color: white;
-                font-size: 12px;
-            }
-    </style>
-    <style>
-        .icon_middleicon {
-            display: block;
-            margin-top: -100px;
-            margin-left: 370px;
-            width: 110px;
-            height: 97px;
-        }
-
-            .icon_middleicon img {
-                margin-top: -13px;
-            }
-
-        #tophelp {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #helpicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 30px;
-        }
-
-        #topsignout {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #signouticon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
-
-        #topsettings {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #settingsicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
-    </style>
-
-
+  
 
 
     <script>
@@ -263,16 +190,18 @@
                 var OverallTestjson = serializer.Serialize(Model.OverallTest);
                 var SubjectListjson = serializer.Serialize(Model.GlobalStudentSubjectDetails);
              }
-             $scope.OverallTest =@Html.Raw(OverallTestjson);
+            
+            $scope.OverallTest =@Html.Raw(OverallTestjson);
             $scope.myFunction = function (val) {
 
                 return (val.Subject != 2);
             };
-            //$scope.tab = 'Physics';
-            debugger;
+          
+            
             $scope.SubjectList=@Html.Raw(SubjectListjson);
             $scope.tab = '@Model.GlobalStudentSubjectDetails[0].SubjectName';
         });
+
         app.controller('Recommended', function ($scope) {
             $scope.RecommendedTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "Description": "Thermodynamics" },
                 { "Subject": "2", name: 'Chemistry', "TestID": "OT01", "Description": "Vector Algebra" },
@@ -290,7 +219,6 @@
     </script>
     <script>
         function PageNav(Page) {
-            debugger;
             window.location.href = '/Student/' + Page;
         }
     </script>
@@ -304,132 +232,23 @@
             
         }
         </script>
-    <style>
-        #UserNameH {
-            margin-top: -150px;
-            text-align: center;
-            color: white;
-            font-family: Verdana;
-        }
-
-        span.spanH {
-            color: white;
-            margin-left: 10px;
-            padding-right: 120px;
-            padding-left: 100px;
-            font-size: 24px;
-        }
-
-        div.row.userdetails {
-            margin-top: 50px;
-            margin-left: 250px;
-        }
-
-        #timelinebanner {
-            height: 200px;
-            width: 1900px;
-        }
-    </style>
-    <style>
-        .row.navigation {
-            margin-top: 50px;
-        }
-
-            .row.navigation div.col-md-3 {
-                text-align: center;
-            }
-
-        .row.rank {
-            margin-left: 50px;
-        }
-    </style>
 
 
 </head>
 <body>
-    <div>
-        <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
-    </div>
-    <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
-        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" onclick="navinside('Dashboard')" />
-        <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" style="border:2px solid #9a00ff" onclick="navinside('TestMain')" />
-        <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
-        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;" onclick="navinside('Notification')">
-    </div>
-    <div>
-        <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
-    </div>
-    <div style="margin-left:460px;margin-top:-250px">
-        <div class="icon_middletext">
-            <img src="~/Images/Student/Dashboard/Name_Banner.png" />
-            <span style="margin-top:-50px;margin-left:50px;">Krishnan RA</span>
-        </div>
-        <div style="margin-top:20px">
-            <div class="icon_middletext">
-                <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">12th</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
-                <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Samacheer</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
-                <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Ranga Matriculation</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
-                <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Coimbatore</span>
-            </div>
-        </div>
-        <div style="margin-top:-215px;margin-left:710px;">
-            <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/State_Rank.png" />
-                <span style="margin-top:-30px;margin-left:40px;">11017</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/District_Rank.png" />
-                <span style="margin-top:-30px;margin-left:50px;">96</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
-                <img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">
-                <span style="margin-top:-30px;margin-left:-180px;">618</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
-                <img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">
-                <span style="margin-top:-30px;margin-left:40px;">2.0</span>
-            </div>
-        </div>
-        <div style="margin-top:-360px;margin-left:940px;">
-            <img src="~/Images/Student/Dashboard/Help_Icon.png" />
-            <img src="~/Images/Student/Dashboard/Settings_Icon.png" style="margin-top:155px;margin-left:-80px" />
-            <img src="~/Images/Student/Dashboard/LogOut_Icon.png" style="margin-top:305px;margin-left:-80px" />
-        </div>
-    </div>
+    
     <div ng-app="TestMainPage">
+        <h1 style="color:white">Test</h1>
         <div class="col-md-10 col-md-offset-1" style="margin-left:100px;margin-top:020px;">
             <ul class="nav nav-tabs nav-justified" style="margin-top:50px;">
-                <li class="active"><a class="navbuttons" data-toggle="tab" href="#Overall">Overall</a></li>
+                <li class="active"><a class="navbuttons" data-toggle="tab" href="#Overalls">Overall</a></li>
                 <li><a class="navbuttons" data-toggle="tab" href="#Recommended">Recommended</a></li>
                 <li><a class="navbuttons" data-toggle="tab" href="#Public">Public</a></li>
             </ul>
             <div class="tab-content" style="margin-top:30px;margin-left:-250px;">
-                <div id="Overall" class="tab-pane fade in active" style="text-align:center"  >
+                <div id="Overalls" class="tab-pane fade in active" style="text-align:center"  >
                     <div ng-controller="Overall">
-                        @*<div style="margin-left:250px;">
-                            <input type="text" class="filtertextbox" ng-model="FilteronDescription" placeholder="Any Details">
-                        </div></br>*@
-                        @*<ul>
-                            <li style="display:inline" ng-repeat="Subjects in SubjectList">
-                                <input type="button" ng-class="{activesubbutton: tab == {{Subjects.SubjectName}}}" ng-click="tab={{Subjects.SubjectName}}; myFilter = {Subject: {{Subjects.SubjectID}}}" value="{{Subjects.SubjectName}}" />
-
-                            </li>
-                        </ul>*@
-                                @*<input type="button" ng-class="{activesubbutton: tab == 'nofilter'}" ng-click="tab='nofilter';myFilter = null" Value="No Filter" />
-                        
-                                </div>*@
-                    
-
+                       
                         <table style="margin-top:30px;">
                             <tr>
                                 <th>Subject</th>
@@ -437,7 +256,7 @@
                                 <th>Description</th>
                                 <th>Write Test</th>
                             </tr>
-                            <tr ng-repeat="person in OverallTest | filter:myFilter |  filter:{Description:FilteronDescription}">
+                            <tr ng-repeat="person in OverallTest">
                                 <td>{{person.SubjectName}}</td>
                                 <td>{{person.TestID}}</td>
                                 <td>{{person.Description}}</td>
@@ -445,6 +264,7 @@
                             </tr>
                         </table>
                     </div>
+
                 </div>
                 <div id="Recommended" class="tab-pane fade">
                     <div ng-controller="Recommended">

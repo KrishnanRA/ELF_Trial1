@@ -27,14 +27,19 @@
                         
                         <label for="namestudent">Enter Name:</label>
                         <input type="text" placeholder = "Enter Name" id="FirstName"/>
+                        </br>
                         <label for="namestudent">Enter PhoneNumber:</label>
                         <input type="text" placeholder="Enter PhoneNumber" id="PhoneNumber" />
+                        </br>
                         <label for="namestudent">Enter Email Address:</label>
                         <input type="text" placeholder="Enter EmailAddress" id="EmailAddress" />
+                        </br>
                         <label for="namestudent">Enter Password:</label>
-                        <input type="text" placeholder="Enter Password" id="Password" />
+                        <input type="password" placeholder="Enter Password" id="Password" />
+                        </br>
                         <label for="namestudent">Re Enter Password:</label>
-                        <input type="text" placeholder="Enter ReenterPassword" id="ReenterPassword" />
+                        <input type="password" placeholder="Enter ReenterPassword" id="ReenterPassword" />
+                        </br>
                     </div>
                     
                     @*<div class="form-group">
@@ -183,7 +188,7 @@
              
             }
             else if (classes == 1) {
-                debugger;
+             
                 groups = 0;
             }
             $.ajax({
@@ -197,7 +202,6 @@
                
                     }
                     else if (data == 'failed') {
-                        debugger;
                         alert("Enter Username and Password correctly");
                     }
                 },

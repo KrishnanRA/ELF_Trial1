@@ -31,7 +31,7 @@ namespace ELF_Trial1.Controllers
             objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
             objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
             objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
-            
+
             objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
 
             StudentDashboard _StudentDashboardDetails = new StudentDashboard();
@@ -51,7 +51,7 @@ namespace ELF_Trial1.Controllers
             _StudentRankDetails.StateRank = (Int32)Studentparsing1["Table"][0]["StateRank"];
 
             int _SubjectPercentageCount = (Int32)Studentparsing["Table1"].Count();
-            
+
             List<SubjectPercentage> _SubjectPercentageList = new List<SubjectPercentage>();
             for (int i = 0; i < _SubjectPercentageCount; i++)
             {
@@ -66,7 +66,7 @@ namespace ELF_Trial1.Controllers
 
             for (int i = 0; i < _LastFiveTestCountCount; i++)
             {
-                OverallLastFiveTest _LastFiveTest= new OverallLastFiveTest();
+                OverallLastFiveTest _LastFiveTest = new OverallLastFiveTest();
                 _LastFiveTest.SubjectID = (Int32)Studentparsing["Table2"][i]["SubjectId"];
                 _LastFiveTest.Percentage = (Int32)Studentparsing["Table2"][i]["Percentage"];
                 _LastFiveTest.SubjectName = (String)Studentparsing["Table2"][i]["SubjectName"];
@@ -77,7 +77,7 @@ namespace ELF_Trial1.Controllers
 
 
             List<OverallAvailableTest> _OverallAvailableTestList = new List<OverallAvailableTest>();
-            
+
             for (int i = 0; i < 5; i++)
             {
                 OverallAvailableTest _OverallAvailableTest = new OverallAvailableTest();
@@ -90,8 +90,8 @@ namespace ELF_Trial1.Controllers
 
             //ADding Subject in Global
             int _SubjectCount = (Int32)Studentparsing["Table4"].Count();
-            
-            
+
+
             List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
             for (int i = 0; i < _SubjectCount; i++)
             {
@@ -101,13 +101,13 @@ namespace ELF_Trial1.Controllers
 
                 _SubjectDetailsList.Add(_SubjectDetails);
             }
-            
-            GlobalStudentSubjects.SubjectList=_SubjectDetailsList;
+
+            GlobalStudentSubjects.SubjectList = _SubjectDetailsList;
 
             _StudentDashboardDetails.OverallAvailableTest = _OverallAvailableTestList;
             _StudentDashboardDetails.OverallLastFiveTest = _LastFiveTestList;
             _StudentDashboardDetails.StudentRank = _StudentRankDetails;
-            _StudentDashboardDetails.SubjectPercentage= _SubjectPercentageList;
+            _StudentDashboardDetails.SubjectPercentage = _SubjectPercentageList;
             _StudentDashboardDetails.StudentGeneralDetails = objStudentLoginDetails;
             return View(_StudentDashboardDetails);
         }
@@ -130,12 +130,25 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult TestMain()
         {
+
+            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
+            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
+            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
+            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
+            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
+            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
+            objStudentLoginDetails.Name = GlobalStudentClass.Name;
+            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
+            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
+            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
+
+            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
             //Passing Parameter to Webservice 
             string _GetOverallPendingTestDetails = StudentWeb.GetPendingTests(GlobalStudentClass.StudentId, "All");
 
             //GEtting Parama\ter Value in in JObject
             JObject TestMainOverallParsing = JObject.Parse(_GetOverallPendingTestDetails);
-            
+
             //To Identify Number of Values in JSON to Iterate
             Int32 _TestMainOverallCount = (int)TestMainOverallParsing["Table"].Count();
 
@@ -158,7 +171,7 @@ namespace ELF_Trial1.Controllers
                 //Adding object in List    
                 _ListOverallTest.Add(_OverallTest);
             }
-
+            _ModelTestMain.StudentGeneralDetails = objStudentLoginDetails;
             _ModelTestMain.GlobalStudentSubjectDetails = GlobalStudentSubjects.SubjectList;
             _ModelTestMain.OverallTest = _ListOverallTest;
             return View(_ModelTestMain);
@@ -173,7 +186,7 @@ namespace ELF_Trial1.Controllers
             Int32 _ParticularTestDetailsParsingCount = (int)ParticularTestDetailsParsing["Table"].Count();
 
             List<GetParticularTestDetail> _GetParticularTestDetail = new List<GetParticularTestDetail>();
-            
+
             QuestionList _TestQuestionList = new QuestionList();
             for (int i = 0; i < _ParticularTestDetailsParsingCount; i++)
             {
@@ -187,6 +200,17 @@ namespace ELF_Trial1.Controllers
                 _Question.OptionD = (String)ParticularTestDetailsParsing["Table"][i]["OptionD"];
                 _Question.Answer = (String)ParticularTestDetailsParsing["Table"][i]["Answer"];
                 _GetParticularTestDetail.Add(_Question);
+            }
+
+            //StudentChosen
+            List<StudentChosen> _StudentChosenList = new List<StudentChosen>();
+            for (int i = 0; i < _ParticularTestDetailsParsingCount; i++)
+            {
+                StudentChosen _StudentChosen = new StudentChosen();
+                _StudentChosen.QuestionID = i + 1;
+                _StudentChosen.TrueQuestionID = (Int32)ParticularTestDetailsParsing["Table"][i]["QuestionId"];
+                _StudentChosen.optionsSelected = "";
+                _StudentChosenList.Add(_StudentChosen);
             }
             _TestQuestionList.TestID = TestID;
             _TestQuestionList.QuestionLists = _GetParticularTestDetail;
@@ -204,22 +228,22 @@ namespace ELF_Trial1.Controllers
             JObject StudentTestReportDetailsparsing = JObject.Parse(_GetTestReportDetailsDetails);
 
             TestOverview _TestSummary = new TestOverview();
-            _TestSummary.SubjectId= (Int32)StudentTestReportOverviewparsing["Table"][0]["SubjectId"];
+            _TestSummary.SubjectId = (Int32)StudentTestReportOverviewparsing["Table"][0]["SubjectId"];
             _TestSummary.SubjectName = (String)StudentTestReportOverviewparsing["Table"][0]["SubjectName"];
-           // _TestSummary.CorrectAnswers = (string)StudentTestReportOverviewparsing["Table"][0]["CorrectAnswers"];
-           _TestSummary.Percentage= (Int32)StudentTestReportOverviewparsing["Table"][0]["Percentage"];
-           //_TestSummary.Description = (String)StudentTestReportOverviewparsing["Table"][0]["Description"];
+            // _TestSummary.CorrectAnswers = (string)StudentTestReportOverviewparsing["Table"][0]["CorrectAnswers"];
+            _TestSummary.Percentage = (Int32)StudentTestReportOverviewparsing["Table"][0]["Percentage"];
+            //_TestSummary.Description = (String)StudentTestReportOverviewparsing["Table"][0]["Description"];
             _TestSummary.TestId = (Int32)StudentTestReportOverviewparsing["Table"][0]["TestId"];
 
             List<TestDetails> _TestDetailsList = new List<TestDetails>();
-            
+
             for (int i = 0; i < 20; i++)
             {
                 TestDetails _TestDetails = new TestDetails();
                 _TestDetails.Question = (String)StudentTestReportDetailsparsing["Table"][i]["Question"];
                 _TestDetails.Answer = (String)StudentTestReportDetailsparsing["Table"][i]["Answer"];
                 _TestDetails.AnswerStatus = (String)StudentTestReportDetailsparsing["Table"][i]["AnswerStatus"];
-                _TestDetails.QNumber = i+1;
+                _TestDetails.QNumber = i + 1;
                 _TestDetailsList.Add(_TestDetails);
             }
             _TestReport.TestDetailList = _TestDetailsList;
@@ -228,41 +252,138 @@ namespace ELF_Trial1.Controllers
         }
         public JsonResult SubmitTest(StudentAnswered[] QA)
         {
-           
-            Int32 _StudentID = GlobalStudentClass.StudentId;
-           SubmitTest  _SubmitTest = new SubmitTest();
 
-            String _TestSubmitResult=_SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
+            Int32 _StudentID = GlobalStudentClass.StudentId;
+            SubmitTest _SubmitTest = new SubmitTest();
+
+            String _TestSubmitResult = _SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
             JObject ParsingSubmitResult = JObject.Parse(_TestSubmitResult);
             String _Result = (string)ParsingSubmitResult["Table"][0]["OutputStatus"];
             return Json(_Result, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Report()
         {
-           
-            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-            objStudentLoginDetails.Name = GlobalStudentClass.Name;
-            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
 
-            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+            {
+                StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
+                objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
+                objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
+                objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
+                objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
+                objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
+                objStudentLoginDetails.Name = GlobalStudentClass.Name;
+                objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
+                objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
+                objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
+
+                objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+                ReportModel ReportDetails = new ReportModel();
+
+                LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
+
+
+                ReportDetails.StudentGeneralDetails = objStudentLoginDetails;
+
+                string _GetStudentDashboardDetails = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, GlobalStudentSubjects.SubjectList[0].SubjectID);
+
+                JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
+
+
+                int _lessionReportCount = (Int32)Studentparsing["Table"].Count();
+
+                List<LessionWiseReportModel> _lessionWiseReportModelList = new List<LessionWiseReportModel>();
+
+                for (int i = 0; i < _lessionReportCount; i++)
+                {
+                    LessionWiseReportModel _lessionWiseReportModel = new LessionWiseReportModel();
+                    _lessionWiseReportModel.StudentId = (Int32)Studentparsing["Table"][i]["StudentId"];
+                    _lessionWiseReportModel.SubjectId = (Int32)Studentparsing["Table"][i]["SubjectId"];
+                    _lessionWiseReportModel.LessionName = (String)Studentparsing["Table"][i]["LessionName"];
+                    _lessionWiseReportModel.Percentage = (Int32)Studentparsing["Table"][i]["Percentage"];
+                    _lessionWiseReportModel.QuestionsAsked = (Int32)Studentparsing["Table"][i]["QuestionsAsked"];
+                    _lessionWiseReportModel.CorrectAnswers = (Int32)Studentparsing["Table"][i]["CorrectAnswers"];
+                    _lessionWiseReportModelList.Add(_lessionWiseReportModel);
+                }
+
+
+
+                //Completed TEst Details
+                string _GetTestCompletedDetails = StudentWeb.GetWritenTestDetails(GlobalStudentClass.StudentId);
+                JObject WrittenTestparsing = JObject.Parse(_GetTestCompletedDetails);
+                int _WrittenTestCount = (Int32)WrittenTestparsing["Table"].Count();
+                List<CompletedTestList> _CompletedTestList = new List<CompletedTestList>();
+                for (int i = 0; i < _WrittenTestCount; i++)
+                {
+                    CompletedTestList _CompletedTestListReportModel = new CompletedTestList();
+                    _CompletedTestListReportModel.Description = (String)WrittenTestparsing["Table"][i]["Description"];
+                    _CompletedTestListReportModel.MarksScored = (Int32)WrittenTestparsing["Table"][i]["MarksScored"];
+                    _CompletedTestListReportModel.SubjectId = (Int32)WrittenTestparsing["Table"][i]["SubjectId"];
+                    if (_CompletedTestListReportModel.SubjectId == 1)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Maths";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 2)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Science";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 3)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Social";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 4)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Maths";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 5)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Chemistry";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 6)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Physics";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 7)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Computer";
+                    }
+                    else if (_CompletedTestListReportModel.SubjectId == 8)
+                    {
+                        _CompletedTestListReportModel.SubjectName = "Biology";
+                    }
+                    _CompletedTestListReportModel.TestId = (Int32)WrittenTestparsing["Table"][i]["TestId"];
+
+
+                    _CompletedTestList.Add(_CompletedTestListReportModel);
+                }
+                //--Completed TEst Details--//
+
+
+
+                ReportDetails.LessonWiseReportList = _lessionWiseReportModelList;
+                ReportDetails.StudentSubjectList = GlobalStudentSubjects.SubjectList;
+                ReportDetails.StudentGeneralDetails = objStudentLoginDetails;
+                ReportDetails.CompletedTestList = _CompletedTestList;
+                return View(ReportDetails);
+            }
+        }
+        public ActionResult Notification()
+        {
+            return View();
+        }
+        public JsonResult StudentLogin(String Username, String Password)
+        {
+            // string output = studentweb.CheckStudentLogin(Username, Password);
+            return Json("", JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetLessonReport(int SubjectID)
+        {
             ReportModel ReportDetails = new ReportModel();
 
             LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
 
-
-            ReportDetails.StudentGeneralDetails = objStudentLoginDetails;
-
-            string _GetStudentDashboardDetails = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, GlobalStudentSubjects.SubjectList[0].SubjectID);
-
-            JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
-
+            string _GetLessonReportString = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, SubjectID);
+            JObject Studentparsing = JObject.Parse(_GetLessonReportString);
 
             int _lessionReportCount = (Int32)Studentparsing["Table"].Count();
 
@@ -280,46 +401,43 @@ namespace ELF_Trial1.Controllers
                 _lessionWiseReportModelList.Add(_lessionWiseReportModel);
             }
             ReportDetails.LessonWiseReportList = _lessionWiseReportModelList;
-            ReportDetails.StudentSubjectList=GlobalStudentSubjects.SubjectList;
-            return View(ReportDetails);
-        }
-        public ActionResult Notification()
-        {
-            return View();
-        }
-        public JsonResult StudentLogin(String Username, String Password)
-        {
-           // string output = studentweb.CheckStudentLogin(Username, Password);
-            return Json("", JsonRequestBehavior.AllowGet);
-        }
-
-        public JsonResult GetLessonReport(int SubjectID)
-        {
-            ReportModel ReportDetails = new ReportModel();
-
-            LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
-            
-            string _GetLessonReportString = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, SubjectID);
-            JObject Studentparsing = JObject.Parse(_GetLessonReportString);
-
-            int _lessionReportCount = (Int32)Studentparsing["Table"].Count();
-
-            List<LessionWiseReportModel> _lessionWiseReportModelList = new List<LessionWiseReportModel>();
-
-            for (int i = 0; i < _lessionReportCount; i++)
-            {
-             LessionWiseReportModel _lessionWiseReportModel = new LessionWiseReportModel();
-            _lessionWiseReportModel.StudentId = (Int32)Studentparsing["Table"][i]["StudentId"];
-            _lessionWiseReportModel.SubjectId = (Int32)Studentparsing["Table"][i]["SubjectId"];
-            _lessionWiseReportModel.LessionName = (String)Studentparsing["Table"][i]["LessionName"];
-            _lessionWiseReportModel.Percentage = (Int32)Studentparsing["Table"][i]["Percentage"];
-            _lessionWiseReportModel.QuestionsAsked = (Int32)Studentparsing["Table"][i]["QuestionsAsked"];
-            _lessionWiseReportModel.CorrectAnswers = (Int32)Studentparsing["Table"][i]["CorrectAnswers"];
-            _lessionWiseReportModelList.Add(_lessionWiseReportModel);
-        }
-        ReportDetails.LessonWiseReportList = _lessionWiseReportModelList;
             return Json(ReportDetails, JsonRequestBehavior.AllowGet);
         }
-        
+
+        //   public ActionResult TopicDetails(Int32 SubjectID, Int32 LessonID)
+        //    {
+
+        //        TestReport _TestReport = new TestReport();
+
+        //        String _GetTestReportOverviewDetails = StudentWeb.(GlobalStudentClass.StudentId, SubjectID,LessonID);
+        //        //String _GetTestReportDetailsDetails = StudentWeb.GetDetailedTestReport(GlobalStudentClass.StudentId, TestId);
+
+        //        JObject StudentTestReportOverviewparsing = JObject.Parse(_GetTestReportOverviewDetails);
+        //        JObject StudentTestReportDetailsparsing = JObject.Parse(_GetTestReportDetailsDetails);
+
+        //        TestOverview _TestSummary = new TestOverview();
+        //        _TestSummary.SubjectId = (Int32)StudentTestReportOverviewparsing["Table"][0]["SubjectId"];
+        //        _TestSummary.SubjectName = (String)StudentTestReportOverviewparsing["Table"][0]["SubjectName"];
+        //        // _TestSummary.CorrectAnswers = (string)StudentTestReportOverviewparsing["Table"][0]["CorrectAnswers"];
+        //        _TestSummary.Percentage = (Int32)StudentTestReportOverviewparsing["Table"][0]["Percentage"];
+        //        //_TestSummary.Description = (String)StudentTestReportOverviewparsing["Table"][0]["Description"];
+        //        _TestSummary.TestId = (Int32)StudentTestReportOverviewparsing["Table"][0]["TestId"];
+
+        //        List<TestDetails> _TestDetailsList = new List<TestDetails>();
+
+        //        for (int i = 0; i < 20; i++)
+        //        {
+        //            TestDetails _TestDetails = new TestDetails();
+        //            _TestDetails.Question = (String)StudentTestReportDetailsparsing["Table"][i]["Question"];
+        //            _TestDetails.Answer = (String)StudentTestReportDetailsparsing["Table"][i]["Answer"];
+        //            _TestDetails.AnswerStatus = (String)StudentTestReportDetailsparsing["Table"][i]["AnswerStatus"];
+        //            _TestDetails.QNumber = i + 1;
+        //            _TestDetailsList.Add(_TestDetails);
+        //        }
+        //        _TestReport.TestDetailList = _TestDetailsList;
+        //        _TestReport.TestOverviews = _TestSummary;
+        //        return View(_TestReport);
+        //    }
+        //}
     }
 }

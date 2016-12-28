@@ -64,6 +64,7 @@
 
         $(document).ready(function() {
             var ctx = document.getElementById("canvas").getContext("2d");
+            var ctx1 = document.getElementById("chart1").getContext("2d");
             var myBarChart = new Chart(ctx, {
                 type: 'bar',
                 data: data,
@@ -73,9 +74,17 @@
                     }
                 }
             });
-
+            var myLineChart = new Chart(ctx1, {
+                type: 'line',
+                data: data1,
+                options: {
+                    chartArea: {
+                        backgroundColor: 'rgba(72,72,72,1)'
+                    }
+                }
+            });
         });
-        debugger;
+      
         @{
             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             var Reportjson = serializer.Serialize(Model.SubjectPercentage);
@@ -88,8 +97,7 @@
 
         for(i=0;i<subjectcount;i++)
         {
-            debugger;
-
+       
              SubjectNameList[i] = SubjectList[i].SubjectName;
             SubjectPercentageList[i] = SubjectList[i].SubjectName.Percentage;
 
@@ -131,7 +139,33 @@
                         }
                     ]
                 };
-
+                var data1 = {
+                    labels: ["January", "February", "March", "April", "May", "June", "July"],
+                    datasets: [
+                        {
+                            label: "Overal",
+                            fill: false,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [65, 59, 80, 81, 56, 55, 40],
+                            spanGaps: false,
+                        }
+                    ]
+                };
     </script>
     <script>
             function PageNav(Page) {
@@ -397,15 +431,22 @@
 
 
 
-
-
+    
+  
 
     <div ng-app="DashboardMainPage">
         @*Chart*@
         <div style="margin-top:50px">
             <div class="col-md-12">
-                <div id="canvas-holder2">
-                    <canvas id="canvas"></canvas>
+                <div class="col-md-6">
+                    <div id="canvas-holder2">
+                        <canvas id="canvas"></canvas>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="canvas-holder1">
+                        <canvas id="chart1" />
+                    </div>
                 </div>
             </div>
         </div>

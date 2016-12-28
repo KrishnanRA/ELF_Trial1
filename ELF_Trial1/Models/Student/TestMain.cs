@@ -7,6 +7,7 @@ namespace ELF_Trial1.Models.Student
 {
     public class TestMain
     {
+        public StudentGeneralDetails StudentGeneralDetails { get; set; }
         public List<OverallTest> OverallTest { get; set; }
         public List<RecommendedTest> RecommendedTest { get; set; }
         public List<PublicTest> PublicTest { get; set; }

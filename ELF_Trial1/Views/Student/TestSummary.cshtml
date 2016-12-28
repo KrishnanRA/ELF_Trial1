@@ -21,17 +21,17 @@
                  var TestOverviewjson = serializerTestSummary.Serialize(Model.TestOverviews);
                  var TestDetailviewjson = serializerTestSummary.Serialize(Model.TestDetailList);
              }
-            debugger;
             $scope.Overview =@Html.Raw(TestOverviewjson);
-            debugger;
-            
-            $scope.TestQADetails = $scope.Overview =@Html.Raw(TestDetailviewjson);
+      
+            $scope.TestQADetails=@Html.Raw(TestDetailviewjson);
+             $scope.Overview =@Html.Raw(TestDetailviewjson);
           //  $scope.OverallSummary = [{ "TotalQuestionAnswered": "20", "TotalRightAnswered": "16", "TotalWrongAnswered": "4" }];
 
         });
     </script>
     <style>
-        
+        #QATable {
+        }
             #QATable td:nth-of-type(1) {
                 
                 padding-right: 50px;
@@ -43,8 +43,16 @@
                 height: 50px;
             }
     </style>
+    <script>
+        function GoToDashboard()
+        {
+            window.location.href='/Student/Dashboard';
+        }
+    </script>
 </head>
 <body>
+    <h1>Test Summary</h1>
+    <input type="button" onclick="GoToDashboard()" value="Go Home" />
     <div ng-app="AppTestSummary">
         <div ng-controller="ControlTestSummary">
              <table>
@@ -53,10 +61,9 @@
                         <td>Percentage</td>
                         
                     </tr>
-                <tr>
-                        <td>{{Overview.SubjectName}}</td> 
-                        <td>{{Overview.Percentage}}</td> 
-                    
+                <tr ng-repeat="x in Overview">
+                        <td>{{x.SubjectName}}</td> 
+                        <td>{{x.Percentage}}</td> 
                  </tr>
             </table>
             <table id="QATable" style="margin-top:50px;">
