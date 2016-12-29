@@ -1,0 +1,218 @@
+﻿@model ELF_Trial1.Models.Student.Registration
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>New Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+        <div class="container">
+            <h2>New Registration</h2>
+            <ul class="nav nav-pills nav-justified">
+                <li class="active"><a  data-toggle="pill" href="#Student">Student</a></li>
+                @*<li><a data-toggle="pill" href="#Parent">Parent</a></li>
+                    <li><a data-toggle="pill" href="#Staff">Staff</a></li>
+                    <li><a data-toggle="pill" href="#Institutions">Institutions</a></li>*@
+            </ul>
+            <div class="tab-content">
+                <div id="Student" class="tab-pane fade in active">
+                    <div class="form-group">
+                        
+                        <label for="namestudent">Enter Name:</label>
+                        <input type="text" placeholder = "Enter Name" id="FirstName"/>
+                        </br>
+                        <label for="namestudent">Enter PhoneNumber:</label>
+                        <input type="text" placeholder="Enter PhoneNumber" id="PhoneNumber" />
+                        </br>
+                        <label for="namestudent">Enter Email Address:</label>
+                        <input type="text" placeholder="Enter EmailAddress" id="EmailAddress" />
+                        </br>
+                        <label for="namestudent">Enter Password:</label>
+                        <input type="password" placeholder="Enter Password" id="Password" />
+                        </br>
+                        <label for="namestudent">Re Enter Password:</label>
+                        <input type="password" placeholder="Enter ReenterPassword" id="ReenterPassword" />
+                        </br>
+                    </div>
+                    
+                    @*<div class="form-group">
+                          <label for="Boardstudent">Select list:</label>
+                          <select class="form-control" id="Boardstudent">
+                            <option value="1">Samacheer</option>
+                          </select>
+                        </div>*@
+                    <h2>Select Class:</h2>
+                    <div class="userselectionbutn">
+                        <input type="radio" name="Class" value="1"/>
+                        <label for="userinstitute">10th</label>
+                    </div>                   
+                    <div class="userselectionbutn">
+                        <input type="radio" name="Class" value="2"/>
+                        <label for="userinstitute">12th</label>
+                    </div>
+                    <h2>Select Group:</h2>
+                    <div class="userselectionbutn">
+                        <input type="radio" name="Group" value="1"/>
+                        <label for="userinstitute">Computer Science</label>
+                    </div>
+                    <div class="userselectionbutn">
+                        <input type="radio" name="Group" value="2" />
+                        <label for="userinstitute">Biology</label>
+                    </div>
+                                       
+                </div>
+                @*<div id="Parent" class="tab-pane fade">
+                        <div class="form-group">
+                             <label for="nameparent">Enter Name:</label>
+                             <input type="text" class="form-control" id="nameparent" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                             <label for="phonenosparent">Enter Phone Number:</label>
+                             <input type="text" class="form-control" id="phonenosparent" placeholder="Enter Phone Number">
+                        </div>
+                        <div class="form-group">
+                             <label for="email">Email:</label>
+                             <input type="email" class="form-control" id="emailparent" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="passwordparent" placeholder="Enter password">
+                        </div>
+                        <div class="form-group ">
+                            <label for="password">Re-Enter Password:</label>
+                            <input type="password" class="form-control" id="reenterpasswordstaff" placeholder="Re-Enter password">
+                        </div>
+                        <div class="form-group">
+                             <label for="pincodeparent">Enter Pincode:</label>
+                             <input type="text" class="form-control" id="pincodeparent" placeholder="Enter Pincode">
+                        </div>
+                    </div>
+                     <div id="Staff" class="tab-pane fade">
+                        <div class="form-group">
+                             <label for="email">Email:</label>
+                             <input type="email" class="form-control" id="emailstaff" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="passwordstaff" placeholder="Enter password">
+                        </div>
+                        <div class="form-group ">
+                            <label for="password">Re-Enter Password:</label>
+                            <input type="password" class="form-control" id="reenterpasswordstaff" placeholder="Re-Enter password">
+                        </div>
+
+                        <label class="checkbox-inline"><input type="checkbox" value="samacheer">Samacheer</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="cbsc">CBSC</label></br>
+
+                        <label class="checkbox-inline"><input type="checkbox" value="tenthstd">10th Standard</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="twelthstd">12th Standard</label></br>
+
+                        <label class="checkbox-inline"><input type="checkbox" value="">Physics</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Chemistry</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Maths</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Biology</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Computer Science</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Social(10th)</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Sciene(10th)</label>
+                        <label class="checkbox-inline"><input type="checkbox" value="">Maths(10th)</label>
+
+                     </div>
+                     <div id="Institutions" class="tab-pane fade">
+                         <div class="form-group">
+                             <label for="nameinstitution">Institution Name:</label>
+                             <input type="text" class="form-control" id="nameinstitution" placeholder="Enter Name">
+                        </div>
+                         <div class="form-group">
+                             <label for="email">Email:</label>
+                             <input type="email" class="form-control" id="emailinstitutions" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="passwordinstitutions" placeholder="Enter password">
+                        </div>
+                     </div>*@
+            </div>
+
+            <button type="submit" class="btn btn-default" onclick="btnsave()">Submit</button>
+        </div>
+
+    
+
+    <script>
+
+        function btnsave()
+        {
+            
+            
+            var name = document.getElementById('FirstName').value;
+       
+            var phonenumber = document.getElementById('PhoneNumber').value;
+           
+            var email = document.getElementById('EmailAddress').value;
+            
+            var password = document.getElementById('Password').value;
+           
+            var reenterpassword = document.getElementById('ReenterPassword').value;
+            
+            var classes = $('input[name=Class]:checked').val();
+
+            var groups = $('input[name=Group]:checked').val();
+            if (name == "")
+            {
+                alert("Enter Name");
+            }
+            else if (phonenumber == "") {
+                alert("Enter Phone NUmber");
+            }
+            else if (email == "") {
+                alert("Enter Email");
+            }
+            else if (password == "") {
+                alert("Enter Password");
+            }
+            else if (reenterpassword == "") {
+             
+
+            }
+            else if (password != reenterpassword)
+                
+            {
+                alert("passwordmismatch");
+             
+            }
+            else if (classes == 1) {
+             
+                groups = 0;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/ELFWeb/SubmitRegistration',
+                data: {FirstName:name,Number:phonenumber,Password:password,Email:email,Class:classes,Group:groups},
+                success: function (data) {
+                    if (data == 'success') {
+                        alert("Welcome To ELF,Now you can login and start Analyzing");
+                            window.location.href = '/ELFWeb/Index';
+               
+                    }
+                    else if (data == 'failed') {
+                        alert("Enter Username and Password correctly");
+                    }
+                },
+                error: function (err) {
+                    if (err.status == 200) {
+                        ParseResult(err);
+                    }
+                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                }
+            });
+            }
+    </script>
+</body>
+</html>
