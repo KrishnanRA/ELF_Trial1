@@ -53,6 +53,7 @@ namespace ELF_Trial1.Controllers
             int _SubjectPercentageCount = (Int32)Studentparsing["Table1"].Count();
 
             List<SubjectPercentage> _SubjectPercentageList = new List<SubjectPercentage>();
+
             for (int i = 0; i < _SubjectPercentageCount; i++)
             {
                 SubjectPercentage _Subjectpercentage = new SubjectPercentage();
@@ -77,7 +78,7 @@ namespace ELF_Trial1.Controllers
 
 
             List<OverallAvailableTest> _OverallAvailableTestList = new List<OverallAvailableTest>();
-
+            // adding five test details
             for (int i = 0; i < 5; i++)
             {
                 OverallAvailableTest _OverallAvailableTest = new OverallAvailableTest();
@@ -130,9 +131,9 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult TestMain()
         {
-
+            // model student general details
             StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
+            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;  
             objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
             objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
             objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
@@ -143,10 +144,10 @@ namespace ELF_Trial1.Controllers
             objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
 
             objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
-            //Passing Parameter to Webservice 
+            //Passing Parameter to Webservice and receving in string
             string _GetOverallPendingTestDetails = StudentWeb.GetPendingTests(GlobalStudentClass.StudentId, "All");
 
-            //GEtting Parama\ter Value in in JObject
+            //Received string and changed to json object
             JObject TestMainOverallParsing = JObject.Parse(_GetOverallPendingTestDetails);
 
             //To Identify Number of Values in JSON to Iterate
@@ -255,7 +256,7 @@ namespace ELF_Trial1.Controllers
 
             Int32 _StudentID = GlobalStudentClass.StudentId;
             SubmitTest _SubmitTest = new SubmitTest();
-
+            
             String _TestSubmitResult = _SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
             JObject ParsingSubmitResult = JObject.Parse(_TestSubmitResult);
             String _Result = (string)ParsingSubmitResult["Table"][0]["OutputStatus"];

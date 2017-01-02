@@ -5,9 +5,8 @@ using System.Web;
 
 namespace ELF_Trial1.Models
 {
-    public static class GlobalStudentClass
+    public class GlobalParentDetails
     {
-
         static string _boardName;
         static string _className;
         static string _cityName;
@@ -17,8 +16,9 @@ namespace ELF_Trial1.Models
         static string _institutionName;
         static string _phoneNumber;
         static string _stateName;
+        static int _parentId;
         static int _studentId;
-        static string _studentName;
+        static string _students;
 
         public static string BoardName
         {
@@ -75,31 +75,24 @@ namespace ELF_Trial1.Models
             get { return _stateName; }
             set { _stateName = value; }
         }
+        public static int ParentId
+        {
+            get { return _parentId; }
+            set { _parentId = value; }
+        }
+
         public static int StudentId
         {
             get { return _studentId; }
             set { _studentId = value; }
         }
 
-        public static string StudentName
+        public static string Students
         {
-            get { return _studentName; }
-            set { _studentName = value; }
+            get { return _students; }
+            set { _students = value; }
         }
 
+        
     }
-    public class GlobalTestClass
-    {
-        public Int32 StudentID { get; set; }
-        public Int32 TestID { get; set; }
-
-        public Int32 SubjectID { get; set; }
-
-    }
-    
-    public class SubjectDetails {
-        public Int32 SubjectID { get; set; }
-        public String SubjectName { get; set; }
-    }
-
 }

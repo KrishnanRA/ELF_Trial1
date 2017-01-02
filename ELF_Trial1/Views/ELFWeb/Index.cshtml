@@ -109,52 +109,51 @@
             box-sizing: border-box;
         }
     </style>
-   
-        <script type="text/javascript">
-            function Login() {
-                
-                var username = document.getElementById('username').value;
-                var password = document.getElementById('password').value;
-                var User = $('input[name=User]:checked').val();
-                $.ajax({
-                    type: 'POST',
-                    url: '/ELFWeb/Login',
-                    contentType: 'application/json;charset=utf-8',
-                    data: JSON.stringify({ Username: username, Password: password, UserType: User }),
-                    datatype: 'json',
-                    success: function (data) {
-                        if (data == 'success') {
-                            if (User == 'Student') {
-                                window.location.href = '../Student/Dashboard';
-                            }
-                            else if (User == 'Parent') {
-                                window.location.href = '../Parent/Dashboard';
-                            }
-                            else if (User == 'Staff') {
-                                window.location.href = incomimg + '/Dashboard';
-                            }
-                            else if (User == 'Institution') {
-                                window.location.href = '../Institution/Dashboard';
-                            }
-                            
-                        }
-                        else if (dat389a == 'Failed') {
-                            debugger;
-                            alert("Enter Username and Password correctly");
-                        }
-                    },
-                    error: function (err) {
-                        if (err.status == 200) {
-                            ParseResult(err);
-                        }
-                        else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
-                    }
-                });
 
-            }
-            
-        </script>
-    
+    <script type="text/javascript">
+        function Login() {
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var User = $('input[name=User]:checked').val();
+            $.ajax({
+                type: 'POST',
+                url: '/ELFWeb/Login',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify({ Username: username, Password: password, UserType: User }),
+                datatype: 'json',
+                success: function (data) {
+                    debugger;
+                    if (data == 'success') {
+                        if (User == 'Student') {
+                            window.location.href = '../Student/Dashboard';
+                        }
+                        else if (User == 'Parent') {
+                            window.location.href = '../Parent/Dashboard';
+                        }
+                        else if (User == 'Staff') {
+                            window.location.href = incomimg + '/Dashboard';
+                        }
+                        else if (User == 'Institution') {
+                            window.location.href = '../Institution/Dashboard';
+                        }
+                    }
+                    else if (data == 'Failed') {
+                        alert("Enter Username and Password correctly");
+                    }
+                },
+                error: function (err) {
+                    if (err.status == 200) {
+                        ParseResult(err);
+                    }
+                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                }
+            });
+
+        }
+
+    </script>
+
     <img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />
     <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-900px; margin-left:-190px;" />
 
@@ -186,7 +185,7 @@
 
             </div>
             <div class="row fields">
-                <input type="text" class="inputfielddashboard" placeholder="Username"  id="username">
+                <input type="text" class="inputfielddashboard" placeholder="Username" id="username">
             </div>
             <div class="row fields">
                 <input type="password" class="inputfielddashboard" placeholder="Password" id="password">
