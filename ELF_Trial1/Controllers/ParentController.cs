@@ -140,11 +140,129 @@ namespace ELF_Trial1.Controllers
                     _SubjectDetailsList.Add(_SubjectDetails);
                 }
 
+                // Report Subjectwise performance
+
+                int goodPerformingCount = Studentparsing["Table5"].Count();
+                int averagePerformingCount = Studentparsing["Table6"].Count();
+                int badPerformingCount = Studentparsing["Table7"].Count();
+
+                List<GoodPerformingSubject> _goodPerformingSubjectList = new List<GoodPerformingSubject>();
+                List<AveragePerformingSubject> _averagePerformingSubjectList = new List<AveragePerformingSubject>();
+                List<BadPerformingSubject> _badPerformingSubjectList = new List<BadPerformingSubject>();
+
+                // Add good performing into list
+                #region Good Performing
+                if (goodPerformingCount > 0)
+                {
+                    if (goodPerformingCount > 5)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            GoodPerformingSubject _goodPerformingSubject = new GoodPerformingSubject();
+                            _goodPerformingSubject.SubjectId = (Int32)Studentparsing["Table5"][i]["SubjectId"];
+                            _goodPerformingSubject.SubjectName = (string)Studentparsing["Table5"][i]["SubjectName"];
+                            _goodPerformingSubject.LessionId = (Int32)Studentparsing["Table5"][i]["LessionId"];
+                            _goodPerformingSubject.LessionName = (string)Studentparsing["Table5"][i]["LessionName"];
+                            _goodPerformingSubject.Topic = (string)Studentparsing["Table5"][i]["Topic"];
+                            _goodPerformingSubject.Percentage = (Int32)Studentparsing["Table5"][i]["Percentage"];
+                            _goodPerformingSubjectList.Add(_goodPerformingSubject);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < goodPerformingCount; i++)
+                        {
+                            GoodPerformingSubject _goodPerformingSubject = new GoodPerformingSubject();
+                            _goodPerformingSubject.SubjectId = (Int32)Studentparsing["Table5"][i]["SubjectId"];
+                            _goodPerformingSubject.SubjectName = (string)Studentparsing["Table5"][i]["SubjectName"];
+                            _goodPerformingSubject.LessionId = (Int32)Studentparsing["Table5"][i]["LessionId"];
+                            _goodPerformingSubject.LessionName = (string)Studentparsing["Table5"][i]["LessionName"];
+                            _goodPerformingSubject.Topic = (string)Studentparsing["Table5"][i]["Topic"];
+                            _goodPerformingSubject.Percentage = (Int32)Studentparsing["Table5"][i]["Percentage"];
+                            _goodPerformingSubjectList.Add(_goodPerformingSubject);
+                        }
+                    }
+                }
+                #endregion
+                // Add Average performing into List
+                #region Average Performing
+
+                if (averagePerformingCount > 0)
+                {
+                    if (averagePerformingCount > 5)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            AveragePerformingSubject _AveragePerformingSubject = new AveragePerformingSubject();
+                            _AveragePerformingSubject.SubjectId = (Int32)Studentparsing["Table6"][i]["SubjectId"];
+                            _AveragePerformingSubject.SubjectName = (string)Studentparsing["Table6"][i]["SubjectName"];
+                            _AveragePerformingSubject.LessionId = (Int32)Studentparsing["Table6"][i]["LessionId"];
+                            _AveragePerformingSubject.LessionName = (string)Studentparsing["Table6"][i]["LessionName"];
+                            _AveragePerformingSubject.Topic = (string)Studentparsing["Table6"][i]["Topic"];
+                            _AveragePerformingSubject.Percentage = (Int32)Studentparsing["Table6"][i]["Percentage"];
+                            _averagePerformingSubjectList.Add(_AveragePerformingSubject);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < averagePerformingCount; i++)
+                        {
+                            AveragePerformingSubject _AveragePerformingSubject = new AveragePerformingSubject();
+                            _AveragePerformingSubject.SubjectId = (Int32)Studentparsing["Table6"][i]["SubjectId"];
+                            _AveragePerformingSubject.SubjectName = (string)Studentparsing["Table6"][i]["SubjectName"];
+                            _AveragePerformingSubject.LessionId = (Int32)Studentparsing["Table6"][i]["LessionId"];
+                            _AveragePerformingSubject.LessionName = (string)Studentparsing["Table6"][i]["LessionName"];
+                            _AveragePerformingSubject.Topic = (string)Studentparsing["Table6"][i]["Topic"];
+                            _AveragePerformingSubject.Percentage = (Int32)Studentparsing["Table6"][i]["Percentage"];
+                            _averagePerformingSubjectList.Add(_AveragePerformingSubject);
+                        }
+                    }
+                }
+                #endregion
+                // Add Bad performing into list
+                #region Bad Performing
+                if (badPerformingCount > 0)
+                {
+                    if (badPerformingCount > 5)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            BadPerformingSubject _BadPerformingSubject = new BadPerformingSubject();
+                            _BadPerformingSubject.SubjectId = (Int32)Studentparsing["Table7"][i]["SubjectId"];
+                            _BadPerformingSubject.SubjectName = (string)Studentparsing["Table7"][i]["SubjectName"];
+                            _BadPerformingSubject.LessionId = (Int32)Studentparsing["Table7"][i]["LessionId"];
+                            _BadPerformingSubject.LessionName = (string)Studentparsing["Table7"][i]["LessionName"];
+                            _BadPerformingSubject.Topic = (string)Studentparsing["Table7"][i]["Topic"];
+                            _BadPerformingSubject.Percentage = (Int32)Studentparsing["Table7"][i]["Percentage"];
+                            _badPerformingSubjectList.Add(_BadPerformingSubject);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < badPerformingCount; i++)
+                        {
+                            BadPerformingSubject _BadPerformingSubject = new BadPerformingSubject();
+                            _BadPerformingSubject.SubjectId = (Int32)Studentparsing["Table7"][i]["SubjectId"];
+                            _BadPerformingSubject.SubjectName = (string)Studentparsing["Table7"][i]["SubjectName"];
+                            _BadPerformingSubject.LessionId = (Int32)Studentparsing["Table7"][i]["LessionId"];
+                            _BadPerformingSubject.LessionName = (string)Studentparsing["Table7"][i]["LessionName"];
+                            _BadPerformingSubject.Topic = (string)Studentparsing["Table7"][i]["Topic"];
+                            _BadPerformingSubject.Percentage = (Int32)Studentparsing["Table7"][i]["Percentage"];
+                            _badPerformingSubjectList.Add(_BadPerformingSubject);
+                        }
+                    }
+                }
+                #endregion
+
+
                 _parentDashboard.OverallAvailableTest = _OverallAvailableTestList;
                 _parentDashboard.OverallLastFiveTest = _LastFiveTestList;
                 _parentDashboard.StudentRank = _StudentRankDetails;
                 _parentDashboard.SubjectPercentage = _SubjectPercentageList;
                 _parentDashboard.StudentGeneralDetails = _studentGeneralDetails;
+                _parentDashboard.GoodPerformingSubject = _goodPerformingSubjectList;
+                _parentDashboard.AveragePerformingSubject = _averagePerformingSubjectList;
+                _parentDashboard.BadPerformingSubject = _badPerformingSubjectList;
                 return View(_parentDashboard);
 
             }
@@ -163,6 +281,23 @@ namespace ELF_Trial1.Controllers
         {
             return View();
         }
-     
-    }
+
+        public ActionResult FeedBack()
+        {
+            return View();
+        }
+
+        public JsonResult SubmitFeedBack(string Feedback)
+        {
+            String _Result = "";
+            if (GlobalStudentClass.UserType == "Parent")
+            {
+                int parentId = GlobalParentDetails.ParentId;
+                string FeedBack = ParentWeb.SaveUserFeedback(parentId, Feedback, GlobalStudentClass.UserType);
+                JObject ParsingFeedback = JObject.Parse(FeedBack);
+                _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
+            }
+            return Json(_Result);
+        }
+}
 }

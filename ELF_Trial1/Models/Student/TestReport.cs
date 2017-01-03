@@ -14,7 +14,7 @@ namespace ELF_Trial1.Models.Student
         public List<PendingTestInfo> PendingTestInfo { get; set; }
         public List<StudentInfo> StudentInfo { get; set; }
         public List<SubjectInfo> SubjectInfo { get; set; }
-
+      
 
     }
     public class TestOverview
@@ -77,40 +77,5 @@ namespace ELF_Trial1.Models.Student
 
     }
 
-    public class SubjectWiseTopicPerformance
-    {
-        public List<AveragePerformingSubject> AveragePerformingSubject { get; set; }
-
-
-    }
-
-
-
-    public class AveragePerformingSubject
-    {
-        public Int32 LessionId { get; set; }
-        public string LessionName{ get; set; }
-        public Int32 Percentage { get; set; }
-        public string Topic { get; set; }
-
-    }
-
-    public class BadPerformingSubject
-    {
-        public Int32 LessionId { get; set; }
-        public string LessionName { get; set; }
-        public Int32 Percentage { get; set; }
-        public string Topic { get; set; }
-
-    }
-
-    public class GoodPerformingSubject
-    {
-        public Int32 LessionId { get; set; }
-        public string LessionName { get; set; }
-        public Int32 Percentage { get; set; }
-        public string Topic { get; set; }
-
-    }
-
+   
 }

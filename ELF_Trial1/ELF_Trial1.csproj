@@ -255,6 +255,7 @@
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
     <Content Include="Views\First\Index.cshtml" />
     <Content Include="Views\First\Rerport.cshtml" />
+    <Content Include="Views\ELFWeb\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

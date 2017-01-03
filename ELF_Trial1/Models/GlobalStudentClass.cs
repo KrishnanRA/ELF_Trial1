@@ -19,7 +19,7 @@ namespace ELF_Trial1.Models
         static string _stateName;
         static int _studentId;
         static string _studentName;
-
+        static string _UserType;
         public static string BoardName
         {
             get { return _boardName; }
@@ -86,7 +86,11 @@ namespace ELF_Trial1.Models
             get { return _studentName; }
             set { _studentName = value; }
         }
-
+        public static string UserType
+        {
+            get { return _UserType; }
+            set { _UserType = value; }
+        }
     }
     public class GlobalTestClass
     {
