@@ -21,7 +21,9 @@ namespace ELF_Trial1.Models.Parent
 
         public List<StudentSubjectDetails> StudentSubjectDetails { get; set;}
 
-
+        public List<AveragePerformingSubject> AveragePerformingSubject { get; set; }
+        public List<BadPerformingSubject> BadPerformingSubject { get; set; }
+        public List<GoodPerformingSubject> GoodPerformingSubject { get; set; }
     }
 
     public class StudentUnderParent
@@ -87,4 +89,38 @@ namespace ELF_Trial1.Models.Parent
 
         public List<SubjectDetails> SubjectList { get; set; }
     }
+
+    public class AveragePerformingSubject
+    {
+        public Int32 LessionId { get; set; }
+        public string LessionName { get; set; }
+        public Int32 Percentage { get; set; }
+        public string Topic { get; set; }
+        public string SubjectName { get; set; }
+        public Int32 SubjectId { get; set; }
+
+    }
+
+    public class BadPerformingSubject
+    {
+        public Int32 LessionId { get; set; }
+        public string LessionName { get; set; }
+        public Int32 Percentage { get; set; }
+        public string Topic { get; set; }
+        public string SubjectName { get; set; }
+        public Int32 SubjectId { get; set; }
+
+    }
+
+    public class GoodPerformingSubject
+    {
+        public Int32 LessionId { get; set; }
+        public string LessionName { get; set; }
+        public Int32 Percentage { get; set; }
+        public string Topic { get; set; }
+        public string SubjectName { get; set; }
+        public Int32 SubjectId { get; set; }
+
+    }
+
 }

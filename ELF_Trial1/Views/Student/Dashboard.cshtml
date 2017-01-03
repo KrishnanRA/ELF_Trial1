@@ -167,32 +167,26 @@
                 ]
             });
             app.controller('Performingbaddashboard', function ($scope) {
-                $scope.Physics = [
-                  { "SubjectCode": "Physics", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red", "SubjectCodeValue": "danger" },
-                  { "SubjectCode": "Physics", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue", "SubjectCodeValue": "danger" },
-                  { "SubjectCode": "Chemistry", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow", "SubjectCodeValue": "warning" },
-                  { "SubjectCode": "ComputerSc", "LessonName": "Algebra", "Percentadege": "55", "WarningColor": "green", "SubjectCodeValue": "success" },
-                   { "SubjectCode": "Maths", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green", "SubjectCodeValue": "info" }
-                ]
+                @{
+                    var serializerBadPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    var BadPerformingJson = serializerBadPerforming.Serialize(Model.BadPerformingSubject);
+                }
+                $scope.PerformingBad =@Html.Raw(BadPerformingJson);
             });
             app.controller('Performinggooddashboard', function ($scope) {
 
-                $scope.Physics = [
-                  { "SubjectCode": "Maths", "LessonName": "Operation Sets", "Percentage": "null", "WarningColor": "red", "SubjectCodeValue": "success" },
-                  { "SubjectCode": "Maths", "LessonName": "Property of Set Operation", "Percentage": "null", "WarningColor": "blue", "SubjectCodeValue": "success" },
-                  { "SubjectCode": "Science", "LessonName": "Human Evolution", "Percentage": "null", "WarningColor": "yellow", "SubjectCodeValue": "info" },
-                  { "SubjectCode": "Science", "LessonName": "Heridity", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "warning" },
-                   { "SubjectCode": "Social", "LessonName": "Imperialism in India", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "danger" }
-                ]
-            });
+                @{
+                    var serializerGoodPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    var GoodPerformingJson = serializerGoodPerforming.Serialize(Model.GoodPerformingSubject);
+                }
+                $scope.PerformingGood =@Html.Raw(GoodPerformingJson);
+            });  
             app.controller('Needtobeconcentrateddashboard', function ($scope) {
-                $scope.Physics = [
-                  { "SubjectCode": "Social", "LessonName": "Sphere of Influence", "Percentage": "null", "WarningColor": "red", "SubjectCodeValue": "success" },
-                  { "SubjectCode": "Science", "LessonName": "Physical Basis of heridity", "Percentage": "null", "WarningColor": "blue", "SubjectCodeValue": "warning" },
-                  { "SubjectCode": "Science", "LessonName": "MEndel's Mono Hybrid Cross", "Percentage": "null", "WarningColor": "yellow", "SubjectCodeValue": "info" },
-                  { "SubjectCode": "Social", "LessonName": "Taiping Rebellion", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "info" }
-                   
-                ]
+                 @{
+                     var serializerAveragePerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
+                     var AveragePerformingJson = serializerGoodPerforming.Serialize(Model.AveragePerformingSubject);
+                 }
+                $scope.PerformingAverage =@Html.Raw(AveragePerformingJson);
             });
 
 
@@ -429,10 +423,21 @@
                             <div class="panel-heading">Performing Good</div>
                             <div class="panel-body">
                                 <table>
-                                    <tr ng-repeat="x in Physics">
-                                        <td><span>{{x.SubjectCode}}</span></td>
-                                        <td>{{x.LessonName}}</td>
+                                    <tr>
+                                        <th>LessionId</th>
+                                        <th>LessionName</th>
+                                        <th>Percentage</th>
+                                        <th>Topic</th>
+                                        <th>SubjectName</th>
+                                        <th>SubjectID</th>
+                                    </tr>
+                                    <tr ng-repeat="x in PerformingGood">
+                                        <td><span>{{x.LessionId}}</span></td>
+                                        <td>{{x.LessionName}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
+                                        <td><span>{{x.Topic}}</span></td>
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td><span>{{x.SubjectId}}</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -445,10 +450,21 @@
                             <div class="panel-heading">Need to concentrated</div>
                             <div class="panel-body">
                                 <table>
-                                    <tr ng-repeat="x in Physics">
-                                        <td><span>{{x.SubjectCode}}</span></td>
-                                        <td>{{x.LessonName}}</td>
+                                    <tr>
+                                        <th>LessionId</th>
+                                        <th>LessionName</th>
+                                        <th>Percentage</th>
+                                        <th>Topic</th>
+                                        <th>SubjectName</th>
+                                        <th>SubjectID</th>
+                                    </tr>
+                                    <tr ng-repeat="x in PerformingAverage">
+                                        <td><span>{{x.LessionId}}</span></td>
+                                        <td>{{x.LessionName}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
+                                        <td><span>{{x.Topic}}</span></td>
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td><span>{{x.SubjectId}}</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -461,10 +477,21 @@
                             <div class="panel-heading">Highly to be Concentrated</div>
                             <div class="panel-body">
                                 <table>
-                                    <tr ng-repeat="x in Physics">
-                                        <td><span>{{x.SubjectCode}}</span></td>
-                                        <td>{{x.LessonName}}</td>
+                                    <tr>
+                                        <th>LessionId</th>
+                                        <th>LessionName</th>
+                                        <th>Percentage</th>
+                                        <th>Topic</th>
+                                        <th>SubjectName</th>
+                                        <th>SubjectID</th>
+                                    </tr>
+                                    <tr ng-repeat="x in PerformingBad">
+                                        <td><span>{{x.LessionId}}</span></td>
+                                        <td>{{x.LessionName}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
+                                        <td><span>{{x.Topic}}</span></td>
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td><span>{{x.SubjectId}}</span></td>
                                     </tr>
                                 </table>
                             </div>

@@ -95,6 +95,7 @@ namespace ELF_Trial1.Controllers
                 
                 if (OutputStatus == "success")
                 {
+                    GlobalStudentClass.UserType = "Student";
                     Int64 StudentID = (Int64)StudentOutput["Table"][0]["StudentId"];
                     GlobalStudentClass.BoardName = (string)StudentOutput["Table"][0]["BoardName"];
                     GlobalStudentClass.CityName = (string)StudentOutput["Table"][0]["CityName"];
@@ -127,6 +128,7 @@ namespace ELF_Trial1.Controllers
 
                 if (ParentOutputStatus == "success")
                 {
+                    GlobalStudentClass.UserType = "Parent";
                     Int64 ParentId = (Int64)ParentParse["Table"][0]["ParentId"];
                     GlobalParentDetails.BoardName = (string)ParentParse["Table"][0]["BoardName"];
                     GlobalParentDetails.CityName = (string)ParentParse["Table"][0]["CityName"];
@@ -155,6 +157,8 @@ namespace ELF_Trial1.Controllers
             }
             else if (UserType == "Staff")
             {
+                GlobalStudentClass.UserType = "Staff";
+
                 string Staffoutput = objweb.CheckStaffLogin(Username, Password);
             }
 
@@ -170,6 +174,22 @@ namespace ELF_Trial1.Controllers
 
         }
 
+        public ActionResult ForgotPassword()
+        {
+
+            return View();
+        }
+
+
+        public JsonResult SubmitForgotPassword(string UserType ,string EmailId, string NewPassword)
+        {
+            //string Studentoutput = objweb.ForgotPassword(Number, Password, Email, User);
+
+            return Json("success");
+        }
+
+
+    
     }
 
 

@@ -21,6 +21,7 @@ namespace ELF_Trial1.Controllers
         public static GlobalStudentSubjectDetails GlobalStudentSubjects = new GlobalStudentSubjectDetails();
         public ActionResult Dashboard()
         {
+            // load login details in student general class
             StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
             objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
             objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
@@ -31,19 +32,23 @@ namespace ELF_Trial1.Controllers
             objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
             objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
             objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
-
             objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
 
+            // Create Object for class 
             StudentDashboard _StudentDashboardDetails = new StudentDashboard();
             StudentRank _StudentRankDetails = new StudentRank();
             OverallAvailableTest _StudentOverallAvailableTest = new OverallAvailableTest();
             OverallLastFiveTest _StudentOverallLastFiveTest = new OverallLastFiveTest();
-
+            // Get Dashboard Details with respect to student id form service
             String _GetStudentDashboardDetails = StudentWeb.StudentDashboardDetails(GlobalStudentClass.StudentId);
+            // Get Student Rank Details form service with respect to student id
             String _GetStudentDashboardDetails1 = StudentWeb.GetStudentDashboard(GlobalStudentClass.StudentId);
-
+            // Parse the student dashbord details form Json Student dashboard
             JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
+            // parse the student rank details form Json Student dashboard Details1
             JObject Studentparsing1 = JObject.Parse(_GetStudentDashboardDetails1);
+            // 
+            int _studentPerformanceCount = Studentparsing["Table3"].Count();
 
             _StudentRankDetails.CityRank = (Int32)Studentparsing1["Table"][0]["CityRank"];
             _StudentRankDetails.DistrictRank = (Int32)Studentparsing1["Table"][0]["DistrictRank"];
@@ -103,6 +108,120 @@ namespace ELF_Trial1.Controllers
                 _SubjectDetailsList.Add(_SubjectDetails);
             }
 
+            // Get the Rows Count in Good, Bad and Average 
+
+            int goodPerformingCount = Studentparsing["Table5"].Count();  // Good performace
+            int averagePerformingCount = Studentparsing["Table6"].Count(); // Average performance
+            int badPerformingCount = Studentparsing["Table7"].Count();   // Bad performance
+            //  Create Object for Good, Average, Bad list
+            List<GoodPerformingSubject> _goodPerformingSubjectList = new List<GoodPerformingSubject>();
+            List<AveragePerformingSubject> _averagePerformingSubjectList = new List<AveragePerformingSubject>();
+            List<BadPerformingSubject> _badPerformingSubjectList = new List<BadPerformingSubject>();
+
+            // Add good performing into list
+            #region Good Performing
+            if (goodPerformingCount > 0)
+            {
+                if (goodPerformingCount > 5)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        GoodPerformingSubject _goodPerformingSubject = new GoodPerformingSubject();
+                        _goodPerformingSubject.SubjectId = (Int32)Studentparsing["Table5"][i]["SubjectId"];
+                        _goodPerformingSubject.SubjectName = (string)Studentparsing["Table5"][i]["SubjectName"];
+                        _goodPerformingSubject.LessionId = (Int32)Studentparsing["Table5"][i]["LessionId"];
+                        _goodPerformingSubject.LessionName = (string)Studentparsing["Table5"][i]["LessionName"];
+                        _goodPerformingSubject.Topic = (string)Studentparsing["Table5"][i]["Topic"];
+                        _goodPerformingSubject.Percentage = (Int32)Studentparsing["Table5"][i]["Percentage"];
+                        _goodPerformingSubjectList.Add(_goodPerformingSubject);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < goodPerformingCount; i++)
+                    {
+                        GoodPerformingSubject _goodPerformingSubject = new GoodPerformingSubject();
+                        _goodPerformingSubject.SubjectId = (Int32)Studentparsing["Table5"][i]["SubjectId"];
+                        _goodPerformingSubject.SubjectName = (string)Studentparsing["Table5"][i]["SubjectName"];
+                        _goodPerformingSubject.LessionId = (Int32)Studentparsing["Table5"][i]["LessionId"];
+                        _goodPerformingSubject.LessionName = (string)Studentparsing["Table5"][i]["LessionName"];
+                        _goodPerformingSubject.Topic = (string)Studentparsing["Table5"][i]["Topic"];
+                        _goodPerformingSubject.Percentage = (Int32)Studentparsing["Table5"][i]["Percentage"];
+                        _goodPerformingSubjectList.Add(_goodPerformingSubject);
+                    }
+                }
+            }
+            #endregion
+            // Add Average performing list
+            #region Average Performing
+
+            if (averagePerformingCount > 0)
+            {
+                if (averagePerformingCount > 5)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        AveragePerformingSubject _AveragePerformingSubject = new AveragePerformingSubject();
+                        _AveragePerformingSubject.SubjectId = (Int32)Studentparsing["Table6"][i]["SubjectId"];
+                        _AveragePerformingSubject.SubjectName = (string)Studentparsing["Table6"][i]["SubjectName"];
+                        _AveragePerformingSubject.LessionId = (Int32)Studentparsing["Table6"][i]["LessionId"];
+                        _AveragePerformingSubject.LessionName = (string)Studentparsing["Table6"][i]["LessionName"];
+                        _AveragePerformingSubject.Topic = (string)Studentparsing["Table6"][i]["Topic"];
+                        _AveragePerformingSubject.Percentage = (Int32)Studentparsing["Table6"][i]["Percentage"];
+                        _averagePerformingSubjectList.Add(_AveragePerformingSubject);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < averagePerformingCount; i++)
+                    {
+                        AveragePerformingSubject _AveragePerformingSubject = new AveragePerformingSubject();
+                        _AveragePerformingSubject.SubjectId = (Int32)Studentparsing["Table6"][i]["SubjectId"];
+                        _AveragePerformingSubject.SubjectName = (string)Studentparsing["Table6"][i]["SubjectName"];
+                        _AveragePerformingSubject.LessionId = (Int32)Studentparsing["Table6"][i]["LessionId"];
+                        _AveragePerformingSubject.LessionName = (string)Studentparsing["Table6"][i]["LessionName"];
+                        _AveragePerformingSubject.Topic = (string)Studentparsing["Table6"][i]["Topic"];
+                        _AveragePerformingSubject.Percentage = (Int32)Studentparsing["Table6"][i]["Percentage"];
+                        _averagePerformingSubjectList.Add(_AveragePerformingSubject);
+                    }
+                }
+            }
+            #endregion
+            //  Add Bad Performing List
+            #region Bad Performing
+            if (badPerformingCount > 0)
+            {
+                if (badPerformingCount > 5)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        BadPerformingSubject _BadPerformingSubject = new BadPerformingSubject();
+                        _BadPerformingSubject.SubjectId = (Int32)Studentparsing["Table7"][i]["SubjectId"];
+                        _BadPerformingSubject.SubjectName = (string)Studentparsing["Table7"][i]["SubjectName"];
+                        _BadPerformingSubject.LessionId = (Int32)Studentparsing["Table7"][i]["LessionId"];
+                        _BadPerformingSubject.LessionName = (string)Studentparsing["Table7"][i]["LessionName"];
+                        _BadPerformingSubject.Topic = (string)Studentparsing["Table7"][i]["Topic"];
+                        _BadPerformingSubject.Percentage = (Int32)Studentparsing["Table7"][i]["Percentage"];
+                        _badPerformingSubjectList.Add(_BadPerformingSubject);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < badPerformingCount; i++)
+                    {
+                        BadPerformingSubject _BadPerformingSubject = new BadPerformingSubject();
+                        _BadPerformingSubject.SubjectId = (Int32)Studentparsing["Table7"][i]["SubjectId"];
+                        _BadPerformingSubject.SubjectName = (string)Studentparsing["Table7"][i]["SubjectName"];
+                        _BadPerformingSubject.LessionId = (Int32)Studentparsing["Table7"][i]["LessionId"];
+                        _BadPerformingSubject.LessionName = (string)Studentparsing["Table7"][i]["LessionName"];
+                        _BadPerformingSubject.Topic = (string)Studentparsing["Table7"][i]["Topic"];
+                        _BadPerformingSubject.Percentage = (Int32)Studentparsing["Table7"][i]["Percentage"];
+                        _badPerformingSubjectList.Add(_BadPerformingSubject);
+                    }
+                }
+            }
+            #endregion
+
             GlobalStudentSubjects.SubjectList = _SubjectDetailsList;
 
             _StudentDashboardDetails.OverallAvailableTest = _OverallAvailableTestList;
@@ -110,6 +229,13 @@ namespace ELF_Trial1.Controllers
             _StudentDashboardDetails.StudentRank = _StudentRankDetails;
             _StudentDashboardDetails.SubjectPercentage = _SubjectPercentageList;
             _StudentDashboardDetails.StudentGeneralDetails = objStudentLoginDetails;
+            _StudentDashboardDetails.GoodPerformingSubject = _goodPerformingSubjectList;
+            _StudentDashboardDetails.AveragePerformingSubject = _averagePerformingSubjectList;
+            _StudentDashboardDetails.BadPerformingSubject = _badPerformingSubjectList;
+
+
+
+
             return View(_StudentDashboardDetails);
         }
 
@@ -133,7 +259,7 @@ namespace ELF_Trial1.Controllers
         {
             // model student general details
             StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;  
+            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
             objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
             objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
             objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
@@ -256,7 +382,7 @@ namespace ELF_Trial1.Controllers
 
             Int32 _StudentID = GlobalStudentClass.StudentId;
             SubmitTest _SubmitTest = new SubmitTest();
-            
+
             String _TestSubmitResult = _SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
             JObject ParsingSubmitResult = JObject.Parse(_TestSubmitResult);
             String _Result = (string)ParsingSubmitResult["Table"][0]["OutputStatus"];
@@ -440,5 +566,49 @@ namespace ELF_Trial1.Controllers
         //        return View(_TestReport);
         //    }
         //}
+
+        public ActionResult FeedBack()
+        {
+            return View();
+        }
+
+        public JsonResult SubmitFeedBack(string Feedback)
+        {
+            String _Result = "";
+            // Check UserType 
+            if (GlobalStudentClass.UserType == "Student")
+            {
+                string FeedBack = StudentWeb.SaveUserFeedback(GlobalStudentClass.StudentId, Feedback, GlobalStudentClass.UserType);
+                JObject ParsingFeedback = JObject.Parse(FeedBack);
+                _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
+
+            }
+            return Json(_Result);
+        }
+
+        public ActionResult Coupon()
+        {
+
+            return View();
+        }
+
+        public JsonResult SubmitCoupon(string CoupenCode)
+        {
+            // Validate the Coupon
+            StudentGeneralDetails _studentGeneralDetails = new StudentGeneralDetails();
+            string Coupon = StudentWeb.CheckCoupenCode(GlobalStudentClass.StudentId , CoupenCode);
+            JObject ParsingCoupon = JObject.Parse(Coupon);
+            // Check the Json Result to validate the Coupon
+            string _Result = (string)ParsingCoupon["Table"][0]["StatusCode"];
+            if(_Result == "9996")     // Status Code
+            {
+                return Json("success");
+            }
+            else
+            {
+                return Json("failed");
+            }
+        }
+
     }
 }

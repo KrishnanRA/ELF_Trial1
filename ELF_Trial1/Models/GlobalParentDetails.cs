@@ -19,7 +19,6 @@ namespace ELF_Trial1.Models
         static int _parentId;
         static int _studentId;
         static string _students;
-
         public static string BoardName
         {
             get { return _boardName; }
@@ -92,7 +91,8 @@ namespace ELF_Trial1.Models
             get { return _students; }
             set { _students = value; }
         }
+       
 
-        
     }
+   
 }
