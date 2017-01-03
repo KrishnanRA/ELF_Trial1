@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AESEncrytDecry.cs" />
+    <Compile Include="Controllers\CustomerSupportController.cs" />
     <Compile Include="Controllers\ELFWebController.cs" />
     <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
@@ -255,6 +256,8 @@
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
     <Content Include="Views\First\Index.cshtml" />
     <Content Include="Views\First\Rerport.cshtml" />
+    <Content Include="Views\CustomerSupport\Index.cshtml" />
+    <Content Include="Views\CustomerSupport\CheckStudentDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
