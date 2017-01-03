@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>ELF Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="~/Script/aes.js"></script>
+</head>
+<body>
+    <style>
+        body {
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+    <style>
+        .inputfielddashboard:focus {
+            font-size: 26px;
+            -webkit-transition-duration: 0.6s; /* Safari */
+            transition-duration: 0.6s;
+        }
+    </style>
+    <style>
+        .userselectionbutn input[type="radio"] {
+            display: none;
+        }
+
+        div .userselectionbutn {
+            display: inline-block;
+        }
+
+        .userselectionbutn label {
+            background-color: #ff6a00; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 14px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+        }
+
+        input[type="radio"]:checked + label {
+            box-shadow: 10px 10px 10px black;
+            font-size: 26px;
+        }
+
+        .userselectionbutn label:hover {
+            background-color: #808080;
+            color: white;
+            font-size: 20px;
+        }
+    </style>
+    <style>
+        .butnblacknobg {
+            background-color: #ff6a00;
+            color: white;
+            border: 0.1px solid #ff6a00;
+            height: 40px;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+            .butnblacknobg:hover {
+                background-color: #808080;
+                font-size: 20px;
+                color: white;
+            }
+
+        input[type="radio"]:checked + label {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 2px 5px 0 rgb(255, 0, 0);
+        }
+    </style>
+    <style>
+        div.row.fields {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        input[type=text] {
+            width: 40%;
+            padding: 10px 15px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+
+        input[type=password] {
+            width: 40%;
+            padding: 10px 15px;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+    </style>
+   
+        <script type="text/javascript">
+            function Login() {
+                
+                var username = document.getElementById('username').value;
+                var password = document.getElementById('password').value;
+                var User = $('input[name=User]:checked').val();
+                $.ajax({
+                    type: 'POST',
+                    url: '/ELFWeb/Login',
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify({ Username: username, Password: password, UserType: User }),
+                    datatype: 'json',
+                    success: function (data) {
+                        if (data == 'success') {
+                            if (User == 'Student') {
+                                window.location.href = '../Student/Dashboard';
+                            }
+                            else if (User == 'Parent') {
+                                window.location.href = '../Parent/Dashboard';
+                            }
+                            else if (User == 'Staff') {
+                                window.location.href = incomimg + '/Dashboard';
+                            }
+                            else if (User == 'Institution') {
+                                window.location.href = '../Institution/Dashboard';
+                            }
+                            
+                        }
+                        else if (dat389a == 'Failed') {
+                            debugger;
+                            alert("Enter Username and Password correctly");
+                        }
+                    },
+                    error: function (err) {
+                        if (err.status == 200) {
+                            ParseResult(err);
+                        }
+                        else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                    }
+                });
+
+            }
+            
+        </script>
+    
+    <img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />
+    <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-900px; margin-left:-190px;" />
+
+    <div class="loginbody" style="margin-top:-640px;">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row fields" style="margin-left:-90px">
+
+                <img src="../Images/LoginPage/Student_Login_Icon.png" style="margin-left:00px;margin-bottom:-25px;" />
+                <div class="userselectionbutn" style="margin-left:-100px;margin-top:0px;">
+                    <input type="radio" name="User" value="Student" id="userstudent" checked="checked" />
+                    <label for="userstudent">Student</label>
+                </div>
+
+                <img src="../Images/LoginPage/Parent_Login_Icon.png" style="margin-left:-35px; margin-top:-8px;" />
+                <div class="userselectionbutn" style="margin-left:-20px;">
+                    <input type="radio" name="User" value="Parent" id="userparent" />
+                    <label for="userparent">Parent</label>
+                </div>
+                <img src="../Images/LoginPage/Staff_Login_Icon.png" style="margin-left:-35px; margin-top:-8px;" />
+                <div class="userselectionbutn" style="margin-left:-33px;">
+                    <input type="radio" name="User" value="Staff" id="userstaff" />
+                    <label for="userstaff">Staff</label>
+                </div>
+                <img src="../Images/LoginPage/Institution_Login_Icon.png" style="margin-left:-35px; margin-top:-8px;" />
+                <div class="userselectionbutn" style="margin-left:-50px;">
+                    <input type="radio" name="User" value="Institution" id="userinstitute" />
+                    <label for="userinstitute">Institution</label>
+                </div>
+
+            </div>
+            <div class="row fields">
+                <input type="text" class="inputfielddashboard" placeholder="Username"  id="username">
+            </div>
+            <div class="row fields">
+                <input type="password" class="inputfielddashboard" placeholder="Password" id="password">
+            </div>
+            <div class="row fields">
+                <input type="button" class="butnblacknobg" value="Log In" id="login" onclick="Login()">
+            </div>
+            <div class="row fields" style="margin-left:auto">
+                <a>
+                    <span onclick="alert('Forgot Password will be update Soon');">Forgot Password</span>
+                </a>
+            </div>
+            <div class="row fields" style="margin-left:auto">
+                <a class="btn btn-danger" href="../ELFWeb/NewRegistration">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

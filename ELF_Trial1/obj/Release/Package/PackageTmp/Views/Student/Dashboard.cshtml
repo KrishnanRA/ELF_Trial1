@@ -1,0 +1,530 @@
+﻿@model ELF_Trial1.Models.Student.StudentDashboard
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<br />
+<div>
+
+    <style>
+        body {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            background-color: #555555;
+        }
+    </style>
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #555555;
+            color: whitesmoke;
+        }
+
+        td, th {
+            border: 0.1px solid #808080;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #555555;
+        }
+    </style>
+    <script>
+            function navinside(page) {
+                window.location.href = '/Student/' + page;
+            }
+    </script>
+    <style>
+        canvas {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <script>
+            Chart.pluginService.register({
+                beforeDraw: function (chart, easing) {
+                    if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                        var helpers = Chart.helpers;
+                        var ctx = chart.chart.ctx;
+                        var chartArea = chart.chartArea;
+
+                        ctx.save();
+                        ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                        ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                        ctx.restore();
+                    }
+                }
+            });
+
+        $(document).ready(function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    chartArea: {
+                        backgroundColor: 'rgba(72,72,72,1)'
+                    }
+                }
+            });
+            
+        });
+        @{
+            var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            var Reportjson = serializer.Serialize(Model.SubjectPercentage);
+        }
+
+        var SubjectList =@Html.Raw(Reportjson);
+        var SubjectNameList = [];
+        var SubjectPercentageList = [];
+        var subjectcount=SubjectList.length;
+      
+        for(i=0;i<subjectcount;i++)
+        {
+         
+             SubjectNameList[i] = SubjectList[i].SubjectName;
+            SubjectPercentageList[i] = SubjectList[i].Percentage;
+
+        }
+
+            var data = {
+                labels: SubjectNameList,
+                    datasets: [
+                        {
+            label: "Subject Percentage List",
+                            backgroundColor: [
+                                'rgba(251, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(119, 136, 153, 1)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(251,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1,
+                            data: SubjectPercentageList,
+
+                            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                                        }
+                                    }]
+                                }
+                            }
+                        }
+                    ]
+                };
+              
+    </script>
+    <script>
+            function PageNav(Page) {
+                window.location.href = '/Student/' + Page;
+            }
+    </script>
+    <script>
+            var app = angular.module('DashboardMainPage', []);
+            app.controller('ReportSubject1', function ($scope) {
+
+
+
+                $scope.GetAllData = function () {
+                    $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
+                    .success(function (data, status, headers, config) {
+                        $scope.Details = data;
+
+                    })
+                }
+                    $scope.Physics = [
+                      { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+                      { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+                      { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+                      { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                       { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+                    ];
+            });
+            app.controller('ReportSubject2', function ($scope) {
+                $scope.Chemistry = [
+                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+                ]
+            });
+            app.controller('Performingbaddashboard', function ($scope) {
+                $scope.Physics = [
+                  { "SubjectCode": "Physics", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red", "SubjectCodeValue": "danger" },
+                  { "SubjectCode": "Physics", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue", "SubjectCodeValue": "danger" },
+                  { "SubjectCode": "Chemistry", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow", "SubjectCodeValue": "warning" },
+                  { "SubjectCode": "ComputerSc", "LessonName": "Algebra", "Percentadege": "55", "WarningColor": "green", "SubjectCodeValue": "success" },
+                   { "SubjectCode": "Maths", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green", "SubjectCodeValue": "info" }
+                ]
+            });
+            app.controller('Performinggooddashboard', function ($scope) {
+                $scope.Physics = [
+                  { "SubjectCode": "Maths", "LessonName": "Operation Sets", "Percentage": "null", "WarningColor": "red", "SubjectCodeValue": "success" },
+                  { "SubjectCode": "Maths", "LessonName": "Property of Set Operation", "Percentage": "null", "WarningColor": "blue", "SubjectCodeValue": "success" },
+                  { "SubjectCode": "Science", "LessonName": "Human Evolution", "Percentage": "null", "WarningColor": "yellow", "SubjectCodeValue": "info" },
+                  { "SubjectCode": "Science", "LessonName": "Heridity", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "warning" },
+                   { "SubjectCode": "Social", "LessonName": "Imperialism in India", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "danger" }
+                ]
+            });
+            app.controller('Needtobeconcentrateddashboard', function ($scope) {
+                $scope.Physics = [
+                  { "SubjectCode": "Social", "LessonName": "Sphere of Influence", "Percentage": "null", "WarningColor": "red", "SubjectCodeValue": "success" },
+                  { "SubjectCode": "Science", "LessonName": "Physical Basis of heridity", "Percentage": "null", "WarningColor": "blue", "SubjectCodeValue": "warning" },
+                  { "SubjectCode": "Science", "LessonName": "MEndel's Mono Hybrid Cross", "Percentage": "null", "WarningColor": "yellow", "SubjectCodeValue": "info" },
+                  { "SubjectCode": "Social", "LessonName": "Taiping Rebellion", "Percentage": "null", "WarningColor": "green", "SubjectCodeValue": "info" }
+                   
+                ]
+            });
+
+
+            app.controller('OverallTestCtrl', function ($scope) {
+                $scope.Physics = [
+                  { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
+                  { "TestID": "02", "Subject": "Vector Algebra", "Description": "33", "WarningColor": "blue" },
+                  { "TestID": "03", "Subject": "Set Language", "Description": "44", "WarningColor": "yellow" },
+                  { "TestID": "04", "Subject": "Algebra", "Description": "55", "WarningColor": "green" },
+                   { "TestID": "05", "Subject": "Trignomentry", "Description": "77", "WarningColor": "green" }
+                ]
+            });
+            app.controller('Scopeofimprovement', function ($scope) {
+                $scope.Scopeofimprovement = [
+                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" }
+                ]
+            });
+            app.controller('TestReport', function ($scope) {
+                $scope.TestCompleted = [
+                  { "TestID": "1235", "SubjectName": "Physics", "TotalQuestion": "50", "Answered": "25", "Percentage": "50", "Detail": "Details" },
+                  { "TestID": "1277", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "15", "Percentage": "50", "Detail": "Details" },
+                  { "TestID": "2335", "SubjectName": "Maths", "TotalQuestion": "20", "Answered": "4", "Percentage": "20", "Detail": "Details" },
+                  { "TestID": "8635", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "9", "Percentage": "30", "Detail": "Details" },
+                  { "TestID": "7723", "SubjectName": "Maths", "TotalQuestion": "30", "Answered": "3", "Percentage": "10", "Detail": "Details" }
+                ]
+            });
+            app.controller('CompletedTestDashboard', function ($scope) {
+                  @{
+                      var serializerLastFive = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      var LastFiveTestjson = serializerLastFive.Serialize(Model.OverallLastFiveTest);
+                  }
+                   $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
+
+            });
+            app.controller('AvailableTestDashboard', function ($scope) {
+
+                @{
+                    var serializerAvailableTest = new System.Web.Script.Serialization.JavaScriptSerializer();
+                    var AvailableTestjson = serializerAvailableTest.Serialize(Model.OverallAvailableTest);
+                }
+                $scope.AvailableTest =@Html.Raw(AvailableTestjson);
+
+            });
+    </script>
+    <style>
+        .buttoncss {
+            background-color: #808080;
+            color: white;
+            border: 0.1px solid #555555;
+            height: 40px;
+            width: 250px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+            .buttoncss:hover {
+                background-color: black;
+                color: white;
+            }
+    </style>
+
+    @*Heading Header*@
+    <style>
+        #topname {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middletext {
+        }
+
+            .icon_middletext span {
+                display: block;
+                color: white;
+                font-size: 24px;
+            }
+
+        .icon_middletextSmall {
+        }
+
+            .icon_middletextSmall span {
+                display: block;
+                color: white;
+                font-size: 12px;
+            }
+    </style>
+    <style>
+        .icon_middleicon {
+            display: block;
+            margin-top: -100px;
+            margin-left: 370px;
+            width: 110px;
+            height: 97px;
+        }
+
+            .icon_middleicon img {
+                margin-top: -13px;
+            }
+
+        #tophelp {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #helpicon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 30px;
+        }
+
+        #topsignout {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #signouticon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 20px;
+        }
+
+        #topsettings {
+            margin: 0 auto;
+            width: 110px;
+            height: 97px;
+            margin-top: 89px;
+        }
+
+        .icon_middleicon #settingsicon {
+            display: block;
+            margin-top: -70px;
+            margin-left: 20px;
+        }
+    </style>
+
+    @*Panels*@
+    <style>
+        .panel-body {
+            background-color: #555555;
+            color: snow;
+        }
+
+        .panel-danger > .panel-heading {
+            background-color: #fe1e1e;
+            background: -moz-linear-gradient(right, red, #b90000);
+            border-color: #b90000;
+            color: white;
+        }
+
+        .panel-success > .panel-heading {
+            background-color: #48a500;
+            background: -moz-linear-gradient(right, green, #48a500);
+            border-color: #48a500;
+            color: white;
+        }
+
+        .panel-warning > .panel-heading {
+            background-color: #fabf2d;
+            background: -moz-linear-gradient(right, yellow, #fabf2d);
+            border-color: #fabf2d;
+            color: white;
+        }
+    </style>
+    <style>
+        div#headavailabletest {
+            background-color: cornflowerblue;
+            background: -moz-linear-gradient(right, red, #b90000);
+            border-color: #b90000;
+            color: white;
+        }
+
+        div#headlastfive {
+            background-color: cornflowerblue;
+            background: -moz-linear-gradient(right, green, #48a500);
+            border-color: #48a500;
+            color: white;
+        }
+    </style>
+    <script>
+        function TestSummaryPage(TestID)
+        {
+            window.location.href='/Student/TestSummary?TestId='+TestID;
+        }
+    </script>
+
+    <script>
+        function WriteTest(TestID)
+        {
+            var TakeTest=confirm("Are you sure want to write Test now");
+            if(TakeTest==true){
+                window.location.href = '/Student/Test?TestID=' + TestID;
+            }
+        }
+        function TestSummaryPage(TestID)
+        {
+            window.location.href='/Student/TestSummary?TestId='+TestID;
+        }
+    </script>
+
+
+
+
+    <div ng-app="DashboardMainPage">
+        <h1 style="color:white">Dashboard</h1>
+        @*Chart*@
+        <div style="margin-top:50px">
+            <div class="col-md-12">
+                    <div id="canvas-holder2">
+                        <canvas id="canvas"></canvas>
+                    </div>
+            </div>
+        </div>
+        <div style="margin-top:0px;">
+            <div class="col-md-12" style="margin-top:10px;">
+                <div class="col-md-4">
+                    <div ng-controller="Performinggooddashboard">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Performing Good</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr ng-repeat="x in Physics">
+                                        <td><span>{{x.SubjectCode}}</span></td>
+                                        <td>{{x.LessonName}}</td>
+                                        <td><span>{{x.Percentage}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div ng-controller="Needtobeconcentrateddashboard">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">Need to concentrated</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr ng-repeat="x in Physics">
+                                        <td><span>{{x.SubjectCode}}</span></td>
+                                        <td>{{x.LessonName}}</td>
+                                        <td><span>{{x.Percentage}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div ng-controller="Performingbaddashboard">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">Highly to be Concentrated</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr ng-repeat="x in Physics">
+                                        <td><span>{{x.SubjectCode}}</span></td>
+                                        <td>{{x.LessonName}}</td>
+                                        <td><span>{{x.Percentage}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div ng-controller="CompletedTestDashboard">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading" id="headlastfive">Last Five Test</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Type</th>
+                                        <th>Test ID</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                    <tr ng-repeat="x in LastTestFiveTestList">
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td>{{x.TestType}}</td>
+                                        <td>{{x.TestId}}</td>
+                                        <td><span>{{x.Percentage}}</span></td>
+                                        <td><button onclick="TestSummaryPage(this.id)" id="{{x.TestID}}" style="background-color:#808080;border-color:#808080">Get Detail</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div ng-controller="AvailableTestDashboard">
+                        <div class="panel panel-success">
+                            <div class="panel-heading" id="headavailabletest">Available Test</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <th>Subject</th>
+                                        <th>Lesson</th>
+                                        <th>Test ID</th>
+                                        <th>Test Time</th>
+                                    </tr>
+                                    <tr ng-repeat="x in AvailableTest">
+                                        <td><span>{{x.SubjectName}}</span></td>
+                                        <td>{{x.TestType}}</td>
+                                        <td>{{x.TestId}}</td>
+                                        <td><button style="background-color:#808080;border-color:#808080" id="{{x.TestId}}" onclick="WriteTest(this.id)">Write Test</button></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

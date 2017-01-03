@@ -1,0 +1,402 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+
+     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+     <title>Dashboard</title>
+
+    <style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+    </style>
+    <script>
+
+        window.onload = function () {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            var ctx1 = document.getElementById("chart1").getContext("2d");
+
+            var ctx2 = document.getElementById("canvas1").getContext("2d");
+            var ctx3 = document.getElementById("chart12").getContext("2d");
+
+            var myBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: data
+            });
+            var myLineChart = new Chart(ctx1, {
+                type: 'line',
+                data: data1
+            });
+
+            var myBarChart1 = new Chart(ctx2, {
+                type: 'bar',
+                data: data2
+            });
+            var myLineChart1 = new Chart(ctx3, {
+                type: 'line',
+                data: data3
+            });
+
+
+        }
+        var data = {
+            labels: ["50-60", "60-70", "70-80", "80-85", "85-90", "90-95", "95-100"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: [5, 5, 4, 7, 2, 1, 1],
+                }
+            ]
+        };
+        var data1 = {
+            labels: ["Maths", "Science", "Social"],
+            datasets: [
+                {
+                    label: "Overal",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [85, 79, 78],
+                    spanGaps: false,
+                }
+            ]
+        };
+        var data2 = {
+            labels: ["50-60", "60-70", "70-80", "80-85", "85-90", "90-95", "95-100"],
+            datasets: [
+                {
+                    label: "My First dataset",
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: [7, 5 ,5 , 4,8, 7, 0 ],
+                }
+            ]
+        };
+        var data3 = {
+            labels: ["Maths", "Biology", "Physics","Chemistry","Computer"],
+            datasets: [
+                {
+                    label: "Overal",
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(75,192,192,0.4)",
+                    borderColor: "rgba(75,192,192,1)",
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "rgba(75,192,192,1)",
+                    pointBackgroundColor: "#fff",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                    pointHoverBorderColor: "rgba(220,220,220,1)",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 1,
+                    pointHitRadius: 10,
+                    data: [70, 72, 68,45,88],
+                    spanGaps: false,
+                }
+            ]
+        };
+    </script>
+    <script>
+        var app = angular.module('InstitutionDashboardMainPage', []);
+
+         
+         app.controller('tenthcontroller', function ($scope) {
+             $scope.Physics = [
+               { "ID": "283", "StudentName": "Raghul", "Maths": "65", "Science": "60", "Social": "42.5" },
+               { "ID": "284", "StudentName": "Maladesh", "Maths": "38.3", "Science": "42.5", "Social": "35" },
+               { "ID": "286", "StudentName": "Raj Krish", "Maths": "60", "Science": "63.3", "Social": "45" },
+               { "ID": "287", "StudentName": "Jeshwin", "Maths": "20", "Science": "50", "Social": "43.3" },
+                { "ID": "288", "StudentName": "Gayana", "Maths": "56.5", "Science": "No Test", "Social": "56" },
+                { "ID": "289", "StudentName": "Naveen", "Maths": "No Test", "Science": "53", "Social": "39" },
+                { "ID": "290", "StudentName": "Kalai Amudhan", "Maths": "43", "Science": "60", "Social": "33" },
+                { "ID": "305", "StudentName": "SNeha", "Maths": "82", "Science": "90", "Social": "96" },
+                { "ID": "307", "StudentName": "Naveena", "Maths": "73", "Science": "85", "Social": "95" },
+                { "ID": "308", "StudentName": "Savitha Sangavi", "Maths": "78", "Science": "75", "Social": "86" },
+                { "ID": "301", "StudentName": "AShwin Ram", "Maths": "87", "Science": "92", "Social": "95" },
+                { "ID": "299", "StudentName": "Harish Natrajan", "Maths": "82", "Science": "90", "Social": "97" },
+                { "ID": "298", "StudentName": "Sabarish", "Maths": "78", "Science": "90", "Social": "95" },
+                { "ID": "296", "StudentName": "Sankya", "Maths": "80", "Science": "82", "Social": "95" },
+                { "ID": "310", "StudentName": "Lolita", "Maths": "88", "Science": "95", "Social": "70" },
+                  { "ID": "291", "StudentName": "Abi Nandhini", "Maths": "No Test", "Science": "73", "Social": "48" },
+                  { "ID": "292", "StudentName": "Thivakaran", "Maths": "50", "Science": "43", "Social": "No Test" },
+                  { "ID": "293", "StudentName": "Sukanya", "Maths": "No Test", "Science": "50", "Social": "50" }
+             ]
+         });
+         app.controller('twelthcontroller', function ($scope) {
+             $scope.twelve = [
+               { "ID": "348", "StudentName": "Abilash", "Maths": "0","Biology":"92.5","ComputerScience":"0" ,"Physics":"20","Chemistry":"0"},
+               { "ID": "349", "StudentName": "Harikrishnan", "Maths": "0", "Biology": "0", "ComputerScience": "0", "Physics": "0", "Chemistry": "76.6" },
+               { "ID": "350", "StudentName": "Akash", "Maths": "0", "Biology": "0", "ComputerScience": "81.6", "Physics": "0", "Chemistry": "0" },
+               
+                { "ID": "352", "StudentName": "Sownthar", "Maths": "0", "Biology": "0", "ComputerScience": "90", "Physics": "0", "Chemistry": "0" },
+                { "ID": "353", "StudentName": "Deepak", "Maths": "77.5", "Biology": "0", "ComputerScience": "65", "Physics": "0", "Chemistry": "0" },
+                { "ID": "354", "StudentName": "Devaprakash", "Maths": "0", "Biology": "0", "ComputerScience": "70", "Physics": "0", "Chemistry": "0" },
+                
+                { "ID": "356", "StudentName": "Manokarthik", "Maths": "0", "Biology": "0", "ComputerScience": "0", "Physics": "30", "Chemistry": "0" },
+                { "ID": "357", "StudentName": "Hariprasanth", "Maths": "0", "Biology": "0", "ComputerScience": "76.6", "Physics": "0", "Chemistry": "0" },
+                { "ID": "358", "StudentName": "Tamilarasan", "Maths": "0", "Biology": "71.3", "ComputerScience": "0", "Physics": "0", "Chemistry": "0" },
+                { "ID": "359", "StudentName": "Vishal", "Maths": "0", "Biology": "79", "ComputerScience": "0", "Physics": "0", "Chemistry": "75" },
+                { "ID": "361", "StudentName": "Prithivee", "Maths": "55", "Biology": "0", "ComputerScience": "77.5", "Physics": "0", "Chemistry": "0" },
+                { "ID": "362", "StudentName": "Lithesh", "Maths": "0", "Biology": "0", "ComputerScience": "85", "Physics": "45", "Chemistry": "90" },
+                { "ID": "363", "StudentName": "Vignesh", "Maths": "55", "Biology": "0", "ComputerScience": "65", "Physics": "0", "Chemistry": "0" },
+                  { "ID": "364", "StudentName": "Vishal Koushick", "Maths": "0", "Biology": "90", "ComputerScience": "0", "Physics": "0", "Chemistry": "0" },
+                  { "ID": "366", "StudentName": "Rishi", "Maths": "0", "Biology": "77.5", "ComputerScience": "0", "Physics": "0", "Chemistry": "0" },
+                  { "ID": "386", "StudentName": "Dilipen", "Maths": "0", "Biology": "32", "ComputerScience": "0", "Physics": "32", "Chemistry": "17.5" },
+             ]
+         });
+         
+
+    </script>
+    <script>
+        function PageNav(Page)
+        {
+            debugger;
+            var string = Page + 'icon';
+            if (string == 'Testicon')
+            {
+                $("#Homeicon").attr("src", "../Images/Dashboard/Dashboard_Home_InActive.png");
+                //$("#Testicon").attr("src", "../Images/Dashboard/Dashboard_Test_Active.png");
+                $("#Reporticon").attr("src", "../Images/Dashboard/Dashboard_Report_InActive.png");
+                $("#Notificationicon").attr("src", "../Images/Dashboard/Dashboard_Notification_InActive.png");
+            }
+            else if (string == 'Homeicon') {
+                $("#Homeicon").attr("src", "../Images/Dashboard/Dashboard_Home_Active.png");
+                //$("#Testicon").attr("src", "../Images/Dashboard/Dashboard_Test_InActive.png");
+                $("#Reporticon").attr("src", "../Images/Dashboard/Dashboard_Report_InActive.png");
+                $("#Notificationicon").attr("src", "../Images/Dashboard/Dashboard_Notification_InActive.png");
+            }
+            else if (string == 'Reporticon') {
+                $("#Homeicon").attr("src", "../Images/Dashboard/Dashboard_Home_InActive.png");
+                //$("#Testicon").attr("src", "../Images/Dashboard/Dashboard_Test_InActive.png");
+                $("#Reporticon").attr("src", "../Images/Dashboard/Dashboard_Report_Active.png");
+                $("#Notificationicon").attr("src", "../Images/Dashboard/Dashboard_Notification_InActive.png");
+            }
+            else if (string == 'Notificationicon') {
+                $("#Homeicon").attr("src", "../Images/Dashboard/Dashboard_Home_InActive.png");
+                //$("#Testicon").attr("src", "../Images/Dashboard/Dashboard_Test_InActive.png");
+                $("#Reporticon").attr("src", "../Images/Dashboard/Dashboard_Report_InActive.png");
+                $("#Notificationicon").attr("src", "../Images/Dashboard/Dashboard_Notification_Active.png");
+            }
+        }
+    </script>
+</head>
+      
+    
+<body>
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <h2>School Name:AVB Matricualtion School</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>Nos of Student Using ELF:63</h2>
+        </div>
+        <div class="col-md-3">
+            <h2>Nos of 10th Std Student Using ELF:26</h2>
+        </div>
+        <div class="col-md-3">
+        <h2>Nos of 12th Std Student Using ELF:37</h2>
+    </div>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tenth">10th</a></li>
+        <li><a data-toggle="tab" href="#twelth">12th</a></li>
+    </ul>
+    <div ng-app="InstitutionDashboardMainPage" class="tab-content">
+        <div id="tenth" class="tab-pane fade in active">
+            <div class="col-md-12" style="height:300px;margin-top:50px;">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">% Split on Students</div>
+                        <div class="panel-body">
+                            <div id="canvas-holder2" style="width: 600px;">
+                                <canvas id="canvas"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Overall Student Growth</div>
+                        <div class="panel-body">
+                            <div id="canvas-holder1" style="width:600px;">
+                                <canvas id="chart1" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:0px;">
+                <div class="col-md-12" style="margin-top:150px;">
+                    <div ng-controller="tenthcontroller">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Student Details</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Maths %</th>
+                                        <th>Science %</th>
+                                        <th>Social %</th>
+                                    </tr>
+                                    <tr ng-repeat="x in Physics">
+                                        <td><span>{{x.ID}}</span></td>
+                                        <td>{{x.StudentName}}</td>
+                                        <td><span>{{x.Maths}}</span></td>
+                                        <td><span>{{x.Science}}</span></td>
+                                        <td><span>{{x.Social}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div id="twelth" class="tab-pane fade" >
+            <div class="col-md-12" style="height:300px;margin-top:50px;">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">% Split on Students</div>
+                        <div class="panel-body">
+                            <div id="canvas-holder2" style="width: 600px;">
+                                <canvas id="canvas1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Overall Student Growth</div>
+                        <div class="panel-body">
+                            <div id="canvas-holder1" style="width:600px;">
+                                <canvas id="chart12" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top:0px;">
+                <div class="col-md-12" style="margin-top:150px;">
+                    <div ng-controller="twelthcontroller">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Student Details</div>
+                            <div class="panel-body">
+                                <table>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Student Name</th>
+                                        <th>Maths %</th>
+                                        <th>Physics %</th>
+                                        <th>Chemistry %</th>
+                                        <th>Biology %</th>
+                                        <th>Computer Science %</th>
+                                    </tr>
+                                    <tr ng-repeat="x in twelve">
+                                        <td><span>{{x.ID}}</span></td>
+                                        <td>{{x.StudentName}}</td>
+                                        <td><span>{{x.Maths}}</span></td>
+                                        <td><span>{{x.Physics}}</span></td>
+                                        <td><span>{{x.Chemistry}}</span></td>
+                                        <td><span>{{x.Biology}}</span></td>
+                                        <td><span>{{x.ComputerScience}}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                background-color: #555555;
+                color: whitesmoke;
+            }
+
+            td, th {
+                border: 0.1px solid #808080;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #555555;
+            }
+        </style>
+
+</body>
+</html>
