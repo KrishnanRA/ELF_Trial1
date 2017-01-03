@@ -1,0 +1,190 @@
+﻿@model ELF_Trial1.Models.Student.ReportModel
+@{
+    ViewBag.Title = "Rerport";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+<script>
+        var app = angular.module('TestMainPage', []);
+        app.controller('OverallTestCtrl', function ($scope) {
+            $scope.Test = [
+              { "TestID": "OT01", "Subject": "Physics", "Description": "Covering Lesson 1" },
+              { "TestID": "OT02", "Subject": "Chemistry", "Description": "Covering Lesson 2" },
+              { "TestID": "OT03", "Subject": "Chemistry", "Description": "Covering Lesson 3" },
+              { "TestID": "OT04", "Subject": "Computer Science", "Description": "Covering Lesson 4" }
+            ]
+        });
+</script>
+<style>
+    .progress-bar {
+        margin-bottom: 0 !important;
+    }
+
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th {
+        background-color: orange;
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        color: white;
+    }
+
+    td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+</style>
+<style>
+    .panel-body {
+        background-color: #555555;
+        color: snow;
+    }
+</style>
+
+<script>
+        var app = angular.module('ReportMainPage', []);
+        app.controller('TabsforSubject', ['$scope','$http',function ($scope,$http) {
+         @{
+             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+             var Reportjson = serializer.Serialize(Model.LessonWiseReportList);
+         }
+            $scope.LessonList =@Html.Raw(Reportjson);
+
+            $scope.BindSubject = function (val) {
+                $scope.Subject = $scope.SubjectList[2];
+                $scope.LastFiveTest = $scope.LastFiveTestList[val];
+                $scope.NewFiveTest = $scope.NewFiveTestList[val];
+            };
+            $scope.GetLessonReport=function(SubID)
+            {
+
+                $http({method: 'GET', url: '/Student/GetLessonReport',params:{SubjectID:SubID}}).
+                success(function(data, status, headers, config) {
+
+                var ed=(data.LessonWiseReportList);
+
+                $scope.LessonList =ed;
+            }).
+            error(function(data, status, headers, config) {
+                alert('error');
+            });
+            }
+
+
+             @{
+                var serializer1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var SubjectListjson = serializer1.Serialize(Model.StudentSubjectList);
+            }
+            $scope.SubjectList =@Html.Raw(SubjectListjson);
+
+
+        }]);
+    app.controller('CompletedTestReport', ['$scope','$http',function ($scope,$http) {
+         @{
+             var serializerCompletedTest = new System.Web.Script.Serialization.JavaScriptSerializer();
+             var ReportCompletedTestjson = serializerCompletedTest.Serialize(Model.CompletedTestList);
+         }
+        $scope.TestCompleted =@Html.Raw(ReportCompletedTestjson);
+
+    }]);
+      
+</script>
+<script>
+    function TestSummaryNavigate(TestID)
+    {
+        alert("Topic Details is right now availble only in Mobile");
+      //  window.location.href='/Student/TestSummary?TestId='+TestID;
+    }
+</script>
+<div ng-app="ReportMainPage" style="margin-top:60px">
+    <h1 style="color:white">Report</h1>
+    <div class="col-md-10 col-md-offset-1" style="margin-top:50px;">
+        <ul class="nav nav-pills nav-justified">
+            <li class="active"><a class="navbuttons" data-toggle="tab" href="#Subject">Subject</a></li>
+            <li><a class="navbuttons" data-toggle="tab" href="#Test">Test</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="Subject" class="tab-pane fade in active">
+                <div ng-controller="TabsforSubject">
+                    <ul>
+                        <li style="display:inline" ng-repeat="Subjects in SubjectList">
+                            <button type="button" id="{{Subjects.SubjectID}}" ng-click="GetLessonReport(Subjects.SubjectID)">{{Subjects.SubjectName}}</button>
+
+                        </li>
+                    </ul>
+                    @*<input type="button" ng-click="GetLessonReport({{@Model.}})" value="click" />*@
+                    <div class="col-md-12" style="margin-top:20px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Lesson Name</th>
+                                    <th>Percentage</th>
+                                    <th>QuestionsAsked</th>
+                                    <th>CorrectAnswers</th>
+                                    <th>Get Detail</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="x in LessonList">
+                                <td>{{x.LessionName}}</td>
+                                <td>{{x.Percentage}}</td>
+                                <td>{{x.QuestionsAsked}}</td>
+                                <td>{{x.CorrectAnswers}}</td>
+                                @*<td style="width:250px">
+                                        <div class="progress">
+                                            <div class="progress-bar" ng-style="{'width': {{x.Percentage}} + '%','background-color':{{x.WarningColor}} }" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span">{{x.Percentage}}</span></td>*@
+                                <td><button type="button" style="color:black" onclick="alert('Topic Details is right now availble only in Mobile')">Get Topic Details</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Test" class="tab-pane fade">
+                    <div ng-controller="CompletedTestReport" style="margin-top:50px;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Test Name</th>
+                                    <th>Test ID</th>
+                                    <th>Subject Name</th>
+                                    <th>Nos. Question Asked</th>
+                                    <th>Right Answers</th>
+                                    
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="x in TestCompleted">
+                                <td>{{x.Description}}</td>
+                                <td>{{x.TestId}}</td>
+                                <td>{{x.SubjectName}}</td>
+                                <td>20</td>
+                                <td>{{x.MarksScored}}</td>
+                                
+                                <td><button type="button" style="color:black" id="{{x.TestId}}" onclick="TestSummaryNavigate(this.id)">Detail SummaryQ & A Report</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+        </div>
+    </div>
+</div>

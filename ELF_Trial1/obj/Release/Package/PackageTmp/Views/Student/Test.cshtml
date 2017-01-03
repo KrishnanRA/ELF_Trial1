@@ -1,0 +1,365 @@
+﻿@model ELF_Trial1.Models.Student.QuestionList
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <style>
+        @@import 'http://fonts.googleapis.com/css?family=Lato';
+
+        .container {
+            display: block;
+            position: absolute;
+            margin: auto;
+            height: 450px;
+            width: 400px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            padding: 0;
+        }
+
+            .container ul {
+                list-style: none;
+                height: 100%;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+
+
+        ul li {
+            color: #AAAAAA;
+            display: block;
+            position: relative;
+            float: left;
+            width: 100%;
+            height: 100px;
+            border-bottom: 1px solid #111111;
+        }
+
+            .checkbox_div .answer_div ul li input[type=radio] {
+                position: absolute;
+                visibility: hidden;
+            }
+
+            .checkbox_div  .answer_div ul li label {
+                display: block;
+                color: #434343;
+                position: relative;
+                font-weight: 300;
+                font-size: 1.35em;
+                padding: 30px 30px 30px 80px;
+                margin: 10px auto;
+                height: 30px;
+                z-index: 9;
+                cursor: pointer;
+                -webkit-transition: all 0.25s linear;
+            }
+
+            .checkbox_div  .answer_div ul li:hover label {
+                color: darkslateblue;
+            }
+
+            .checkbox_div  .answer_div ul li .check {
+                display: block;
+                position: absolute;
+                border: 5px solid #f7f2f2;
+                border-radius: 100%;
+                height: 25px;
+                width: 25px;
+                top: 30px;
+                left: 20px;
+                z-index: 5;
+                transition: border .25s linear;
+                -webkit-transition: border .25s linear;
+            }
+
+            .checkbox_div .answer_div ul li:hover .check {
+                border: 5px solid #FFFFFF;
+            }
+
+            .checkbox_div  .answer_div ul li .check::before {
+                display: block;
+                position: absolute;
+                content: '';
+                border-radius: 100%;
+                height: 15px;
+                width: 15px;
+                top: 5px;
+                left: 5px;
+                margin: auto;
+                transition: background 0.25s linear;
+                -webkit-transition: background 0.25s linear;
+            }
+
+        .checkbox_div  .answer_div input[type=radio]:checked ~ .check {
+            border: 10px solid #48e303;
+        }
+
+        .checkbox_div  .answer_div input[type=radio] {
+            display: none;
+        }
+
+            .checkbox_div  .answer_div input[type=radio]:checked ~ .check::before {
+                border-radius: 20%;
+                color: rebeccapurple;
+                height: 20px;
+                width: 20px;
+                top: 30px;
+                left: 10px;
+                transition: border .25s linear;
+                -webkit-transition: border .25s linear;
+            }
+
+            .checkbox_div .answer_div input[type=radio]:checked ~ label {
+                color: #48e303;
+            }
+    </style>
+    <style>
+        .quest input[type=radio] {
+            display: none;
+        }
+
+        .checkbox_div [type=radio] + label {
+            color: #e16300;
+            border: 2px solid #e16300;
+            padding: 0px 10px 0px 10px;
+            font-size: 20px;
+            margin-left: 3px;
+        }
+
+        .checkbox_div input[type=radio]:checked + label {
+            color: #6bff20;
+            border: 2px solid #6bff20;
+        }
+    </style>
+    <style>
+        body {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            background-color: #555555;
+            background-color: #434343;
+        }
+    </style>
+    <script>
+        //Will Stop Reload
+        window.onbeforeunload = function () { if (confirm('Are you...?')) alert('Po'); return false };
+       
+       
+        function TestSubmit()
+        {
+            var Answers=AnswersSelected.QA;
+            $.ajax({
+                type: "POST",
+                
+                url: "/Student/SubmitTest",
+                contentType: 'application/json',
+                data: JSON.stringify({QA: Answers}),
+                success:function(data) {
+                    if(data=="success")
+                    {
+                        var TestID=document.getElementById('TestIDName').innerHTML;
+                        window.location.href='/Student/TestSummary?TestId='+TestID;
+                    }
+                    else{
+                        alert("Please Resubmit Test");
+                    }
+                }
+            });
+            
+        //window.location.href='/Student/SubmitTest?='+gg;
+        }
+        </script>
+    <script>
+        
+    </script>
+  <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fiveMinutes = 60 * 5,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+        };
+    </script>
+    <style>
+        .active {
+            background: red;
+        }
+    </style>
+    <style>
+        .questtext {
+            font-size: 24px;
+        }
+    </style>
+    <style>
+        #actionbutns input {
+            padding: 6px;
+            color: white;
+            width: 250px;
+            height: 50px;
+        }
+
+        #Diagrambutn {
+            background-color: orangered;
+        }
+
+        #Referencebutn {
+            background-color: blueviolet;
+        }
+
+        #Quitbutn {
+            background-color: #4ea100;
+        }
+    </style>
+    @*Receiving Questions*@
+    <script>
+        var AnswersSelected = {
+            "QA": [{ "QuestionID": "1","TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "2", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "3","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "4", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "5","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "6", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "7","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "8", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "9", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "10","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "11", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "12", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "13", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "14","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "15","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "16","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "17","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "18","TrueQuestionID": "" , "optionsSelected": ""},
+                { "QuestionID": "19", "TrueQuestionID": "" ,"optionsSelected": ""},
+                { "QuestionID": "20", "TrueQuestionID": "" ,"optionsSelected": ""}
+            ]
+        }
+
+        //Question Number Radio Button Event handling
+        $(document).ready(function () {
+            
+            $(".checkbox_div .answer_div input:radio").change(function () {
+                var QuestioArrayNos = parseInt(($(this).attr('class')));
+                var QuestioNos=($(this).attr('class'));
+
+                //alert('Check: '+dd);
+                AnswersSelected.QA[QuestioArrayNos-1].QuestionID=QuestioNos;
+                AnswersSelected.QA[QuestioArrayNos-1].optionsSelected=($(this).val());
+                AnswersSelected.QA[QuestioArrayNos-1].TrueQuestionID=($(this).attr('name'));
+
+            });
+
+        })
+
+    var app = angular.module('TestPage', []);
+    app.controller('Test', function ($scope) {
+        @{
+             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+             var TestQuestionjson = serializer.Serialize(Model);
+
+         }
+        
+        $scope.TestQuestions =@Html.Raw(TestQuestionjson);
+        $scope.TestID=$scope.TestQuestions.TestID;
+    });
+
+    </script>
+</head>
+<body>
+    <div ng-app="TestPage">
+        
+        <div ng-controller="Test">
+            <div style="color:white">
+                <h2>Rules</h2>
+                <ul style="list-style-type:disc">
+                    <p>You should never submit test withouy unattending a question </p>
+                    <p>Test Timing is 20 Minutes</p>
+                    <p>After Submit Button Click Leave on Pop up code</p>
+                </ul>
+                <span>Test ID</span><h3 ng-bind="TestID" style="color:white" id="TestIDName"></h3>
+            </div>
+            <div id="TimePanel" style="margin-top:50px;margin-left:100px;">
+                <img src="~/Images/Student/QuestionPaper/QuestionPaper_Top_Panel.png" />
+                <img src="~/Images/Student/QuestionPaper/QuestionPaper_Time_Panel.png" style="margin-left:-280px" />
+                <div id="actionbutns" style="margin-left:20px;margin-top:-120px;">
+                    <input type="button" id="Diagrambutn" disabled="true" value="Diagram" />
+
+                    <input type="button" id="Referencebutn" disabled="true" value="Reference" />
+
+                    <input type="button" id="Quitbutn" value="Submit" onclick="TestSubmit()"/>
+                </div>
+                <div style="margin-top:-00px;margin-left:920px;"><span style="font-size:40px;" id="time">05:00</span></div>
+            </div>
+            <div ng-repeat="Questions in TestQuestions.QuestionLists">
+                    <div class="checkbox_div" style="margin-top:10px;margin-left:50px;">
+                        <div >
+                            <input class="QuestionID" type="radio" name="type" id="{{Questions.QuestionId}}" value="{{Questions.QuestionId}}" />
+                            <input style="display:none" class="QuestionNos" type="radio" name="type" id="{{Questions.QuestionNos}}" value="{{Questions.QuestionNos}}" />
+                            <label for="{{Questions.QuestionId}}">{{Questions.QuestionNos}}</label>
+                        </div>
+                        <div class="col-md-12" style="margin-top:50px;margin-left:50px;">
+                            <div>
+                                @*<label class="questtext" id="questionnos">1</label>*@
+                                <label class="questtext" style="color:whitesmoke" id="question">{{Questions.Question}}</label>
+                            </div>
+                        </div>
+                       
+                            <div class="answer_div" style="margin-top:50px;margin-left:000px;color:whitesmoke">
+                                <ul style="color:whitesmoke">
+                                    <li>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'First-option'+{{Questions.QuestionId}}" value="a" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabela" for="'First-option'+{{Questions.QuestionId}}"  style="color:whitesmoke">{{Questions.OptionA}}</label>
+                                        <div class="check"><div class="inside"></div></div>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Second-option'+{{Questions.QuestionId}}" value="b" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabelb" for="'Second-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionB}}</label>
+                                        <div class="check"><div class="inside"></div></div>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Three-option'+{{Questions.QuestionId}}" value="c" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabelc" for="'Three-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionC}}</label>
+                                        <div class="check"><div class="inside"></div></div>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="{{Questions.QuestionNos}}" id="'Four-option'+{{Questions.QuestionId}}" value="d" name="{{Questions.QuestionId}}">
+                                        <label id="choicelabeld" for="'Four-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionD}}</label>
+
+                                        <div class="check"><div class="inside"></div></div>
+                                    </li>
+                                </ul>
+                            </div>
+                     
+                    </div>
+            </div>
+            </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,592 @@
+﻿    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Report Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+  <script>
+      var app = angular.module('TestMainPage', []);
+      app.controller('OverallTestCtrl', function ($scope) {
+          $scope.Test = [
+            { "TestID": "OT01", "Subject": "Physics", "Description": "Covering Lesson 1" },
+            { "TestID": "OT02", "Subject": "Chemistry", "Description": "Covering Lesson 2" },
+            { "TestID": "OT03", "Subject": "Chemistry", "Description": "Covering Lesson 3" },
+            { "TestID": "OT04", "Subject": "Computer Science", "Description": "Covering Lesson 4" }
+          ]
+      });
+    </script>
+    <style>
+        .progress-bar {
+            margin-bottom: 0 !important;
+        }
+    </style>
+
+    @*<script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'POST',
+                url: '/ELFWeb/GetClasses',
+                contentType: 'application/json;charset=utf-8',
+                data: JSON.stringify({ BoardId: 1 }),
+                datatype: 'json',
+                success: function (data) {
+                    $.each(JSON.parse(data).Table, function (i, record) {
+                        alert(record.ClassId + '---------' + record.ClassName + '---------' + record.BoardId + '---------' + record.BoardName);
+                    });
+                },
+                error: function (err) {
+                    if (err.status == 200) {
+                        ParseResult(err);
+                    }
+                    else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
+                }
+            });
+        });
+       </script>*@
+     <style>
+         table {
+             font-family: arial, sans-serif;
+             border-collapse: collapse;
+             width: 100%;
+         }
+
+         th {
+             background-color: orange;
+             border: 1px solid #dddddd;
+             text-align: left;
+             padding: 8px;
+             color: white;
+         }
+
+         td {
+             border: 1px solid #dddddd;
+             text-align: left;
+             padding: 8px;
+         }
+     </style>
+     <script>
+         window.onload = function () {
+             var ctxsub1 = document.getElementById("canvasSubject1").getContext("2d");
+             var ctysub1 = document.getElementById("chartSubject1").getContext("2d");
+
+             var Chartxsub1 = new Chart(ctxsub1, {
+                 type: 'bar',
+                 data: dataxsub1
+             });
+             var Chartysub1 = new Chart(ctysub1, {
+                 type: 'line',
+                 data: dataysub1
+             });
+
+
+         }
+         var dataxsub1 = {
+             labels: ["Objective", "2 Mark", "5 Mark", "10 Mark", "Theory", "Analytical", "Repeated"],
+             datasets: [
+                 {
+                     label: "My First dataset",
+                     backgroundColor: [
+                         'rgba(255, 99, 132, 0.2)',
+                         'rgba(54, 162, 235, 0.2)',
+                         'rgba(255, 206, 86, 0.2)',
+                         'rgba(75, 192, 192, 0.2)',
+                         'rgba(153, 102, 255, 0.2)',
+                         'rgba(255, 159, 64, 0.2)'
+                     ],
+                     borderColor: [
+                         'rgba(255,99,132,1)',
+                         'rgba(54, 162, 235, 1)',
+                         'rgba(255, 206, 86, 1)',
+                         'rgba(75, 192, 192, 1)',
+                         'rgba(153, 102, 255, 1)',
+                         'rgba(255, 159, 64, 1)'
+                     ],
+                     borderWidth: 2,
+                     data: [21, 15, 14, 10, 20, 15, 5],
+                 }
+             ]
+         };
+         var dataysub1 = {
+             labels: ["January", "February", "March", "April", "May", "June", "July"],
+             datasets: [
+                 {
+                     label: "Overal",
+                     fill: false,
+                     lineTension: 0.1,
+                     backgroundColor: "rgba(75,192,192,0.4)",
+                     borderColor: "rgba(75,192,192,1)",
+                     borderCapStyle: 'butt',
+                     borderDash: [],
+                     borderDashOffset: 0.0,
+                     borderJoinStyle: 'miter',
+                     pointBorderColor: "rgba(75,192,192,1)",
+                     pointBackgroundColor: "#fff",
+                     pointBorderWidth: 1,
+                     pointHoverRadius: 5,
+                     pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                     pointHoverBorderColor: "rgba(220,220,220,1)",
+                     pointHoverBorderWidth: 2,
+                     pointRadius: 1,
+                     pointHitRadius: 10,
+                     data: [65, 59, 80, 81, 56, 55, 40],
+                     spanGaps: false,
+                 }
+             ]
+         };
+
+    </script>
+    <style>
+       
+    .subbutton {
+        background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 18px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+    }
+
+    .activesubbutton {
+        background-color: red; /* Green */
+            border: none;
+            color: white;
+            padding: 18px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+    }
+
+    </style>
+     <script>
+         var app = angular.module('ReportMainPage', []);
+        
+         app.controller('TabsforSubject', function ($scope) {
+             $scope.BindSubject = function (val) {
+                 $scope.Subject = $scope.SubjectList[val];
+                 $scope.LastFiveTest = $scope.LastFiveTestList[val];
+                 $scope.NewFiveTest = $scope.NewFiveTestList[val];
+             };
+             $scope.tab = 'Physics';
+             $scope.SubjectList = [
+              [{ "LessonNumber": "01", "LessonName": "Physics1", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Physics2", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "02", "LessonName": "Physics3", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "04", "LessonName": "Physics4", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "05", "LessonName": "Physics5", "Percentage": "55", "WarningColor": "green" }],
+              [{ "LessonNumber": "01", "LessonName": "Chemistry1", "Percentage": "92", "WarningColor": "red" },
+              { "LessonNumber": "02", "LessonName": "Chemistry2", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "03", "LessonName": "Chemistry3", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "04", "LessonName": "Chemistry4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Chemistry5", "Percentage": "77", "WarningColor": "green" }],
+              [{ "LessonNumber": "01", "LessonName": "Maths1", "Percentage": "92", "WarningColor": "red" },
+              { "LessonNumber": "02", "LessonName": "Maths2", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "03", "LessonName": "Maths3", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "04", "LessonName": "Maths4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Maths5", "Percentage": "77", "WarningColor": "green" }],
+              [{ "LessonNumber": "01", "LessonName": "CS1", "Percentage": "92", "WarningColor": "red" },
+              { "LessonNumber": "02", "LessonName": "CS2", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "03", "LessonName": "CS3", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "04", "LessonName": "CS4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "CS5", "Percentage": "77", "WarningColor": "green" }]
+             ];
+
+             $scope.LastFiveTestList = [[
+             { "LessonNumber": "01", "LessonName": "Physics1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Physics2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Physics3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Physics4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Physics5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "Chemistry1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Chemistry2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Chemistry3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Chemistry4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Chemistry5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "Maths1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Maths2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Maths3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Maths4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Maths5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "CS1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "CS2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "CS3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "CS4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }]
+             ];
+             $scope.NewFiveTestList = [
+             [
+             { "LessonNumber": "01", "LessonName": "Physics1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Physics2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Physics3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Physics4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Physics5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "Chemistry1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Chemistry2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Chemistry3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Chemistry4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Chemistry5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "Maths1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "Maths2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "Maths3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "Maths4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Maths5", "Percentage": "77", "WarningColor": "green" }],
+              [
+             { "LessonNumber": "01", "LessonName": "CS1", "Percentage": "92", "WarningColor": "red" },
+             { "LessonNumber": "02", "LessonName": "CS2", "Percentage": "33", "WarningColor": "blue" },
+             { "LessonNumber": "03", "LessonName": "CS3", "Percentage": "44", "WarningColor": "yellow" },
+             { "LessonNumber": "04", "LessonName": "CS4", "Percentage": "55", "WarningColor": "green" },
+              { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }]
+             ]
+             $scope.Subject = angular.copy($scope.SubjectList[0]);
+             $scope.LastFiveTest = angular.copy($scope.LastFiveTestList[0]);
+             $scope.NewFiveTest = angular.copy($scope.NewFiveTestList[0]);
+         });
+
+         app.controller('ReportSubject2', function ($scope) {
+             $scope.Chemistry = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('LastFiveTestSubject1', function ($scope) {
+             $scope.Physics = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('AvailableTestSubject1', function ($scope) {
+             $scope.Physics = [
+               { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+               { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+               { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+               { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+                { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+             ]
+         });
+
+         app.controller('OverallTestCtrl', function ($scope) {
+             $scope.Physics = [
+               { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
+               { "TestID": "02", "Subject": "Vector Algebra", "Description": "33", "WarningColor": "blue" },
+               { "TestID": "03", "Subject": "Set Language", "Description": "44", "WarningColor": "yellow" },
+               { "TestID": "04", "Subject": "Algebra", "Description": "55", "WarningColor": "green" },
+                { "TestID": "05", "Subject": "Trignomentry", "Description": "77", "WarningColor": "green" }
+             ]
+         });
+         app.controller('Scopeofimprovement', function ($scope) {
+             $scope.Scopeofimprovement = [
+               { "SubjectName": "Physics", "LessonName": "Matrics", "Topic": "92", "Description": "red", "Scoring": "red" },
+               { "SubjectName": "Computer Science", "LessonName": "Matrics", "Topic": "92", "Description": "red", "Scoring": "red" },
+               { "SubjectName": "Chemistry", "LessonName": "Matrics", "Topic": "92", "Description": "red", "Scoring": "red" },
+               { "SubjectName": "Physics", "LessonName": "Matrics", "Topic": "92", "Description": "red", "Scoring": "red" },
+               { "SubjectName": "Maths", "LessonName": "Matrics", "Topic": "92", "Description": "red", "Scoring": "red" }
+             ]
+         });
+         app.controller('TestReport', function ($scope) {
+             $scope.TestCompleted = [
+               { "TestID": "1235", "SubjectName": "Physics", "TotalQuestion": "50", "Answered": "25", "Percentage": "50", "Detail": "Details" },
+               { "TestID": "1277", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "15", "Percentage": "50", "Detail": "Details" },
+               { "TestID": "2335", "SubjectName": "Maths", "TotalQuestion": "20", "Answered": "4", "Percentage": "20", "Detail": "Details" },
+               { "TestID": "8635", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "9", "Percentage": "30", "Detail": "Details" },
+               { "TestID": "7723", "SubjectName": "Maths", "TotalQuestion": "30", "Answered": "3", "Percentage": "10", "Detail": "Details" }
+             ]
+         });
+
+    </script>
+     <script>
+         function PageNav(Page) {
+             debugger;
+             window.location.href = '/Student/' + Page;
+         }
+    </script>
+     <style>
+         
+         .wrap-questiondetailsimg img {
+             width: 95%;
+             height: 150px;
+         }
+
+         .wrap-questiondetailstext {
+             margin-top: -120px;
+             text-align: center;
+         }
+
+             .wrap-questiondetailstext p {
+                 color: white;
+             }
+
+             .wrap-questiondetailstext h1 {
+                 color: white;
+             }
+     </style>
+    <style>
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 18px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>   
+    <style>
+  
+
+.trial {
+  border: none;
+  padding: 14px;
+  color: #fff;
+  margin: 0 10px;
+  background: #3D3240;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+    </style> 
+</head>
+   
+<body>
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="#">Student Name</a>
+                </div>
+                <ul class="nav navbar-nav">
+                  <li><a href="#">Dashboard</a></li>
+                  <li><a href="#">Report</a></li>
+                  <li><a href="#">Notifications</a></li> 
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+              </div>
+            </nav>
+            <div class="col-md-12" style="margin-top:10px;text-align:center">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Homeicon" src="~/Images/Dashboard/Dashboard_Home_InActive.png" height="90" width="90" onclick="PageNav('Dashboard')" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Reporticon" src="~/Images/Dashboard/Dashboard_Report_Active.png" height="90" width="90" onclick="PageNav('Report')" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img id="Notificationicon" src="~/Images/Dashboard/Dashboard_Notification_InActive.png" height="90" width="90" onclick="PageNav('Notification')" />
+                    </div>
+                </div>
+           </div>
+         </div>
+            <div ng-app="ReportMainPage">
+                
+                    <div class="col-md-12" style="margin-top:10px">
+                    <ul class="nav nav-pills nav-justified ">
+                         <li class="active"><a data-toggle="pill" href="#Subject">Subject</a></li>
+                         <li><a data-toggle="pill" href="#Test">Test</a></li>
+                    </ul>
+                </div>
+    
+                        <div class="tab-content">
+                         <div id="Subject" class="tab-pane fade in active">
+                              <div ng-controller="TabsforSubject">
+                                  <input type="button" class="subbutton" ng-class="{activesubbutton: tab == 'Physics'}" ng-click="tab='Physics';BindSubject(0)" value="Physics"/>
+                                  <input type="button" class="subbutton" ng-class="{activesubbutton: tab == 'Chemistry'}" ng-click="tab='Chemistry';BindSubject(1)" value="Chemistry"/>
+                                  <input type="button" class="subbutton" ng-class="{activesubbutton: tab == 'Maths'}" ng-click="tab='Maths';BindSubject(2)" value="Maths" />
+                                  <input type="button" class="subbutton" ng-class="{activesubbutton: tab == 'cs'}" ng-click="tab='cs';BindSubject(3)" value="Computer Science" />
+               
+                                          <div class="col-md-12">
+                                              <table>
+                                                       <thead>
+                                                        <tr>
+                                                            <th>Lesson Nos</th>
+                                                            <th>Lesson Name</th>
+                                                            <th>Percentage Meter</th>
+                                                            <th>Percentage</th>
+                                                        </tr>
+                                                       </thead>
+                                                        <tr ng-repeat="x in Subject">
+                                                            <td>{{x.LessonNumber}}</td>
+                                                            <td>{{x.LessonName}}</td>
+                                                            <td style="width:250px">
+                                                            <div class="progress" >
+                                                                <div class="progress-bar" ng-style="{'width': {{x.Percentage}} + '%','background-color':{{x.WarningColor}} }" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                                                 </div>
+                                                            </div>
+                                                            </td>
+                                                            <td><span">{{x.Percentage}}</span></td>
+                                                            <td><button type="button" onclick="alert('Hi')">Get Topic Details</button></td>
+                                                        </tr>
+                                                       </table>
+                                          </div>
+                      
+                    
+                                          <div class="col-md-12" >
+                                                      <div class="panel panel-default">
+                                                        <div class="panel-heading">% Split on Students</div>
+                                                        <div class="panel-body">
+                                                            <div id="canvas-holder1Subject1">
+                                                             <canvas id="canvasSubject1" height="100"></canvas>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                           </div>
+                                          <div class="col-md-12">
+                                                        <div class="panel panel-default">
+                                                         <div class="panel-heading">Overall Student Growth</div>
+                                                            <div class="panel-body">
+                                                                <div id="canvas-holder2Subject1" ">
+                                                                    <canvas id="chartSubject1" width="20" height="6"/>
+                                                                 </div>
+                                                            </div>
+                                                         </div>
+                                          </div>
+                                         
+                            </div>
+                              <div class="col-md-12">
+                                 <div ng-controller="Scopeofimprovement">
+                                                          <table>  
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Subject Name</th>
+                                                                    <th>Lesson Name</th>
+                                                                    <th>Topic</th>
+                                                                    <th>Description</th>
+                                                                    <th>Scoring</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr ng-repeat="x in Scopeofimprovement">
+                                                                <td>{{x.SubjectName}}</td>
+                                                                <td>{{x.LessonName}}</td>
+                                                                <td>{{x.Topic}}</td>
+                                                                <td>{{x.Description}}</td>
+                                                                <td><span">{{x.Scoring}}</span></td>
+                                                              <td><button type="button" onclick="alert('Hi')">Get Topic Details</button></td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                 </div>
+                            </div>
+                              <div class="col-md-4">
+                                    <div ng-controller="LastFiveTestSubject1">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Last 5 Test Data</div>
+                                            <div class="panel-body">
+                                                        <table>
+                                                            <tr ng-repeat="x in Physics">
+                                                                <td>{{x.LessonNumber}}</td>
+                                                                <td>{{x.LessonName}}</td>
+                                                                <td><span">{{x.Percentage}}</span></td>
+                                                              <td><span class="label label-danger">Danger Label</span></td>
+                                                            </tr>
+                                                        </table>
+                                                </div>
+                                            </div>
+                                     </div>
+                                </div>
+                              <div class="col-md-4">
+                                    <div ng-controller="LastFiveTestSubject1">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">Last 5 Test Data</div>
+                                            <div class="panel-body">
+                                                        <table>
+                                                            <tr ng-repeat="x in Physics">
+                                                                <td>{{x.LessonNumber}}</td>
+                                                                <td>{{x.LessonName}}</td>
+                                                                <td><span">{{x.Percentage}}</span></td>
+                                                              <td><span class="label label-success">Danger Label</span></td>
+                                                            </tr>
+                                                        </table>
+                                                </div>
+                                            </div>
+                                     </div>
+                                </div>
+                              <div class="col-md-4">
+                                    <div ng-controller="AvailableTestSubject1">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading">New Test</div>
+                                            <div class="panel-body">
+                                                        <table>
+                                                            <tr ng-repeat="x in Physics">
+                                                                <td>{{x.LessonNumber}}</td>
+                                                                <td>{{x.LessonName}}</td>
+                                                                <td><span">{{x.Percentage}}</span></td>
+                                                              <td><span class="label label-warning">Danger Label</span></td>
+                                                            </tr>
+                                                        </table>
+                                                </div>
+                                            </div>
+                                     </div>
+                                </div>
+                         </div>
+            
+                         <div id="Test" class="tab-pane fade">
+                            <div ng-controller="TestReport">
+                                 <table>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Test ID</th>
+                                                                    <th>Subject Name</th>
+                                                                    <th>Nos. Question Asked</th>
+                                                                    <th>Right Answers</th>
+                                                                    <th>Percentage</th>
+                                                                    <th>Detail</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tr ng-repeat="x in TestCompleted">
+                                                                <td>{{x.TestID}}</td>
+                                                                <td>{{x.SubjectName}}</td>
+                                                                <td>{{x.TotalQuestion}}</td>
+                                                                <td>{{x.Answered}}</td>
+                                                                <td>{{x.Percentage}}</td>
+                                                                <td><span">{{x.Detail}}</span></td>
+                                                                <td><button type="button" onclick="alert('Hi')">Q & A Report</button></td>
+                                                            </tr>
+                                                        </table>
+                            </div>
+                         </div>
+                    </div>
+           </div>
+</body>
+    
+</html>
+

@@ -1,0 +1,6 @@
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\bin\ELF_Trial1.dll.config
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\bin\ELF_Trial1.dll
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\bin\ELF_Trial1.pdb
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.dll
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.pdb
+Z:\Web\Web\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.csprojResolveAssemblyReference.cache
