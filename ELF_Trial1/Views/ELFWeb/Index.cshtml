@@ -123,7 +123,6 @@
                 data: JSON.stringify({ Username: username, Password: password, UserType: User }),
                 datatype: 'json',
                 success: function (data) {
-                    debugger;
                     if (data == 'success') {
                         if (User == 'Student') {
                             window.location.href = '../Student/Dashboard';
@@ -138,7 +137,7 @@
                             window.location.href = '../Institution/Dashboard';
                         }
                     }
-                    else if (data == 'Failed') {
+                    else  {
                         alert("Enter Username and Password correctly");
                     }
                 },

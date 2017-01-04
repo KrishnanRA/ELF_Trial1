@@ -21,6 +21,10 @@ namespace ELF_Trial1.Controllers
         public static GlobalStudentSubjectDetails GlobalStudentSubjects = new GlobalStudentSubjectDetails();
         public ActionResult Dashboard()
         {
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
             // load login details in student general class
             StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
             objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
@@ -596,11 +600,11 @@ namespace ELF_Trial1.Controllers
         {
             // Validate the Coupon
             StudentGeneralDetails _studentGeneralDetails = new StudentGeneralDetails();
-            string Coupon = StudentWeb.CheckCoupenCode(GlobalStudentClass.StudentId , CoupenCode);
+            string Coupon = StudentWeb.CheckCoupenCode(GlobalStudentClass.StudentId, CoupenCode);
             JObject ParsingCoupon = JObject.Parse(Coupon);
             // Check the Json Result to validate the Coupon
             string _Result = (string)ParsingCoupon["Table"][0]["StatusCode"];
-            if(_Result == "9996")     // Status Code
+            if (_Result == "9996")     // Status Code
             {
                 return Json("success");
             }

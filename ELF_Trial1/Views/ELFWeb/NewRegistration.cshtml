@@ -30,7 +30,7 @@
     <Select id="UserSelect">
         <option value="Student">Student</option>
         <option value="Parent">Parent</option>
-        <option value="Staff">Staff</option>
+        @*<option value="Staff">Staff</option>*@
     </Select>
 
     <div class="form-group">
@@ -161,7 +161,7 @@
                             window.location.href = '/ELFWeb/Index';
 
                         }
-                        else if (data == 'failed') {
+                        else {
                             alert("Enter Username and Password correctly");
                         }
                     },

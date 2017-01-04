@@ -92,7 +92,7 @@ namespace ELF_Trial1.Controllers
 
                 // Get Output Status 
                 string OutputStatus = (string)StudentOutput["Table"][0]["OutputStatus"];
-                
+
                 if (OutputStatus == "success")
                 {
                     GlobalStudentClass.UserType = "Student";
@@ -111,6 +111,8 @@ namespace ELF_Trial1.Controllers
                     //  return RedirectToAction("Dashboard", "Student");
 
                     // return RedirectToAction("NewRegistration");
+                   Session["UserType"] = GlobalStudentClass.UserType;
+                   Session["UserId"] = StudentID;
 
                     Result = "success";
                 }
@@ -151,6 +153,9 @@ namespace ELF_Trial1.Controllers
                     }
                     GlobalParentDetails.Students = (string)ParentParse["Table"][0]["students"];
 
+                    Session["UserType"] = GlobalStudentClass.UserType;
+                    Session["UserId"] = ParentId;
+
                     Result = "success";
 
                 }
@@ -181,15 +186,18 @@ namespace ELF_Trial1.Controllers
         }
 
 
-        public JsonResult SubmitForgotPassword(string UserType ,string EmailId, string NewPassword)
+        public JsonResult SubmitForgotPassword(string Number, string Password, string Email, string User)
         {
-            //string Studentoutput = objweb.ForgotPassword(Number, Password, Email, User);
-
-            return Json("success");
+            // Request to update password with respect to email and phonenumber
+            // Get result into Json 
+            string ForgotPassword = objweb.ForgotPassword(User, Number, Email, Password);
+            // Parse the Json string into JObject
+            JObject ParseForgotPassword = JObject.Parse(ForgotPassword);
+            // get the Output response and validate
+            string Result = (string)ParseForgotPassword["Table"][0]["OutputStatus"];
+            return Json(Result);
         }
 
-
-    
     }
 
 

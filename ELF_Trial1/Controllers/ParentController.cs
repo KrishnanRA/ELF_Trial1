@@ -299,5 +299,18 @@ namespace ELF_Trial1.Controllers
             }
             return Json(_Result);
         }
-    }
+
+        public JsonResult ParentStudentRequest(int Studentid)
+         {
+             // Request Student Dashboard Access
+             // Get Request response in Json
+             string StudentRequest = ParentWeb.ParentStudentRequest(GlobalParentDetails.ParentId, Studentid, 1);
+             // Parse the Json into JOject
+             JObject ParsingStudentRequest = JObject.Parse(StudentRequest);
+             // Get the Output Status
+             string _Result = (string)ParsingStudentRequest["Table"][0]["OutputStatus"];
+             // Return the 
+             return Json(_Result);
+         }
+}
 }

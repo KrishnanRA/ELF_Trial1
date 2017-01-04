@@ -34,7 +34,7 @@ namespace ELF_Trial1.Controllers
                 objStudentLoginDetails.EmailAddress = (string)StudentGeneralDetailsparsing["Table"][0]["EmailAddress"];
                 objStudentLoginDetails.Name = (string)StudentGeneralDetailsparsing["Table"][0]["FirstName"];
                 objStudentLoginDetails.PhoneNumber = (string)StudentGeneralDetailsparsing["Table"][0]["PhoneNumber"];
-          //      objStudentLoginDetails.GroupId = (int)StudentGeneralDetailsparsing["Table"][0]["GroupId"];
+                objStudentLoginDetails.GroupId = (int)StudentGeneralDetailsparsing["Table"][0]["GroupId"];
 
                 objStudentLoginDetails.StudentId = GlobalStudentID;
 
