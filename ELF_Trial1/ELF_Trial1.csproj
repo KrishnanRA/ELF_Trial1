@@ -126,8 +126,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GlobalParentDetails.cs" />
     <Compile Include="Models\GlobalStudentClass.cs" />
     <Compile Include="Models\HardcodeDetails.cs" />
+    <Compile Include="Models\Parent\ParentDashboard.cs" />
+    <Compile Include="Models\Parent\ParentRegistration.cs" />
     <Compile Include="Models\StudentLoginDetails.cs" />
     <Compile Include="Models\StudentGeneralDetails.cs" />
     <Compile Include="Models\Student\Registration.cs" />
@@ -235,7 +238,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\web_ws\elf_web_ws1.disco" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

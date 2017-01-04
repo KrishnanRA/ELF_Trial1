@@ -22,7 +22,7 @@
     </style>
     <style>
         .inputfielddashboard:focus {
-            font-size: 24px;
+            font-size: 26px;
             -webkit-transition-duration: 0.6s; /* Safari */
             transition-duration: 0.6s;
         }
@@ -123,6 +123,7 @@
                 data: JSON.stringify({ Username: username, Password: password, UserType: User }),
                 datatype: 'json',
                 success: function (data) {
+                    debugger;
                     if (data == 'success') {
                         if (User == 'Student') {
                             window.location.href = '../Student/Dashboard';
@@ -137,7 +138,7 @@
                             window.location.href = '../Institution/Dashboard';
                         }
                     }
-                    else  {
+                    else if (data == 'Failed') {
                         alert("Enter Username and Password correctly");
                     }
                 },
