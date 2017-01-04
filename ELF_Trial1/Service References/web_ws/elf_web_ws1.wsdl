@@ -307,6 +307,12 @@
   <wsdl:message name="Ielf_web_ws_GetStudentBasicDetails_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetStudentBasicDetailsResponse" />
   </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ForgotPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ForgotPassword" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_ForgotPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ForgotPasswordResponse" />
+  </wsdl:message>
   <wsdl:portType name="Ielf_web_ws">
     <wsdl:operation name="CheckParentLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckParentLogin" message="tns:Ielf_web_ws_CheckParentLogin_InputMessage" />
@@ -507,6 +513,10 @@
     <wsdl:operation name="GetStudentBasicDetails">
       <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetails" message="tns:Ielf_web_ws_GetStudentBasicDetails_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetailsResponse" message="tns:Ielf_web_ws_GetStudentBasicDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ForgotPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/ForgotPassword" message="tns:Ielf_web_ws_ForgotPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/ForgotPasswordResponse" message="tns:Ielf_web_ws_ForgotPassword_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_Ielf_web_ws" type="tns:Ielf_web_ws">
@@ -954,6 +964,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetStudentBasicDetails">
       <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForgotPassword">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/ForgotPassword" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

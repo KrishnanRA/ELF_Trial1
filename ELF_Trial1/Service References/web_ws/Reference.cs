@@ -377,6 +377,12 @@ namespace ELF_Trial1.web_ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetails", ReplyAction="http://tempuri.org/Ielf_web_ws/GetStudentBasicDetailsResponse")]
         System.Threading.Tasks.Task<string> GetStudentBasicDetailsAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ForgotPassword", ReplyAction="http://tempuri.org/Ielf_web_ws/ForgotPasswordResponse")]
+        string ForgotPassword(string UserType, string PhoneNumber, string Email, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ForgotPassword", ReplyAction="http://tempuri.org/Ielf_web_ws/ForgotPasswordResponse")]
+        System.Threading.Tasks.Task<string> ForgotPasswordAsync(string UserType, string PhoneNumber, string Email, string Password);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -804,6 +810,14 @@ namespace ELF_Trial1.web_ws {
         
         public System.Threading.Tasks.Task<string> GetStudentBasicDetailsAsync(int StudentId) {
             return base.Channel.GetStudentBasicDetailsAsync(StudentId);
+        }
+        
+        public string ForgotPassword(string UserType, string PhoneNumber, string Email, string Password) {
+            return base.Channel.ForgotPassword(UserType, PhoneNumber, Email, Password);
+        }
+        
+        public System.Threading.Tasks.Task<string> ForgotPasswordAsync(string UserType, string PhoneNumber, string Email, string Password) {
+            return base.Channel.ForgotPasswordAsync(UserType, PhoneNumber, Email, Password);
         }
     }
 }

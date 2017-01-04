@@ -21,6 +21,12 @@ namespace ELF_Trial1.Controllers
 
         public ActionResult Dashboard()
         {
+
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
+
             //  Get Student Under Parent
             string _studentUnderParent = ParentWeb.GetStudentUnderParent(GlobalParentDetails.ParentId);
             // Parse the value to string
@@ -293,11 +299,31 @@ namespace ELF_Trial1.Controllers
             if (GlobalStudentClass.UserType == "Parent")
             {
                 int parentId = GlobalParentDetails.ParentId;
+                // Send Feedback using service
+                // Get the Json string form service
                 string FeedBack = ParentWeb.SaveUserFeedback(parentId, Feedback, GlobalStudentClass.UserType);
+                // Parse the Json to JObject
                 JObject ParsingFeedback = JObject.Parse(FeedBack);
+                // store the response into Result
                 _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
             }
             return Json(_Result);
         }
+
+        // Parent Student Request
+        public JsonResult ParentStudentRequest(int Studentid)
+        {
+            // Request Student Dashboard Access
+            // Get Request response in Json
+            string StudentRequest = ParentWeb.ParentStudentRequest(GlobalParentDetails.ParentId, Studentid, 1);
+            // Parse the Json into JOject
+            JObject ParsingStudentRequest = JObject.Parse(StudentRequest);
+            // Get the Output Status
+            string _Result = (string)ParsingStudentRequest["Table"][0]["OutputStatus"];
+            // Return the 
+            return Json(_Result);
+        }
+
+
 }
 }
