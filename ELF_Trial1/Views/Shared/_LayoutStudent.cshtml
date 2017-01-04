@@ -83,8 +83,7 @@
         }
 
             .icon_middletext span {
-                display: block;
-                color: white;
+            color: white;
                 font-size: 24px;
             }
 
@@ -92,62 +91,20 @@
         }
 
             .icon_middletextSmall span {
-                display: block;
+                
                 color: white;
-                font-size: 12px;
+                font-size: 24px;
             }
     </style>
     <style>
         .icon_middleicon {
-            display: block;
             margin-top: -100px;
             margin-left: 370px;
             width: 110px;
             height: 97px;
         }
 
-            .icon_middleicon img {
-                margin-top: -13px;
-            }
-
-        #tophelp {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #helpicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 30px;
-        }
-
-        #topsignout {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #signouticon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
-
-        #topsettings {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #settingsicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
+         
     </style>
 
     @*Panels*@
@@ -193,18 +150,26 @@
             color: white;
         }
     </style>
-
-
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
-
 </head>
 <body>
 
-    <div>
+    @*<div>
         <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
-    </div>
-    <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
+    </div>*@
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a onclick="navinside('Dashboard')">Home</a></li>
+                <li><a onclick="navinside('TestMain')">Take Test</a></li>
+                <li><a onclick="navinside('Report')">Report</a></li>
+                <li><a onclick="navinside('Notification')">Notification</a></li>
+            </ul>
+        </div>
+    </nav>
+    @*<div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
         <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" style="border:2px solid red" onclick="navinside('Dashboard')" />
         <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
         <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
@@ -212,53 +177,49 @@
     </div>
     <div>
         <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
-    </div>
-    <div style="margin-left:460px;margin-top:-250px">
+    </div>*@
+    <div style="margin-left:460px;margin-top:20px">
         <div class="icon_middletext">
             <img src="~/Images/Student/Dashboard/Name_Banner.png" />
             <span style="margin-top:-50px;margin-left:50px;">@Model.StudentGeneralDetails.Name</span>
         </div>
         <div style="margin-top:20px">
             <div class="icon_middletext">
-                <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">@Model.StudentGeneralDetails.ClassName</span>
+                @*<img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />*@
+                Class:<span style="font-size:16px;">@Model.StudentGeneralDetails.ClassName</span>
             </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
-                <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.BoardName</span>
+            <div class="icon_middletext" >
+                @*<img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />*@
+                Board:<span style="margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.BoardName</span>
             </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
-                <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:0px;font-size:16px;">@Model.StudentGeneralDetails.InstitutionName</span>
+            <div class="icon_middletext">
+                @*<img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />*@
+                Institution:<span style="margin-left:0px;font-size:16px;">@Model.StudentGeneralDetails.InstitutionName</span>
             </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
-                <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.DistrictName</span>
+            <div class="icon_middletext">
+                @*<img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />*@
+                District Name:<span style="margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.DistrictName</span>
             </div>
         </div>
-        <div style="margin-top:-215px;margin-left:710px;">
+        <div>
             <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/State_Rank.png" />
-                <span style="margin-top:-30px;margin-left:40px;">11017</span>
+                @*<img src="~/Images/Student/Dashboard/State_Rank.png" />*@
+                <span>11017</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/District_Rank.png" />
-                <span style="margin-top:-30px;margin-left:50px;">96</span>
+                @*<img src="~/Images/Student/Dashboard/District_Rank.png" />*@
+                <span>96</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
-                <img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">
-                <span style="margin-top:-30px;margin-left:-180px;">618</span>
+                @*<img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">*@
+                <span>618</span>
             </div>
             <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
-                <img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">
-                <span style="margin-top:-30px;margin-left:40px;">2.0</span>
+                @*<img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">*@
+                <span>2.0</span>
             </div>
         </div>
-        <div style="margin-top:-360px;margin-left:940px;">
-            <img src="~/Images/Student/Dashboard/Help_Icon.png" />
-            <img src="~/Images/Student/Dashboard/Settings_Icon.png" style="margin-top:155px;margin-left:-80px" />
-            <img src="~/Images/Student/Dashboard/LogOut_Icon.png" style="margin-top:305px;margin-left:-80px" />
-        </div>
+        
     </div>
 
   

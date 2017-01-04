@@ -34,22 +34,28 @@
     </Select>
 
     <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon">StudentName</span>
+            <input id="FirstName" type="text" class="form-control" name="FirstName" placeholder="Enter Name">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">Phone</span>
+            <input id="PhoneNumber" type="text" class="form-control" name="Phone" placeholder="Enter PhoneNumber">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">Email:</span>
+            <input id="EmailAddress" type="text" class="form-control" name="Email" placeholder="Enter EmailAddress">
+        </div>
 
-        <label for="namestudent">Enter Name:</label>
-        <input type="text" placeholder="Enter Name" id="FirstName" />
-        </br>
-        <label for="namestudent">Enter PhoneNumber:</label>
-        <input type="text" placeholder="Enter PhoneNumber" id="PhoneNumber" />
-        </br>
-        <label for="namestudent">Enter Email Address:</label>
-        <input type="text" placeholder="Enter EmailAddress" id="EmailAddress" />
-        </br>
-        <label for="namestudent">Enter Password:</label>
-        <input type="password" placeholder="Enter Password" id="Password" />
-        </br>
-        <label for="namestudent">Re Enter Password:</label>
-        <input type="password" placeholder="Enter ReenterPassword" id="ReenterPassword" />
-        </br>
+        <div class="input-group">
+            <span class="input-group-addon">Password</span>
+            <input id="Password" type="password" class="form-control" name="password" placeholder="Enter Password">
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon">Re-EnterPassword</span>
+            <input id="ReenterPassword" type="password" class="form-control" name="reenterpassword" placeholder="Enter ReenterPassword">
+        </div>
+
     </div>
 
 
@@ -135,7 +141,7 @@
                 alert("Enter Reenter Password")
             }
             else if (password != reenterpassword) {
-                alert("password mismatch");
+                alert("passwordmismatch");
 
             }
 
@@ -176,3 +182,4 @@
     </script>
 </body>
 </html>
+    

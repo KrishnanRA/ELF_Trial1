@@ -1,0 +1,139 @@
+﻿@model ELF_Trial1.Models.Student.StudentDashboard
+
+@{
+    ViewBag.Title = "Index";
+    
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.1/angular.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        table, td, th {
+            border: 1px solid black;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th {
+            height: 50px;
+        }
+    </style>
+    <script>
+        var app = angular.module('CustomerSupport', []);
+        app.controller('StudentDetails', function ($scope) {
+            
+        });
+        app.controller('SubjectDetails', function ($scope) {
+            @{
+                      var serializerSubjectDetails = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      var SubjectDetailsjson = serializerSubjectDetails.Serialize(Model.SubjectPercentage);
+                  }
+            $scope.SubjectList =@Html.Raw(SubjectDetailsjson);
+
+        });
+        app.controller('CompletedTest', function ($scope) {
+            @{
+                      var serializerCompletedTest = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      var CompletedTestjson = serializerCompletedTest.Serialize(Model.OverallLastFiveTest);
+                  }
+            debugger;
+            $scope.SubjectList =@Html.Raw(CompletedTestjson);
+
+        });
+        app.controller('AvailableTest', function ($scope) {
+                  @{
+                      var serializerAvailableTest = new System.Web.Script.Serialization.JavaScriptSerializer();
+                      var AvailableTestjson = serializerAvailableTest.Serialize(Model.OverallAvailableTest);
+                  }
+            $scope.SubjectList =@Html.Raw(AvailableTestjson);
+
+        });
+    </script>
+    <script>
+        function GoBack()
+        {
+            window.location.href="../CustomerSupport/CheckStudentDetails";
+        }
+    </script>
+    <title>Support Dashboard</title>
+</head>
+<body>
+    <input type="button" onclick="GoBack()" Value="Go Back" />
+    <div ng-app="CustomerSupport">
+        <div ng-controller="StudentDetails">
+            <h2>Student Details</h2>
+            <table>
+                <tr>
+                    <th>Student Name</th>
+                    <th>ClassName</th>
+                    <th>GroupId</th>
+                    <th>PhoneNumber</th>
+                    <th>EmailAddress</th>
+                </tr>
+                <tr>
+                <td>@Model.StudentGeneralDetails.Name</td>
+                <td>@Model.StudentGeneralDetails.ClassName</td>
+                <td>@Model.StudentGeneralDetails.GroupId</td>
+                <td>@Model.StudentGeneralDetails.PhoneNumber</td>
+                <td>@Model.StudentGeneralDetails.EmailAddress</td>
+                </tr>
+            </table>
+            
+        </div>
+        <div ng-controller="SubjectDetails">
+            <h2>Subject Percentage</h2>
+            <table>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Subject Percentage</th>
+                </tr>
+                <tr ng-repeat="x in SubjectList">
+                    <td>{{x.SubjectName}}</td>
+                    <td>{{x.Percentage}}</td>
+                </tr>
+            </table>
+        </div>
+        <div ng-controller="CompletedTest">
+            <h2>Completed Test Info</h2>
+            <table>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Test Id</th>
+                    <th>Percentage</th>
+                </tr>
+                <tr ng-repeat="x in SubjectList">
+                    <td>{{x.SubjectName}}</td>
+                    <td>{{x.TestId}}</td>
+                    <td>{{x.Percentage}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-controller="AvailableTest">
+            <h2>Pending Test Info</h2>
+            <table>
+                <tr>
+                    <th>Subject Name</th>
+                    <th>Test ID</th>
+                </tr>
+                <tr ng-repeat="x in SubjectList">
+                    <td>{{x.SubjectName}}</td>
+                    <td>{{x.TestId}}</td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
