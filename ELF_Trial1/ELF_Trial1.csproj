@@ -126,8 +126,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GlobalParentDetails.cs" />
     <Compile Include="Models\GlobalStudentClass.cs" />
     <Compile Include="Models\HardcodeDetails.cs" />
+    <Compile Include="Models\Parent\ParentDashboard.cs" />
+    <Compile Include="Models\Parent\ParentRegistration.cs" />
     <Compile Include="Models\StudentLoginDetails.cs" />
     <Compile Include="Models\StudentGeneralDetails.cs" />
     <Compile Include="Models\Student\Registration.cs" />
@@ -258,6 +261,7 @@
     <Content Include="Views\First\Rerport.cshtml" />
     <Content Include="Views\CustomerSupport\Index.cshtml" />
     <Content Include="Views\CustomerSupport\CheckStudentDetails.cshtml" />
+    <Content Include="Views\ELFWeb\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
