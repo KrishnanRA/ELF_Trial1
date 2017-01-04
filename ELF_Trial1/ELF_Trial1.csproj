@@ -126,8 +126,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GlobalParentDetails.cs" />
     <Compile Include="Models\GlobalStudentClass.cs" />
     <Compile Include="Models\HardcodeDetails.cs" />
+    <Compile Include="Models\Parent\ParentDashboard.cs" />
+    <Compile Include="Models\Parent\ParentRegistration.cs" />
     <Compile Include="Models\StudentLoginDetails.cs" />
     <Compile Include="Models\StudentGeneralDetails.cs" />
     <Compile Include="Models\Student\Registration.cs" />
@@ -216,6 +219,8 @@
     <Content Include="bin\ELF_Trial1.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="Images.zip" />
+    <Content Include="obj.rar" />
     <None Include="Properties\PublishProfiles\Build V1.0.1.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.pubxml" />
     <None Include="Service References\web_ws\configuration91.svcinfo" />
@@ -258,6 +263,7 @@
     <Content Include="Views\First\Rerport.cshtml" />
     <Content Include="Views\CustomerSupport\Index.cshtml" />
     <Content Include="Views\CustomerSupport\CheckStudentDetails.cshtml" />
+    <Content Include="Views\ELFWeb\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
