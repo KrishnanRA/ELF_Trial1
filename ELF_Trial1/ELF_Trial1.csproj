@@ -219,6 +219,8 @@
     <Content Include="bin\ELF_Trial1.dll.config" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="Images.zip" />
+    <Content Include="obj.rar" />
     <None Include="Properties\PublishProfiles\Build V1.0.1.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.pubxml" />
     <None Include="Service References\web_ws\configuration91.svcinfo" />
@@ -238,7 +240,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Service References\web_ws\elf_web_ws1.disco" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
