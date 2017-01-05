@@ -13,10 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
     <title>Student Dashboard</title>
-
-
-
-    <style>
+ <style>
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -79,39 +76,15 @@
             margin-top: 89px;
         }
 
-        .icon_middletext {
-        }
-
-            .icon_middletext span {
-            color: white;
-                font-size: 24px;
-            }
-
-        .icon_middletextSmall {
-        }
-
-            .icon_middletextSmall span {
-                
-                color: white;
-                font-size: 24px;
-            }
+      
     </style>
-    <style>
-        .icon_middleicon {
-            margin-top: -100px;
-            margin-left: 370px;
-            width: 110px;
-            height: 97px;
-        }
-
-         
-    </style>
+ 
 
     @*Panels*@
     <style>
         .panel-body {
-            background-color: #555555;
-            color: snow;
+            background-color: snow;
+            color: #555555;
         }
 
         .panel-danger > .panel-heading {
@@ -159,75 +132,78 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">ELF Student</a>
             </div>
             <ul class="nav navbar-nav">
-                <li class="active"><a onclick="navinside('Dashboard')">Home</a></li>
+                <li><a onclick="navinside('Dashboard')">Home</a></li>
                 <li><a onclick="navinside('TestMain')">Take Test</a></li>
                 <li><a onclick="navinside('Report')">Report</a></li>
                 <li><a onclick="navinside('Notification')">Notification</a></li>
             </ul>
         </div>
     </nav>
-    @*<div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
-        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" style="border:2px solid red" onclick="navinside('Dashboard')" />
-        <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
-        <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
-        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;" onclick="navinside('Notification')">
-    </div>
-    <div>
-        <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
-    </div>*@
+  
     <div style="margin-left:460px;margin-top:20px">
         <div class="icon_middletext">
             <img src="~/Images/Student/Dashboard/Name_Banner.png" />
-            <span style="margin-top:-50px;margin-left:50px;">@Model.StudentGeneralDetails.Name</span>
+            <span style="margin-top:-50px;margin-left:-650px;font-size:40px;color:white">@Model.StudentGeneralDetails.Name</span>
         </div>
-        <div style="margin-top:20px">
-            <div class="icon_middletext">
-                @*<img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />*@
-                Class:<span style="font-size:16px;">@Model.StudentGeneralDetails.ClassName</span>
-            </div>
-            <div class="icon_middletext" >
-                @*<img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />*@
-                Board:<span style="margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.BoardName</span>
-            </div>
-            <div class="icon_middletext">
-                @*<img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />*@
-                Institution:<span style="margin-left:0px;font-size:16px;">@Model.StudentGeneralDetails.InstitutionName</span>
-            </div>
-            <div class="icon_middletext">
-                @*<img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />*@
-                District Name:<span style="margin-left:35px;font-size:16px;">@Model.StudentGeneralDetails.DistrictName</span>
-            </div>
-        </div>
-        <div>
-            <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
-                @*<img src="~/Images/Student/Dashboard/State_Rank.png" />*@
-                <span>11017</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
-                @*<img src="~/Images/Student/Dashboard/District_Rank.png" />*@
-                <span>96</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
-                @*<img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">*@
-                <span>618</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
-                @*<img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">*@
-                <span>2.0</span>
-            </div>
-        </div>
-        
-    </div>
+    </div>   
+        <div class="col-md-12" style="margin-top:25px">
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                   
+                        <div class="panel-heading">Class</div>
+                        <div class="panel-body">@Model.StudentGeneralDetails.ClassName</div>
+                     </div>
+                </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
 
-  
+                    <div class="panel-heading">BoardName</div>
+                    <div class="panel-body">@Model.StudentGeneralDetails.BoardName</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">InstitutionName</div>
+                    <div class="panel-body">@Model.StudentGeneralDetails.InstitutionName</div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">DistrictName</div>
+                    <div class="panel-body">@Model.StudentGeneralDetails.DistrictName</div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">State Rank</div>
+                    <div class="panel-body">0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                     <div class="panel-heading">Institution Rank</div>
+                    <div class="panel-body">0</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">Board Rank</div>
+                    <div class="panel-body">0</div>
+                </div>
+            </div>
+        </div>
         @*Chart*@
-       
-
-   
-    <div>
+      <div>
         @RenderBody()
     </div>
 </body>

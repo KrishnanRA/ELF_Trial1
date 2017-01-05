@@ -259,84 +259,7 @@
     </style>
 
     @*Heading Header*@
-    <style>
-        #topname {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middletext {
-        }
-
-            .icon_middletext span {
-                display: block;
-                color: white;
-                font-size: 24px;
-            }
-
-        .icon_middletextSmall {
-        }
-
-            .icon_middletextSmall span {
-                display: block;
-                color: white;
-                font-size: 12px;
-            }
-    </style>
-    <style>
-        .icon_middleicon {
-            display: block;
-            margin-top: -100px;
-            margin-left: 370px;
-            width: 110px;
-            height: 97px;
-        }
-
-            .icon_middleicon img {
-                margin-top: -13px;
-            }
-
-        #tophelp {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #helpicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 30px;
-        }
-
-        #topsignout {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #signouticon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
-
-        #topsettings {
-            margin: 0 auto;
-            width: 110px;
-            height: 97px;
-            margin-top: 89px;
-        }
-
-        .icon_middleicon #settingsicon {
-            display: block;
-            margin-top: -70px;
-            margin-left: 20px;
-        }
-    </style>
+    
 
     @*Panels*@
     <style>
@@ -408,14 +331,12 @@
     <div ng-app="DashboardMainPage">
         <h1 style="color:white">Dashboard</h1>
         @*Chart*@
-        <div style="margin-top:50px">
-            <div class="col-md-12">
-                    <div id="canvas-holder2">
-                        <canvas id="canvas"></canvas>
-                    </div>
-            </div>
+        <div class="col-md-12">
+          <div id="canvas-holder2" width="400" height="300">
+             <canvas id="canvas"  ></canvas>
+          </div>
         </div>
-        <div style="margin-top:0px;">
+        <div style="margin-top:500px;">
             <div class="col-md-12" style="margin-top:10px;">
                 <div class="col-md-4">
                     <div ng-controller="Performinggooddashboard">
