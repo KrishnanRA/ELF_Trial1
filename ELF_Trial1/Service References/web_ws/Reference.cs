@@ -383,6 +383,18 @@ namespace ELF_Trial1.web_ws {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/ForgotPassword", ReplyAction="http://tempuri.org/Ielf_web_ws/ForgotPasswordResponse")]
         System.Threading.Tasks.Task<string> ForgotPasswordAsync(string UserType, string PhoneNumber, string Email, string Password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetPaymentStatus", ReplyAction="http://tempuri.org/Ielf_web_ws/GetPaymentStatusResponse")]
+        string GetPaymentStatus(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetPaymentStatus", ReplyAction="http://tempuri.org/Ielf_web_ws/GetPaymentStatusResponse")]
+        System.Threading.Tasks.Task<string> GetPaymentStatusAsync(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetAllLessions", ReplyAction="http://tempuri.org/Ielf_web_ws/GetAllLessionsResponse")]
+        string GetAllLessions(int StudentId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/Ielf_web_ws/GetAllLessions", ReplyAction="http://tempuri.org/Ielf_web_ws/GetAllLessionsResponse")]
+        System.Threading.Tasks.Task<string> GetAllLessionsAsync(int StudentId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -818,6 +830,22 @@ namespace ELF_Trial1.web_ws {
         
         public System.Threading.Tasks.Task<string> ForgotPasswordAsync(string UserType, string PhoneNumber, string Email, string Password) {
             return base.Channel.ForgotPasswordAsync(UserType, PhoneNumber, Email, Password);
+        }
+        
+        public string GetPaymentStatus(int StudentId) {
+            return base.Channel.GetPaymentStatus(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetPaymentStatusAsync(int StudentId) {
+            return base.Channel.GetPaymentStatusAsync(StudentId);
+        }
+        
+        public string GetAllLessions(int StudentId) {
+            return base.Channel.GetAllLessions(StudentId);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAllLessionsAsync(int StudentId) {
+            return base.Channel.GetAllLessionsAsync(StudentId);
         }
     }
 }

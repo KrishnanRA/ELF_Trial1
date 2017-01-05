@@ -145,11 +145,11 @@ namespace ELF_Trial1.Controllers
                     // Validating Student id is Null
                     if (string.IsNullOrEmpty((string)ParentParse["Table"][0]["StudentId"]))
                     {
-                        GlobalParentDetails.StudentId = 0;
+                        GlobalStudentClass.StudentId = 0;
                     }
                     else
                     {
-                        GlobalParentDetails.StudentId = (Int32)ParentParse["Table"][0]["StudentId"];
+                        GlobalStudentClass.StudentId = (Int32)ParentParse["Table"][0]["StudentId"];
                     }
                     GlobalParentDetails.Students = (string)ParentParse["Table"][0]["students"];
 
@@ -157,7 +157,6 @@ namespace ELF_Trial1.Controllers
                     Session["UserId"] = ParentId;
 
                     Result = "success";
-
                 }
             }
             else if (UserType == "Staff")

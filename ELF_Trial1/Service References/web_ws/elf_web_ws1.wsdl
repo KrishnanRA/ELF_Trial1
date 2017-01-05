@@ -313,6 +313,18 @@
   <wsdl:message name="Ielf_web_ws_ForgotPassword_OutputMessage">
     <wsdl:part name="parameters" element="tns:ForgotPasswordResponse" />
   </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetPaymentStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentStatus" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetPaymentStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaymentStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetAllLessions_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLessions" />
+  </wsdl:message>
+  <wsdl:message name="Ielf_web_ws_GetAllLessions_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllLessionsResponse" />
+  </wsdl:message>
   <wsdl:portType name="Ielf_web_ws">
     <wsdl:operation name="CheckParentLogin">
       <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/CheckParentLogin" message="tns:Ielf_web_ws_CheckParentLogin_InputMessage" />
@@ -517,6 +529,14 @@
     <wsdl:operation name="ForgotPassword">
       <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/ForgotPassword" message="tns:Ielf_web_ws_ForgotPassword_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/ForgotPasswordResponse" message="tns:Ielf_web_ws_ForgotPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetPaymentStatus" message="tns:Ielf_web_ws_GetPaymentStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetPaymentStatusResponse" message="tns:Ielf_web_ws_GetPaymentStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllLessions">
+      <wsdl:input wsaw:Action="http://tempuri.org/Ielf_web_ws/GetAllLessions" message="tns:Ielf_web_ws_GetAllLessions_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/Ielf_web_ws/GetAllLessionsResponse" message="tns:Ielf_web_ws_GetAllLessions_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_Ielf_web_ws" type="tns:Ielf_web_ws">
@@ -973,6 +993,24 @@
     </wsdl:operation>
     <wsdl:operation name="ForgotPassword">
       <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/ForgotPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPaymentStatus">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetPaymentStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllLessions">
+      <soap:operation soapAction="http://tempuri.org/Ielf_web_ws/GetAllLessions" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

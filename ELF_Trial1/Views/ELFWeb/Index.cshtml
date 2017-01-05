@@ -12,8 +12,15 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <script src="~/Script/aes.js"></script>
+    <script type="text/javascript">
+function disableBackButton()
+{
+window.history.forward();
+}
+setTimeout("disableBackButton()",0);
+    </script>
 </head>
-<body>
+<body onunload="disableBackButton()" onload="disableBackButton()">
     <style>
         body {
             overflow-x: hidden;
@@ -112,7 +119,7 @@
 
     <script type="text/javascript">
         function Login() {
-
+            $('#img').show();
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
             var User = $('input[name=User]:checked').val();
@@ -140,6 +147,7 @@
                     else  {
                         alert("Enter Username and Password correctly");
                     }
+                    $('#img').hide();
                 },
                 error: function (err) {
                     if (err.status == 200) {
@@ -148,7 +156,6 @@
                     else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
                 }
             });
-
         }
 
     </script>
@@ -190,7 +197,7 @@
                 <input type="password" class="inputfielddashboard" placeholder="Password" id="password">
             </div>
             <div class="row fields">
-                <input type="button" class="butnblacknobg" value="Log In" id="login" onclick="Login()">
+                <input type="button" class="butnblacknobg" value="Log In" id="login" onclick="Login()"><img src="~/Images/LoginPage/Loading.gif" id="img" style="display:none">
             </div>
             <div class="row fields" style="margin-left:auto">
                 <a>

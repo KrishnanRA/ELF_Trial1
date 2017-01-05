@@ -211,15 +211,28 @@
     <div>
         <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
     </div>
-    <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">WebSiteName</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a onclick="navinside('Dashboard')" >Home</a></li>
+                <li><a onclick="navinside('TestMain')">Take Test</a></li>
+                <li><a onclick="navinside('Report')">Report</a></li>
+                <li><a onclick="navinside('Notification')">Notification</a></li>
+            </ul>
+        </div>
+    </nav>
+    @*<div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
         <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" style="border:2px solid red" onclick="navinside('Dashboard')" />
         <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
         <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
         <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;" onclick="navinside('Notification')">
-    </div>
-    <div>
+    </div>*@
+    @*<div>
         <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
-    </div>
+    </div>*@
     <div style="margin-left:460px;margin-top:-250px">
         <div class="icon_middletext">
             <img src="~/Images/Student/Dashboard/Name_Banner.png" />
@@ -227,21 +240,22 @@
         </div>
         <div style="margin-top:20px">
             <div class="icon_middletext">
-                <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
+                @*<img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />*@
                 <span style="margin-top:-40px;margin-left:60px;font-size:16px;">@Model.ClassName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
-                <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
+                @*<img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />*@
                 <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.BoardName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
-                <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
+                @*<img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />*@
                 <span style="margin-top:-40px;margin-left:0px;font-size:16px;">@Model.InstitutionName</span>
             </div>
             <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
-                <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
+                @*<img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />*@
                 <span style="margin-top:-40px;margin-left:35px;font-size:16px;">@Model.DistrictName</span>
             </div>
+          
         </div>
         <div style="margin-top:-215px;margin-left:710px;">
             <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
@@ -288,7 +302,11 @@
         
     </div>
     <div>
+        @if (Model != null)
+        {
         @RenderBody()
+        }
+        
     </div>
 </body>
 </html>

@@ -7,7 +7,13 @@
 
 <br />
 <div>
-
+    <script type="text/javascript">
+        function disableBackButton()
+        {
+            window.history.forward();
+        }
+        setTimeout("disableBackButton()",0);
+    </script>
     <style>
         body {
             overflow-x: hidden;
@@ -35,9 +41,9 @@
         }
     </style>
     <script>
-            function navinside(page) {
-                window.location.href = '/Student/' + page;
-            }
+        function navinside(page) {
+            window.location.href = '/Student/' + page;
+        }
     </script>
     <style>
         canvas {
@@ -47,20 +53,20 @@
         }
     </style>
     <script>
-            Chart.pluginService.register({
-                beforeDraw: function (chart, easing) {
-                    if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
-                        var helpers = Chart.helpers;
-                        var ctx = chart.chart.ctx;
-                        var chartArea = chart.chartArea;
+        Chart.pluginService.register({
+            beforeDraw: function (chart, easing) {
+                if (chart.config.options.chartArea && chart.config.options.chartArea.backgroundColor) {
+                    var helpers = Chart.helpers;
+                    var ctx = chart.chart.ctx;
+                    var chartArea = chart.chartArea;
 
-                        ctx.save();
-                        ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
-                        ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
-                        ctx.restore();
-                    }
+                    ctx.save();
+                    ctx.fillStyle = chart.config.options.chartArea.backgroundColor;
+                    ctx.fillRect(chartArea.left, chartArea.top, chartArea.right - chartArea.left, chartArea.bottom - chartArea.top);
+                    ctx.restore();
                 }
-            });
+            }
+        });
 
         $(document).ready(function() {
             var ctx = document.getElementById("canvas").getContext("2d");
@@ -73,7 +79,7 @@
                     }
                 }
             });
-            
+
         });
         @{
             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -84,156 +90,156 @@
         var SubjectNameList = [];
         var SubjectPercentageList = [];
         var subjectcount=SubjectList.length;
-      
+
         for(i=0;i<subjectcount;i++)
         {
-         
-             SubjectNameList[i] = SubjectList[i].SubjectName;
+
+            SubjectNameList[i] = SubjectList[i].SubjectName;
             SubjectPercentageList[i] = SubjectList[i].Percentage;
 
         }
 
-            var data = {
-                labels: SubjectNameList,
-                    datasets: [
-                        {
-            label: "Subject Percentage List",
-                            backgroundColor: [
-                                'rgba(251, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(119, 136, 153, 1)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(251,99,132,1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1,
-                            data: SubjectPercentageList,
+        var data = {
+            labels: SubjectNameList,
+            datasets: [
+                {
+                    label: "Subject Percentage List",
+                    backgroundColor: [
+                        'rgba(251, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(119, 136, 153, 1)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(251,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1,
+                    data: SubjectPercentageList,
 
-                            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                                        }
-                                    }]
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
                                 }
-                            }
+                            }]
                         }
-                    ]
-                };
-              
-    </script>
-    <script>
-            function PageNav(Page) {
-                window.location.href = '/Student/' + Page;
-            }
-    </script>
-    <script>
-            var app = angular.module('DashboardMainPage', []);
-            app.controller('ReportSubject1', function ($scope) {
-
-
-
-                $scope.GetAllData = function () {
-                    $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
-                    .success(function (data, status, headers, config) {
-                        $scope.Details = data;
-
-                    })
+                    }
                 }
-                    $scope.Physics = [
-                      { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                      { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                      { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                      { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                       { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                    ];
-            });
-            app.controller('ReportSubject2', function ($scope) {
-                $scope.Chemistry = [
-                  { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
-                  { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
-                  { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
-                  { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
-                   { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
-                ]
-            });
-            app.controller('Performingbaddashboard', function ($scope) {
-                @{
+            ]
+        };
+
+    </script>
+    <script>
+        function PageNav(Page) {
+            window.location.href = '/Student/' + Page;
+        }
+    </script>
+    <script>
+        var app = angular.module('DashboardMainPage', []);
+        app.controller('ReportSubject1', function ($scope) {
+
+
+
+            $scope.GetAllData = function () {
+                $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
+                .success(function (data, status, headers, config) {
+                    $scope.Details = data;
+
+                })
+            }
+            $scope.Physics = [
+              { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+              { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+               { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+            ];
+        });
+        app.controller('ReportSubject2', function ($scope) {
+            $scope.Chemistry = [
+              { "LessonNumber": "01", "LessonName": "Matrics", "Percentage": "92", "WarningColor": "red" },
+              { "LessonNumber": "02", "LessonName": "Vector Algebra", "Percentage": "33", "WarningColor": "blue" },
+              { "LessonNumber": "03", "LessonName": "Set Language", "Percentage": "44", "WarningColor": "yellow" },
+              { "LessonNumber": "04", "LessonName": "Algebra", "Percentage": "55", "WarningColor": "green" },
+               { "LessonNumber": "05", "LessonName": "Trignomentry", "Percentage": "77", "WarningColor": "green" }
+            ]
+        });
+        app.controller('Performingbaddashboard', function ($scope) {
+            @{
                     var serializerBadPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var BadPerformingJson = serializerBadPerforming.Serialize(Model.BadPerformingSubject);
                 }
-                $scope.PerformingBad =@Html.Raw(BadPerformingJson);
-            });
-            app.controller('Performinggooddashboard', function ($scope) {
+            $scope.PerformingBad =@Html.Raw(BadPerformingJson);
+        });
+        app.controller('Performinggooddashboard', function ($scope) {
 
-                @{
+            @{
                     var serializerGoodPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var GoodPerformingJson = serializerGoodPerforming.Serialize(Model.GoodPerformingSubject);
                 }
-                $scope.PerformingGood =@Html.Raw(GoodPerformingJson);
-            });  
-            app.controller('Needtobeconcentrateddashboard', function ($scope) {
-                 @{
+            $scope.PerformingGood =@Html.Raw(GoodPerformingJson);
+        });
+        app.controller('Needtobeconcentrateddashboard', function ($scope) {
+            @{
                      var serializerAveragePerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                      var AveragePerformingJson = serializerGoodPerforming.Serialize(Model.AveragePerformingSubject);
                  }
-                $scope.PerformingAverage =@Html.Raw(AveragePerformingJson);
-            });
+            $scope.PerformingAverage =@Html.Raw(AveragePerformingJson);
+        });
 
 
-            app.controller('OverallTestCtrl', function ($scope) {
-                $scope.Physics = [
-                  { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
-                  { "TestID": "02", "Subject": "Vector Algebra", "Description": "33", "WarningColor": "blue" },
-                  { "TestID": "03", "Subject": "Set Language", "Description": "44", "WarningColor": "yellow" },
-                  { "TestID": "04", "Subject": "Algebra", "Description": "55", "WarningColor": "green" },
-                   { "TestID": "05", "Subject": "Trignomentry", "Description": "77", "WarningColor": "green" }
-                ]
-            });
-            app.controller('Scopeofimprovement', function ($scope) {
-                $scope.Scopeofimprovement = [
-                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
-                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
-                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
-                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
-                  { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" }
-                ]
-            });
-            app.controller('TestReport', function ($scope) {
-                $scope.TestCompleted = [
-                  { "TestID": "1235", "SubjectName": "Physics", "TotalQuestion": "50", "Answered": "25", "Percentage": "50", "Detail": "Details" },
-                  { "TestID": "1277", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "15", "Percentage": "50", "Detail": "Details" },
-                  { "TestID": "2335", "SubjectName": "Maths", "TotalQuestion": "20", "Answered": "4", "Percentage": "20", "Detail": "Details" },
-                  { "TestID": "8635", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "9", "Percentage": "30", "Detail": "Details" },
-                  { "TestID": "7723", "SubjectName": "Maths", "TotalQuestion": "30", "Answered": "3", "Percentage": "10", "Detail": "Details" }
-                ]
-            });
-            app.controller('CompletedTestDashboard', function ($scope) {
-                  @{
+        app.controller('OverallTestCtrl', function ($scope) {
+            $scope.Physics = [
+              { "TestID": "01", "Subject": "Matrics", "Description": "92", "WarningColor": "red" },
+              { "TestID": "02", "Subject": "Vector Algebra", "Description": "33", "WarningColor": "blue" },
+              { "TestID": "03", "Subject": "Set Language", "Description": "44", "WarningColor": "yellow" },
+              { "TestID": "04", "Subject": "Algebra", "Description": "55", "WarningColor": "green" },
+               { "TestID": "05", "Subject": "Trignomentry", "Description": "77", "WarningColor": "green" }
+            ]
+        });
+        app.controller('Scopeofimprovement', function ($scope) {
+            $scope.Scopeofimprovement = [
+              { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+              { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+              { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+              { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" },
+              { "SubjectName": "01", "LessonName": "Matrics", "Heading": "92", "Description": "red", "Importance": "red" }
+            ]
+        });
+        app.controller('TestReport', function ($scope) {
+            $scope.TestCompleted = [
+              { "TestID": "1235", "SubjectName": "Physics", "TotalQuestion": "50", "Answered": "25", "Percentage": "50", "Detail": "Details" },
+              { "TestID": "1277", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "15", "Percentage": "50", "Detail": "Details" },
+              { "TestID": "2335", "SubjectName": "Maths", "TotalQuestion": "20", "Answered": "4", "Percentage": "20", "Detail": "Details" },
+              { "TestID": "8635", "SubjectName": "Chemistry", "TotalQuestion": "30", "Answered": "9", "Percentage": "30", "Detail": "Details" },
+              { "TestID": "7723", "SubjectName": "Maths", "TotalQuestion": "30", "Answered": "3", "Percentage": "10", "Detail": "Details" }
+            ]
+        });
+        app.controller('CompletedTestDashboard', function ($scope) {
+            @{
                       var serializerLastFive = new System.Web.Script.Serialization.JavaScriptSerializer();
                       var LastFiveTestjson = serializerLastFive.Serialize(Model.OverallLastFiveTest);
                   }
-                   $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
+            $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
 
-            });
-            app.controller('AvailableTestDashboard', function ($scope) {
-                //Hello
-                @{
+        });
+        app.controller('AvailableTestDashboard', function ($scope) {
+            //Hello
+            @{
                     var serializerAvailableTest = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var AvailableTestjson = serializerAvailableTest.Serialize(Model.OverallAvailableTest);
                 }
-                $scope.AvailableTest =@Html.Raw(AvailableTestjson);
+            $scope.AvailableTest =@Html.Raw(AvailableTestjson);
 
-            });
+        });
     </script>
     <style>
         .buttoncss {
@@ -410,9 +416,9 @@
         @*Chart*@
         <div style="margin-top:50px">
             <div class="col-md-12">
-                    <div id="canvas-holder2">
-                        <canvas id="canvas"></canvas>
-                    </div>
+                <div id="canvas-holder2">
+                    <canvas id="canvas"></canvas>
+                </div>
             </div>
         </div>
         <div style="margin-top:0px;">

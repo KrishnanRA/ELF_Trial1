@@ -179,6 +179,7 @@
     <Content Include="Images\LoginPage\ELF LOGIN PAGE back.jpg" />
     <Content Include="Images\LoginPage\ELF LOGo.png" />
     <Content Include="Images\LoginPage\Institution_Login_Icon.png" />
+    <Content Include="Images\LoginPage\Loading.gif" />
     <Content Include="Images\LoginPage\Parent_Login_Icon.png" />
     <Content Include="Images\LoginPage\Password_login_Icon.png" />
     <Content Include="Images\LoginPage\Staff_Login_Icon.png" />
@@ -223,6 +224,7 @@
     <Content Include="obj.rar" />
     <None Include="Properties\PublishProfiles\Build V1.0.1.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.pubxml" />
+    <None Include="Properties\PublishProfiles\build1.2.pubxml" />
     <None Include="Service References\web_ws\configuration91.svcinfo" />
     <None Include="Service References\web_ws\configuration.svcinfo" />
     <None Include="Service References\web_ws\elf_web_ws1.wsdl" />
@@ -266,6 +268,7 @@
     <Content Include="Views\CustomerSupport\Index.cshtml" />
     <Content Include="Views\CustomerSupport\CheckStudentDetails.cshtml" />
     <Content Include="Views\ELFWeb\ForgotPassword.cshtml" />
+    <Content Include="Views\Student\Feed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

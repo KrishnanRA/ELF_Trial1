@@ -43,7 +43,7 @@ namespace ELF_Trial1.Controllers
                     _ListStudentUnderParent.Add(_ParentUnderStudent);
                 }
 
-                GlobalStudentClass.StudentId = (Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+                GlobalStudentClass.StudentId = 260; //(Int32)studentUnderParentparsing["Table"][0]["StudentId"];
                 // Get Student Details
                 string _getStudentDetails = ParentWeb.GetStudentDetails(GlobalStudentClass.StudentId);
                 // Parse Json to String 
@@ -63,7 +63,6 @@ namespace ELF_Trial1.Controllers
                 StudentGeneralDetails _studentGeneralDetails = new StudentGeneralDetails();
                 // Load general details in student General Class
                 _studentGeneralDetails.StudentId = GlobalStudentClass.StudentId;
-                _studentGeneralDetails.StudentName = GlobalStudentClass.StudentName;
                 _studentGeneralDetails.BoardName = GlobalStudentClass.BoardName;
                 _studentGeneralDetails.ClassName = GlobalStudentClass.ClassName;
                 _studentGeneralDetails.DistrictName = GlobalStudentClass.DistrictName;

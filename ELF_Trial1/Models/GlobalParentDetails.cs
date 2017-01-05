@@ -17,7 +17,6 @@ namespace ELF_Trial1.Models
         static string _phoneNumber;
         static string _stateName;
         static int _parentId;
-        static int _studentId;
         static string _students;
         public static string BoardName
         {
@@ -79,13 +78,7 @@ namespace ELF_Trial1.Models
             get { return _parentId; }
             set { _parentId = value; }
         }
-
-        public static int StudentId
-        {
-            get { return _studentId; }
-            set { _studentId = value; }
-        }
-
+      
         public static string Students
         {
             get { return _students; }

@@ -261,6 +261,10 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult TestMain()
         {
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
             // model student general details
             StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
             objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
@@ -396,6 +400,10 @@ namespace ELF_Trial1.Controllers
         {
 
             {
+                if (Session["UserType"] == null)
+                {
+                    return RedirectToAction("Index", "ELFWeb");
+                }
                 StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
                 objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
                 objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
@@ -499,7 +507,24 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult Notification()
         {
-            return View();
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
+            StudentDashboard studentdashboard = new StudentDashboard();
+            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
+            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
+            objStudentLoginDetails.Name = GlobalStudentClass.Name;
+            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
+            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
+            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
+            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
+            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
+            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
+            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
+            studentdashboard.StudentGeneralDetails = objStudentLoginDetails;
+            return View(studentdashboard);
         }
         public JsonResult StudentLogin(String Username, String Password)
         {
@@ -614,5 +639,22 @@ namespace ELF_Trial1.Controllers
             }
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon(); // it will clear the session
+            return Json("success");
+        }
+
+
+        public ActionResult Feed()
+        {
+            return View();
+        }
+
+        public JsonResult SubmitFeed()
+        {
+
+            return Json("");
+        }
     }
 }
