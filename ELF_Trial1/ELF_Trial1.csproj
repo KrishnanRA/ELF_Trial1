@@ -45,6 +45,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -118,7 +122,6 @@
     <Compile Include="AESEncrytDecry.cs" />
     <Compile Include="Controllers\CustomerSupportController.cs" />
     <Compile Include="Controllers\ELFWebController.cs" />
-    <Compile Include="Controllers\FirstController.cs" />
     <Compile Include="Controllers\InstitutionController.cs" />
     <Compile Include="Controllers\ParentController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
@@ -126,12 +129,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\GlobalParentDetails.cs" />
-    <Compile Include="Models\GlobalStudentClass.cs" />
-    <Compile Include="Models\HardcodeDetails.cs" />
     <Compile Include="Models\Parent\ParentDashboard.cs" />
     <Compile Include="Models\Parent\ParentRegistration.cs" />
-    <Compile Include="Models\StudentLoginDetails.cs" />
     <Compile Include="Models\StudentGeneralDetails.cs" />
     <Compile Include="Models\Student\Registration.cs" />
     <Compile Include="Models\Student\ReportModel.cs" />
@@ -212,6 +211,7 @@
     <Content Include="obj.rar" />
     <None Include="Properties\PublishProfiles\Build V1.0.1.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.2.pubxml" />
+    <None Include="Properties\PublishProfiles\Build V1.0.3.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.pubxml" />
     <None Include="Properties\PublishProfiles\build1.2.pubxml" />
     <None Include="Service References\web_ws\configuration91.svcinfo" />
@@ -252,8 +252,6 @@
     <Content Include="Views\_LayoutPage1.cshtml" />
     <Content Include="Views\Student\Test1.cshtml" />
     <Content Include="Views\Shared\_LayoutStudent.cshtml" />
-    <Content Include="Views\First\Index.cshtml" />
-    <Content Include="Views\First\Rerport.cshtml" />
     <Content Include="Views\CustomerSupport\Index.cshtml" />
     <Content Include="Views\CustomerSupport\CheckStudentDetails.cshtml" />
     <Content Include="Views\ELFWeb\ForgotPassword.cshtml" />

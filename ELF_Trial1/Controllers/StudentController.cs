@@ -6,6 +6,8 @@ using ELF_Trial1.Models;
 using ELF_Trial1.Models.Student;
 using Newtonsoft.Json.Linq;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace ELF_Trial1.Controllers
 {
@@ -452,7 +454,7 @@ namespace ELF_Trial1.Controllers
                     SubjectDetails _SubjectDetails = new SubjectDetails();
                     _SubjectDetails.SubjectName = (String)_studentDashboardParse["Table4"][i]["SubjectName"];
                     _SubjectDetails.SubjectID = (Int32)_studentDashboardParse["Table4"][i]["SubjectId"];
-
+                    
                     _SubjectDetailsList.Add(_SubjectDetails);
                 }
 
@@ -548,19 +550,19 @@ namespace ELF_Trial1.Controllers
                 return RedirectToAction("Index", "ELFWeb");
             }
             string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
-            JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
+            JObject StudentGeneralDetailsParse = JObject.Parse(dashboardOutput);
 
             StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
-            _studentDetails.BoardName = (String)studentUnderParentparsing["Table"][0]["BoardName"];
-            _studentDetails.CityName = (String)studentUnderParentparsing["Table"][0]["CityName"];
-            _studentDetails.ClassName = (String)studentUnderParentparsing["Table"][0]["ClassName"];
-            _studentDetails.DistrictName = (String)studentUnderParentparsing["Table"][0]["DistrictName"];
-            _studentDetails.EmailAddress = (String)studentUnderParentparsing["Table"][0]["EmailAddress"];
-            _studentDetails.Name = (String)studentUnderParentparsing["Table"][0]["FirstName"];
-            _studentDetails.PhoneNumber = (String)studentUnderParentparsing["Table"][0]["PhoneNumber"];
-            _studentDetails.StateName = (String)studentUnderParentparsing["Table"][0]["StateName"];
-            _studentDetails.StudentId = (Int32)studentUnderParentparsing["Table"][0]["StudentId"];
-            _studentDetails.InstitutionName = (String)studentUnderParentparsing["Table"][0]["InstitutionName"];
+            _studentDetails.BoardName = (String)StudentGeneralDetailsParse["Table"][0]["BoardName"];
+            _studentDetails.CityName = (String)StudentGeneralDetailsParse["Table"][0]["CityName"];
+            _studentDetails.ClassName = (String)StudentGeneralDetailsParse["Table"][0]["ClassName"];
+            _studentDetails.DistrictName = (String)StudentGeneralDetailsParse["Table"][0]["DistrictName"];
+            _studentDetails.EmailAddress = (String)StudentGeneralDetailsParse["Table"][0]["EmailAddress"];
+            _studentDetails.Name = (String)StudentGeneralDetailsParse["Table"][0]["FirstName"];
+            _studentDetails.PhoneNumber = (String)StudentGeneralDetailsParse["Table"][0]["PhoneNumber"];
+            _studentDetails.StateName = (String)StudentGeneralDetailsParse["Table"][0]["StateName"];
+            _studentDetails.StudentId = (Int32)StudentGeneralDetailsParse["Table"][0]["StudentId"];
+            _studentDetails.InstitutionName = (String)StudentGeneralDetailsParse["Table"][0]["InstitutionName"];
             _studentDashboar.StudentGeneralDetails = _studentDetails;
             return View(_studentDashboar);
         }
