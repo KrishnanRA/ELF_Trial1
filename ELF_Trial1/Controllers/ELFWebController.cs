@@ -95,23 +95,13 @@ namespace ELF_Trial1.Controllers
 
                 if (OutputStatus == "success")
                 {
-                    GlobalStudentClass.UserType = "Student";
                     Int64 StudentID = (Int64)StudentOutput["Table"][0]["StudentId"];
-                    GlobalStudentClass.BoardName = (string)StudentOutput["Table"][0]["BoardName"];
-                    GlobalStudentClass.CityName = (string)StudentOutput["Table"][0]["CityName"];
-                    GlobalStudentClass.ClassName = (string)StudentOutput["Table"][0]["ClassName"];
-                    GlobalStudentClass.DistrictName = (string)StudentOutput["Table"][0]["DistrictName"];
-                    GlobalStudentClass.EmailAddress = (string)StudentOutput["Table"][0]["EmailAddress"];
-                    GlobalStudentClass.Name = (string)StudentOutput["Table"][0]["FirstName"];
-                    GlobalStudentClass.PhoneNumber = (string)StudentOutput["Table"][0]["PhoneNumber"];
-                    GlobalStudentClass.StateName = (string)StudentOutput["Table"][0]["StateName"];
-                    GlobalStudentClass.StudentId = (Int32)StudentOutput["Table"][0]["StudentId"];
-                    GlobalStudentClass.InstitutionName = (string)StudentOutput["Table"][0]["InstitutionName"];
+             
                     //     return Json(StudentID);"
                     //  return RedirectToAction("Dashboard", "Student");
 
                     // return RedirectToAction("NewRegistration");
-                   Session["UserType"] = GlobalStudentClass.UserType;
+                   Session["UserType"] = "Student";
                    Session["UserId"] = StudentID;
 
                     Result = "success";
@@ -130,30 +120,11 @@ namespace ELF_Trial1.Controllers
 
                 if (ParentOutputStatus == "success")
                 {
-                    GlobalStudentClass.UserType = "Parent";
                     Int64 ParentId = (Int64)ParentParse["Table"][0]["ParentId"];
-                    GlobalParentDetails.BoardName = (string)ParentParse["Table"][0]["BoardName"];
-                    GlobalParentDetails.CityName = (string)ParentParse["Table"][0]["CityName"];
-                    GlobalParentDetails.ClassName = (string)ParentParse["Table"][0]["ClassName"];
-                    GlobalParentDetails.DistrictName = (string)ParentParse["Table"][0]["DistrictName"];
-                    GlobalParentDetails.EmailAddress = (string)ParentParse["Table"][0]["EmailAddress"];
-                    GlobalParentDetails.Name = (string)ParentParse["Table"][0]["FirstName"];
-                    GlobalParentDetails.PhoneNumber = (string)ParentParse["Table"][0]["PhoneNumber"];
-                    GlobalParentDetails.StateName = (string)ParentParse["Table"][0]["StateName"];
-                    GlobalParentDetails.ParentId = (Int32)ParentParse["Table"][0]["ParentId"];
-                    GlobalParentDetails.InstitutionName = (string)ParentParse["Table"][0]["InstitutionName"];
+                  
                     // Validating Student id is Null
-                    if (string.IsNullOrEmpty((string)ParentParse["Table"][0]["StudentId"]))
-                    {
-                        GlobalStudentClass.StudentId = 0;
-                    }
-                    else
-                    {
-                        GlobalStudentClass.StudentId = (Int32)ParentParse["Table"][0]["StudentId"];
-                    }
-                    GlobalParentDetails.Students = (string)ParentParse["Table"][0]["students"];
-
-                    Session["UserType"] = GlobalStudentClass.UserType;
+                  
+                    Session["UserType"] = "Parent";
                     Session["UserId"] = ParentId;
 
                     Result = "success";
@@ -161,7 +132,6 @@ namespace ELF_Trial1.Controllers
             }
             else if (UserType == "Staff")
             {
-                GlobalStudentClass.UserType = "Staff";
 
                 string Staffoutput = objweb.CheckStaffLogin(Username, Password);
             }

@@ -15,8 +15,7 @@ namespace ELF_Trial1.Controllers
         // GET: /CustomerSupport/
         HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
         web_ws.Ielf_web_wsClient SupportWeb = new web_ws.Ielf_web_wsClient();
-        public static GlobalStudentSubjectDetails GlobalStudentSubjects = new GlobalStudentSubjectDetails();
-        public static Int32 GlobalStudentID = 0;
+        public  Int32 GlobalStudentID = 0;
         public ActionResult Index(int StudentId)
         {
             GlobalStudentID = StudentId;
@@ -38,9 +37,9 @@ namespace ELF_Trial1.Controllers
 
                 objStudentLoginDetails.StudentId = GlobalStudentID;
 
-                objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+                objStudentLoginDetails.InstitutionName = (string)StudentGeneralDetailsparsing["Table"][0]["InstitutionName"];
 
-                
+
                 StudentRank _StudentRankDetails = new StudentRank();
                 OverallAvailableTest _StudentOverallAvailableTest = new OverallAvailableTest();
                 OverallLastFiveTest _StudentOverallLastFiveTest = new OverallLastFiveTest();
@@ -103,17 +102,17 @@ namespace ELF_Trial1.Controllers
                 int _SubjectCount = (Int32)Studentparsing["Table4"].Count();
 
 
-                List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
+                List<StudentSubjects> _SubjectDetailsList = new List<StudentSubjects>();
                 for (int i = 0; i < _SubjectCount; i++)
                 {
-                    SubjectDetails _SubjectDetails = new SubjectDetails();
+                    StudentSubjects _SubjectDetails = new StudentSubjects();
                     _SubjectDetails.SubjectName = (String)Studentparsing["Table4"][i]["SubjectName"];
                     _SubjectDetails.SubjectID = (Int32)Studentparsing["Table4"][i]["SubjectId"];
 
                     _SubjectDetailsList.Add(_SubjectDetails);
                 }
 
-                GlobalStudentSubjects.SubjectList = _SubjectDetailsList;
+                _StudentDashboardDetails.StudentSubjects = _SubjectDetailsList;
 
                 _StudentDashboardDetails.OverallAvailableTest = _OverallAvailableTestList;
                 _StudentDashboardDetails.OverallLastFiveTest = _LastFiveTestList;

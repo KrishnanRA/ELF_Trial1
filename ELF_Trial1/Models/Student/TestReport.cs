@@ -12,8 +12,8 @@ namespace ELF_Trial1.Models.Student
 
         public List<CompletedTestInfo> CompletedTestInfo { get; set; }
         public List<PendingTestInfo> PendingTestInfo { get; set; }
-        public List<StudentInfo> StudentInfo { get; set; }
-        public List<SubjectInfo> SubjectInfo { get; set; }
+        public StudentGeneralDetails StudentGeneralDetails { get; set; }
+        public List<StudentSubjectDetails> SubjectInfo { get; set; }
       
 
     }
@@ -60,22 +60,9 @@ namespace ELF_Trial1.Models.Student
         public string TestType { get; set; }
     }
 
-    public class StudentInfo
-    {
-        public string Board { get; set; }
-        public string District { get; set; }
-        public string FirstName  { get; set; }
-        public string Institution { get; set; }
-        public string LastName { get; set; }
-    }
+   
 
-    public class SubjectInfo
-    {
-        public Int32 Percentage { get; set; }
-        public Int32 SubjectId { get; set; }
-        public string SubjectName { get; set; }
-
-    }
+  
 
    
 }

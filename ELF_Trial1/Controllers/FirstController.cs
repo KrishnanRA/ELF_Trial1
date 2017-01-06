@@ -14,7 +14,6 @@ namespace ELF_Trial1.Controllers
         //
         // GET: /First/
         web_ws.Ielf_web_wsClient StudentWeb = new web_ws.Ielf_web_wsClient();
-        public static GlobalStudentSubjectDetails GlobalStudentSubjects = new GlobalStudentSubjectDetails();
         public ActionResult Index()
         {
 

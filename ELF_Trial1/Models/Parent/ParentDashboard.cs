@@ -10,14 +10,11 @@ namespace ELF_Trial1.Models.Parent
 
         public List<StudentUnderParent> StudentUnderParent { get; set; }
 
-        public StudentGeneralDetails StudentGeneralDetails { get; set; }
         public StudentRank StudentRank { get; set; }
         public List<SubjectPercentage> SubjectPercentage { get; set; }   // Subject info
         public List<OverallPerformingTopic> OverallPerformingTopic { get; set; }
         public List<OverallLastFiveTest> OverallLastFiveTest { get; set; }
         public List<OverallAvailableTest> OverallAvailableTest { get; set; }
-
-        public List<StudentSubjects> StudentSubjects { get; set; }
 
         public List<StudentSubjectDetails> StudentSubjectDetails { get; set;}
 
@@ -85,12 +82,6 @@ namespace ELF_Trial1.Models.Parent
         public Int32 SubjectID { get; set; }
         public String SubjectName { get; set; }
         public String TestType { get; set; }
-    }
-
-    public class GlobalStudentSubjectDetails
-    {
-
-        public List<SubjectDetails> SubjectList { get; set; }
     }
 
     public class AveragePerformingSubject

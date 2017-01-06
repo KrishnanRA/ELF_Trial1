@@ -21,8 +21,12 @@ namespace ELF_Trial1.Controllers
 
         public ActionResult Dashboard()
         {
+            if (Session["UserType"]==null)
+            {
+               
+            }
             //  Get Student Under Parent
-            string _studentUnderParent = ParentWeb.GetStudentUnderParent(GlobalParentDetails.ParentId);
+            string _studentUnderParent = ParentWeb.GetStudentUnderParent(Convert.ToInt32( Session["UserId"].ToString()));
             // Parse the value to string
             JObject studentUnderParentparsing = JObject.Parse(_studentUnderParent);
             // Parent DashBoard Object 
@@ -43,40 +47,35 @@ namespace ELF_Trial1.Controllers
                     _ListStudentUnderParent.Add(_ParentUnderStudent);
                 }
 
-                GlobalStudentClass.StudentId = 260; //(Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+                int StudentId = 260; //(Int32)studentUnderParentparsing["Table"][0]["StudentId"];
                 // Get Student Details
-                string _getStudentDetails = ParentWeb.GetStudentDetails(GlobalStudentClass.StudentId);
+                string _getStudentDetails = ParentWeb.GetStudentDetails(StudentId);
                 // Parse Json to String 
                 JObject _StudentDetailsParse = JObject.Parse(_getStudentDetails);
                 // Load the Student Details
-                GlobalStudentClass.BoardName = (string)_StudentDetailsParse["Table"][0]["BoardId"];
-                GlobalStudentClass.ClassName = (string)_StudentDetailsParse["Table"][0]["ClassName"];
-                GlobalStudentClass.CityName = (string)_StudentDetailsParse["Table"][0]["CityName"];
-                GlobalStudentClass.DistrictName = (string)_StudentDetailsParse["Table"][0]["DistrictName"];
-                GlobalStudentClass.EmailAddress = (string)_StudentDetailsParse["Table"][0]["EmailAddress"];
-                GlobalStudentClass.InstitutionName = (string)_StudentDetailsParse["Table"][0]["InstitutionName"];
-                GlobalStudentClass.PhoneNumber = (string)_StudentDetailsParse["Table"][0]["PhoneNumber"];
-                GlobalStudentClass.StateName = (string)_StudentDetailsParse["Table"][0]["StateName"];
 
                 // Student Details from parent Dashboard module class
+                string dashboardOutput = ParentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+                JObject studentDashboard = JObject.Parse(dashboardOutput);
 
-                StudentGeneralDetails _studentGeneralDetails = new StudentGeneralDetails();
-                // Load general details in student General Class
-                _studentGeneralDetails.StudentId = GlobalStudentClass.StudentId;
-                _studentGeneralDetails.BoardName = GlobalStudentClass.BoardName;
-                _studentGeneralDetails.ClassName = GlobalStudentClass.ClassName;
-                _studentGeneralDetails.DistrictName = GlobalStudentClass.DistrictName;
-                _studentGeneralDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-                _studentGeneralDetails.InstitutionName = GlobalStudentClass.InstitutionName;
-                _studentGeneralDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-                _studentGeneralDetails.StateName = GlobalStudentClass.StateName;
+                StudentDetails _studentDetails = new StudentDetails();
+                _studentDetails.BoardName = (String)studentDashboard["Table"][0]["BoardName"];
+                _studentDetails.CityName = (String)studentDashboard["Table"][0]["CityName"];
+                _studentDetails.ClassName = (String)studentDashboard["Table"][0]["ClassName"];
+                _studentDetails.DistrictName = (String)studentDashboard["Table"][0]["DistrictName"];
+                _studentDetails.EmailAddress = (String)studentDashboard["Table"][0]["EmailAddress"];
+                _studentDetails.Name = (String)studentDashboard["Table"][0]["Name"];
+                _studentDetails.PhoneNumber = (String)studentDashboard["Table"][0]["PhoneNumber"];
+                _studentDetails.StateName = (String)studentDashboard["Table"][0]["StateName"];
+                _studentDetails.StudentId = (Int32)studentDashboard["Table"][0]["StudentId"];
+                _studentDetails.InstitutionName = (String)studentDashboard["Table"][0]["InstitutionName"];
 
                 StudentRank _StudentRankDetails = new StudentRank();
                 OverallAvailableTest _StudentOverallAvailableTest = new OverallAvailableTest();
                 OverallLastFiveTest _StudentOverallLastFiveTest = new OverallLastFiveTest();
 
-                String _GetStudentDashboardDetails = ParentWeb.StudentDashboardDetails(GlobalStudentClass.StudentId);
-                String _GetStudentDashboardDetails1 = ParentWeb.GetStudentDashboard(GlobalStudentClass.StudentId);
+                String _GetStudentDashboardDetails = ParentWeb.StudentDashboardDetails(_studentDetails.StudentId);
+                String _GetStudentDashboardDetails1 = ParentWeb.GetStudentDashboard(_studentDetails.StudentId);
 
                 JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
                 JObject Studentparsing1 = JObject.Parse(_GetStudentDashboardDetails1);
@@ -129,10 +128,10 @@ namespace ELF_Trial1.Controllers
                 int _SubjectCount = (Int32)Studentparsing["Table4"].Count();
 
 
-                List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
+                List<StudentSubjectDetails> _SubjectDetailsList = new List<StudentSubjectDetails>();
                 for (int i = 0; i < _SubjectCount; i++)
                 {
-                    SubjectDetails _SubjectDetails = new SubjectDetails();
+                    StudentSubjectDetails _SubjectDetails = new StudentSubjectDetails();
                     _SubjectDetails.SubjectName = (String)Studentparsing["Table4"][i]["SubjectName"];
                     _SubjectDetails.SubjectID = (Int32)Studentparsing["Table4"][i]["SubjectId"];
 
@@ -258,7 +257,7 @@ namespace ELF_Trial1.Controllers
                 _parentDashboard.OverallLastFiveTest = _LastFiveTestList;
                 _parentDashboard.StudentRank = _StudentRankDetails;
                 _parentDashboard.SubjectPercentage = _SubjectPercentageList;
-                _parentDashboard.StudentGeneralDetails = _studentGeneralDetails;
+                _parentDashboard.StudentDetails = _studentDetails;
                 _parentDashboard.GoodPerformingSubject = _goodPerformingSubjectList;
                 _parentDashboard.AveragePerformingSubject = _averagePerformingSubjectList;
                 _parentDashboard.BadPerformingSubject = _badPerformingSubjectList;
@@ -289,10 +288,10 @@ namespace ELF_Trial1.Controllers
         public JsonResult SubmitFeedBack(string Feedback)
         {
             String _Result = "";
-            if (GlobalStudentClass.UserType == "Parent")
+            if (Session["UserType"].ToString() == "Parent")
             {
-                int parentId = GlobalParentDetails.ParentId;
-                string FeedBack = ParentWeb.SaveUserFeedback(parentId, Feedback, GlobalStudentClass.UserType);
+                int parentId =  Convert.ToInt32( Session["UserId"].ToString());
+                string FeedBack = ParentWeb.SaveUserFeedback(parentId, Feedback, Session["UserType"].ToString());
                 JObject ParsingFeedback = JObject.Parse(FeedBack);
                 _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
             }
@@ -303,7 +302,7 @@ namespace ELF_Trial1.Controllers
          {
              // Request Student Dashboard Access
              // Get Request response in Json
-             string StudentRequest = ParentWeb.ParentStudentRequest(GlobalParentDetails.ParentId, Studentid, 1);
+             string StudentRequest = ParentWeb.ParentStudentRequest( Convert.ToInt32( Session["UserId"].ToString()), Studentid, 1);
              // Parse the Json into JOject
              JObject ParsingStudentRequest = JObject.Parse(StudentRequest);
              // Get the Output Status

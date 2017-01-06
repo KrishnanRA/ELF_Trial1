@@ -114,5 +114,12 @@ namespace ELF_Trial1.Models.Student
 
     }
 
+    
 
+    public class StudentSubjects
+    {
+        public string SubjectName { get; set; }
+
+        public Int32 SubjectID { get; set; }
+    }
 }

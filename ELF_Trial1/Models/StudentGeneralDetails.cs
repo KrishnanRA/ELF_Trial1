@@ -18,14 +18,14 @@ namespace ELF_Trial1.Models
         public int StudentId { get; set; }
         public string InstitutionName { get; set; }
         public Int32 GroupId { get; set; }
-        public List<StudentSubjects> StudentSubject { get; set; }
+        public List<SubjectDetails> StudentSubject { get; set; }
        
     }
-    public class StudentSubjects
-    {
-        public string SubjectName { get; set; }
 
+    public class SubjectDetails
+    {
         public Int32 SubjectID { get; set; }
+        public String SubjectName { get; set; }
     }
-    
+
 }

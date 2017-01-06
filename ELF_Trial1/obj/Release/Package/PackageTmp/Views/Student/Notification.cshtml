@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@model ELF_Trial1.Models.Student.StudentDashboard
+
+@{
+    ViewBag.Title = "Notification";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Student-Notification</title>
@@ -141,65 +148,7 @@
     </style>
 </head>
 <body>
-    <div>
-        <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
-    </div>
-    <div id="Navigationbars" style="margin-top:-380px;margin-left:50px;">
-        <img src="~/Images/Student/Dashboard/Dashboard_Icon.png" onclick="navinside('Dashboard')" />
-        <img src="~/Images/Student/Dashboard/WriteTest_Icon.png" onclick="navinside('TestMain')" />
-        <img src="~/Images/Student/Dashboard/Report_Icon_L.png" style="margin-top:225px;margin-left:-234px;" onclick="navinside('Report')">
-        <img src="~/Images/Student/Dashboard/Notification_Icon.png" style="margin-top:230px;margin-left:-04px;border:2px solid #e4008c" onclick="navinside('Notification')">
-    </div>
-    <div>
-        <img src="~/Images/Student/Dashboard/Profile_Pic.png" style="margin-left:280px;margin-top:-250px;" />
-    </div>
-    <div style="margin-left:460px;margin-top:-250px">
-        <div class="icon_middletext">
-            <img src="~/Images/Student/Dashboard/Name_Banner.png" />
-            <span style="margin-top:-50px;margin-left:50px;">Krishnan RA</span>
-        </div>
-        <div style="margin-top:20px">
-            <div class="icon_middletext">
-                <img src="~/Images/Student/Dashboard/Class_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:60px;font-size:16px;">12th</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:160px;">
-                <img src="~/Images/Student/Dashboard/Board_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Samacheer</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:320px;">
-                <img src="~/Images/Student/Dashboard/School_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Ranga Matriculation</span>
-            </div>
-            <div class="icon_middletext" style="margin-top:-138px;margin-left:540px;">
-                <img src="~/Images/Student/Dashboard/Location_Icon.png" style="margin-top:5px;" />
-                <span style="margin-top:-40px;margin-left:35px;font-size:16px;">Coimbatore</span>
-            </div>
-        </div>
-        <div style="margin-top:-215px;margin-left:710px;">
-            <div class="icon_middletextSmall" style="margin-top:0px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/State_Rank.png" />
-                <span style="margin-top:-30px;margin-left:40px;">11017</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:20px;margin-left:00px;">
-                <img src="~/Images/Student/Dashboard/District_Rank.png" />
-                <span style="margin-top:-30px;margin-left:50px;">96</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-435px;margin-left:340px;">
-                <img src="~/Images/Student/Dashboard/InstitutionRank_Icon.png" style="margin-top:225px;margin-left:-230px;">
-                <span style="margin-top:-30px;margin-left:-180px;">618</span>
-            </div>
-            <div class="icon_middletextSmall" style="margin-top:-215px;margin-left:115px;">
-                <img src="~/Images/Student/Dashboard/Growth_Icon.png" style="margin-top:230px;margin-left:-04px;">
-                <span style="margin-top:-30px;margin-left:40px;">2.0</span>
-            </div>
-        </div>
-        <div style="margin-top:-360px;margin-left:940px;">
-            <img src="~/Images/Student/Dashboard/Help_Icon.png" />
-            <img src="~/Images/Student/Dashboard/Settings_Icon.png" style="margin-top:155px;margin-left:-80px" />
-            <img src="~/Images/Student/Dashboard/LogOut_Icon.png" style="margin-top:305px;margin-left:-80px" />
-        </div>
-    </div>
+  
     <div ng-app="NotificationPage" style="margin-top:100px;" class="col-md-10 col-md-offset-1">
         <div ng-controller="Notification">
             <div ng-repeat="x in Notification">

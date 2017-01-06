@@ -18,25 +18,29 @@ namespace ELF_Trial1.Controllers
         web_ws.Ielf_web_wsClient StudentWeb = new web_ws.Ielf_web_wsClient();
         public String String_GetStudentDashStudentWebboardDetails = "";
         public static Int32 GlobalTestID = 0;
-        public static GlobalStudentSubjectDetails GlobalStudentSubjects = new GlobalStudentSubjectDetails();
+        public static StudentDashboard _studentDashboar = new StudentDashboard();
         public ActionResult Dashboard()
         {
             if (Session["UserType"] == null)
             {
                 return RedirectToAction("Index", "ELFWeb");
             }
+
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
+
             // load login details in student general class
-            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-            objStudentLoginDetails.Name = GlobalStudentClass.Name;
-            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
-            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+            StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+            _studentDetails.BoardName = (String)studentUnderParentparsing["Table"][0]["BoardName"];
+            _studentDetails.CityName = (String)studentUnderParentparsing["Table"][0]["CityName"];
+            _studentDetails.ClassName = (String)studentUnderParentparsing["Table"][0]["ClassName"];
+            _studentDetails.DistrictName = (String)studentUnderParentparsing["Table"][0]["DistrictName"];
+            _studentDetails.EmailAddress = (String)studentUnderParentparsing["Table"][0]["EmailAddress"];
+            _studentDetails.Name = (String)studentUnderParentparsing["Table"][0]["FirstName"];
+            _studentDetails.PhoneNumber = (String)studentUnderParentparsing["Table"][0]["PhoneNumber"];
+            _studentDetails.StateName = (String)studentUnderParentparsing["Table"][0]["StateName"];
+            _studentDetails.StudentId = (Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+            _studentDetails.InstitutionName = (String)studentUnderParentparsing["Table"][0]["InstitutionName"];
 
             // Create Object for class 
             StudentDashboard _StudentDashboardDetails = new StudentDashboard();
@@ -44,9 +48,9 @@ namespace ELF_Trial1.Controllers
             OverallAvailableTest _StudentOverallAvailableTest = new OverallAvailableTest();
             OverallLastFiveTest _StudentOverallLastFiveTest = new OverallLastFiveTest();
             // Get Dashboard Details with respect to student id form service
-            String _GetStudentDashboardDetails = StudentWeb.StudentDashboardDetails(GlobalStudentClass.StudentId);
+            String _GetStudentDashboardDetails = StudentWeb.StudentDashboardDetails( Convert.ToInt32( Session["UserId"].ToString()));
             // Get Student Rank Details form service with respect to student id
-            String _GetStudentDashboardDetails1 = StudentWeb.GetStudentDashboard(GlobalStudentClass.StudentId);
+            String _GetStudentDashboardDetails1 = StudentWeb.GetStudentDashboard( Convert.ToInt32( Session["UserId"].ToString()));
             // Parse the student dashbord details form Json Student dashboard
             JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
             // parse the student rank details form Json Student dashboard Details1
@@ -102,10 +106,10 @@ namespace ELF_Trial1.Controllers
             int _SubjectCount = (Int32)Studentparsing["Table4"].Count();
 
 
-            List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
+            List<StudentSubjects> _SubjectDetailsList = new List<StudentSubjects>();
             for (int i = 0; i < _SubjectCount; i++)
             {
-                SubjectDetails _SubjectDetails = new SubjectDetails();
+                StudentSubjects _SubjectDetails = new StudentSubjects();
                 _SubjectDetails.SubjectName = (String)Studentparsing["Table4"][i]["SubjectName"];
                 _SubjectDetails.SubjectID = (Int32)Studentparsing["Table4"][i]["SubjectId"];
 
@@ -226,38 +230,37 @@ namespace ELF_Trial1.Controllers
             }
             #endregion
 
-            GlobalStudentSubjects.SubjectList = _SubjectDetailsList;
-
             _StudentDashboardDetails.OverallAvailableTest = _OverallAvailableTestList;
             _StudentDashboardDetails.OverallLastFiveTest = _LastFiveTestList;
             _StudentDashboardDetails.StudentRank = _StudentRankDetails;
             _StudentDashboardDetails.SubjectPercentage = _SubjectPercentageList;
-            _StudentDashboardDetails.StudentGeneralDetails = objStudentLoginDetails;
+            _StudentDashboardDetails.StudentGeneralDetails = _studentDetails;
             _StudentDashboardDetails.GoodPerformingSubject = _goodPerformingSubjectList;
             _StudentDashboardDetails.AveragePerformingSubject = _averagePerformingSubjectList;
             _StudentDashboardDetails.BadPerformingSubject = _badPerformingSubjectList;
-
-
-
 
             return View(_StudentDashboardDetails);
         }
 
         public ActionResult Test1()
         {
-            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-            objStudentLoginDetails.Name = GlobalStudentClass.Name;
-            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
-            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
+
+            // load login details in student general class
+            StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+            _studentDetails.BoardName = (String)studentUnderParentparsing["Table"][0]["BoardName"];
+            _studentDetails.CityName = (String)studentUnderParentparsing["Table"][0]["CityName"];
+            _studentDetails.ClassName = (String)studentUnderParentparsing["Table"][0]["ClassName"];
+            _studentDetails.DistrictName = (String)studentUnderParentparsing["Table"][0]["DistrictName"];
+            _studentDetails.EmailAddress = (String)studentUnderParentparsing["Table"][0]["EmailAddress"];
+            _studentDetails.Name = (String)studentUnderParentparsing["Table"][0]["FirstName"];
+            _studentDetails.PhoneNumber = (String)studentUnderParentparsing["Table"][0]["PhoneNumber"];
+            _studentDetails.StateName = (String)studentUnderParentparsing["Table"][0]["StateName"];
+            _studentDetails.StudentId = (Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+            _studentDetails.InstitutionName = (String)studentUnderParentparsing["Table"][0]["InstitutionName"];
             //  string StudentDetails = studentweb.CheckStudentLogin(Username, Password);
-            return View(objStudentLoginDetails);
+            return View(_studentDetails);
         }
         public ActionResult TestMain()
         {
@@ -266,20 +269,36 @@ namespace ELF_Trial1.Controllers
                 return RedirectToAction("Index", "ELFWeb");
             }
             // model student general details
-            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-            objStudentLoginDetails.Name = GlobalStudentClass.Name;
-            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            JObject _StudentDetailsParsing = JObject.Parse(dashboardOutput);
 
-            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+            StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+            _studentDetails.BoardName = (String)_StudentDetailsParsing["Table"][0]["BoardName"];
+            _studentDetails.CityName = (String)_StudentDetailsParsing["Table"][0]["CityName"];
+            _studentDetails.ClassName = (String)_StudentDetailsParsing["Table"][0]["ClassName"];
+            _studentDetails.DistrictName = (String)_StudentDetailsParsing["Table"][0]["DistrictName"];
+            _studentDetails.EmailAddress = (String)_StudentDetailsParsing["Table"][0]["EmailAddress"];
+            _studentDetails.Name = (String)_StudentDetailsParsing["Table"][0]["FirstName"];
+            _studentDetails.PhoneNumber = (String)_StudentDetailsParsing["Table"][0]["PhoneNumber"];
+            _studentDetails.StateName = (String)_StudentDetailsParsing["Table"][0]["StateName"];
+            _studentDetails.StudentId = (Int32)_StudentDetailsParsing["Table"][0]["StudentId"];
+            _studentDetails.InstitutionName = (String)_StudentDetailsParsing["Table"][0]["InstitutionName"];
+
+            string studentDashboard = StudentWeb.StudentDashboardDetails(Convert.ToInt32(Session["UserId"].ToString()));
+            JObject _studentDashboardParse = JObject.Parse(studentDashboard);
+
+            int _SubjectCount = (Int32)_studentDashboardParse["Table4"].Count();
+            List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
+            for (int i = 0; i < _SubjectCount; i++)
+            {
+                SubjectDetails _SubjectDetails = new SubjectDetails();
+                _SubjectDetails.SubjectName = (String)_studentDashboardParse["Table4"][i]["SubjectName"];
+                _SubjectDetails.SubjectID = (Int32)_studentDashboardParse["Table4"][i]["SubjectId"];
+
+                _SubjectDetailsList.Add(_SubjectDetails);
+            }
             //Passing Parameter to Webservice and receving in string
-            string _GetOverallPendingTestDetails = StudentWeb.GetPendingTests(GlobalStudentClass.StudentId, "All");
+            string _GetOverallPendingTestDetails = StudentWeb.GetPendingTests(_studentDetails.StudentId, "All");
 
             //Received string and changed to json object
             JObject TestMainOverallParsing = JObject.Parse(_GetOverallPendingTestDetails);
@@ -306,8 +325,8 @@ namespace ELF_Trial1.Controllers
                 //Adding object in List    
                 _ListOverallTest.Add(_OverallTest);
             }
-            _ModelTestMain.StudentGeneralDetails = objStudentLoginDetails;
-            _ModelTestMain.GlobalStudentSubjectDetails = GlobalStudentSubjects.SubjectList;
+            _ModelTestMain.StudentGeneralDetails = _studentDetails;
+            _ModelTestMain.GlobalStudentSubjectDetails = _SubjectDetailsList;
             _ModelTestMain.OverallTest = _ListOverallTest;
             return View(_ModelTestMain);
         }
@@ -356,8 +375,8 @@ namespace ELF_Trial1.Controllers
 
             TestReport _TestReport = new TestReport();
 
-            String _GetTestReportOverviewDetails = StudentWeb.GetTestOverview(GlobalStudentClass.StudentId, TestId);
-            String _GetTestReportDetailsDetails = StudentWeb.GetDetailedTestReport(GlobalStudentClass.StudentId, TestId);
+            String _GetTestReportOverviewDetails = StudentWeb.GetTestOverview( Convert.ToInt32( Session["UserId"].ToString()), TestId);
+            String _GetTestReportDetailsDetails = StudentWeb.GetDetailedTestReport( Convert.ToInt32( Session["UserId"].ToString()), TestId);
 
             JObject StudentTestReportOverviewparsing = JObject.Parse(_GetTestReportOverviewDetails);
             JObject StudentTestReportDetailsparsing = JObject.Parse(_GetTestReportDetailsDetails);
@@ -388,7 +407,7 @@ namespace ELF_Trial1.Controllers
         public JsonResult SubmitTest(StudentAnswered[] QA)
         {
 
-            Int32 _StudentID = GlobalStudentClass.StudentId;
+            Int32 _StudentID = Convert.ToInt32( Session["UserId"].ToString());
             SubmitTest _SubmitTest = new SubmitTest();
 
             String _TestSubmitResult = _SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
@@ -404,26 +423,43 @@ namespace ELF_Trial1.Controllers
                 {
                     return RedirectToAction("Index", "ELFWeb");
                 }
-                StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-                objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-                objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-                objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-                objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-                objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-                objStudentLoginDetails.Name = GlobalStudentClass.Name;
-                objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-                objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-                objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
+                string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+                JObject _StudentDashboardParsing = JObject.Parse(dashboardOutput);
 
-                objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
+                StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+                _studentDetails.BoardName = (String)_StudentDashboardParsing["Table"][0]["BoardName"];
+                _studentDetails.CityName = (String)_StudentDashboardParsing["Table"][0]["CityName"];
+                _studentDetails.ClassName = (String)_StudentDashboardParsing["Table"][0]["ClassName"];
+                _studentDetails.DistrictName = (String)_StudentDashboardParsing["Table"][0]["DistrictName"];
+                _studentDetails.EmailAddress = (String)_StudentDashboardParsing["Table"][0]["EmailAddress"];
+                _studentDetails.Name = (String)_StudentDashboardParsing["Table"][0]["FirstName"];
+                _studentDetails.PhoneNumber = (String)_StudentDashboardParsing["Table"][0]["PhoneNumber"];
+                _studentDetails.StateName = (String)_StudentDashboardParsing["Table"][0]["StateName"];
+                _studentDetails.StudentId = (Int32)_StudentDashboardParsing["Table"][0]["StudentId"];
+                _studentDetails.InstitutionName = (String)_StudentDashboardParsing["Table"][0]["InstitutionName"];
+
                 ReportModel ReportDetails = new ReportModel();
 
                 LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
 
+                string studentDashboard = StudentWeb.StudentDashboardDetails(Convert.ToInt32(Session["UserId"].ToString()));
+                JObject _studentDashboardParse = JObject.Parse(studentDashboard);
 
-                ReportDetails.StudentGeneralDetails = objStudentLoginDetails;
+                int _SubjectCount = (Int32)_studentDashboardParse["Table4"].Count();
+                List<SubjectDetails> _SubjectDetailsList = new List<SubjectDetails>();
+                for (int i = 0; i < _SubjectCount; i++)
+                {
+                    SubjectDetails _SubjectDetails = new SubjectDetails();
+                    _SubjectDetails.SubjectName = (String)_studentDashboardParse["Table4"][i]["SubjectName"];
+                    _SubjectDetails.SubjectID = (Int32)_studentDashboardParse["Table4"][i]["SubjectId"];
 
-                string _GetStudentDashboardDetails = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, GlobalStudentSubjects.SubjectList[0].SubjectID);
+                    _SubjectDetailsList.Add(_SubjectDetails);
+                }
+
+
+                ReportDetails.StudentGeneralDetails = _studentDetails;
+
+                string _GetStudentDashboardDetails = StudentWeb.GetLessionWiseReport(_studentDetails.StudentId, _SubjectDetailsList[0].SubjectID);
 
                 JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
 
@@ -447,7 +483,7 @@ namespace ELF_Trial1.Controllers
 
 
                 //Completed TEst Details
-                string _GetTestCompletedDetails = StudentWeb.GetWritenTestDetails(GlobalStudentClass.StudentId);
+                string _GetTestCompletedDetails = StudentWeb.GetWritenTestDetails(_studentDetails.StudentId);
                 JObject WrittenTestparsing = JObject.Parse(_GetTestCompletedDetails);
                 int _WrittenTestCount = (Int32)WrittenTestparsing["Table"].Count();
                 List<CompletedTestList> _CompletedTestList = new List<CompletedTestList>();
@@ -499,8 +535,8 @@ namespace ELF_Trial1.Controllers
 
 
                 ReportDetails.LessonWiseReportList = _lessionWiseReportModelList;
-                ReportDetails.StudentSubjectList = GlobalStudentSubjects.SubjectList;
-                ReportDetails.StudentGeneralDetails = objStudentLoginDetails;
+                ReportDetails.StudentSubjectList = _SubjectDetailsList;
+                ReportDetails.StudentGeneralDetails = _studentDetails;
                 ReportDetails.CompletedTestList = _CompletedTestList;
                 return View(ReportDetails);
             }
@@ -511,20 +547,22 @@ namespace ELF_Trial1.Controllers
             {
                 return RedirectToAction("Index", "ELFWeb");
             }
-            StudentDashboard studentdashboard = new StudentDashboard();
-            StudentGeneralDetails objStudentLoginDetails = new StudentGeneralDetails();
-            objStudentLoginDetails.StudentId = GlobalStudentClass.StudentId;
-            objStudentLoginDetails.Name = GlobalStudentClass.Name;
-            objStudentLoginDetails.BoardName = GlobalStudentClass.BoardName;
-            objStudentLoginDetails.CityName = GlobalStudentClass.CityName;
-            objStudentLoginDetails.DistrictName = GlobalStudentClass.DistrictName;
-            objStudentLoginDetails.EmailAddress = GlobalStudentClass.EmailAddress;
-            objStudentLoginDetails.PhoneNumber = GlobalStudentClass.PhoneNumber;
-            objStudentLoginDetails.StateName = GlobalStudentClass.StateName;
-            objStudentLoginDetails.InstitutionName = GlobalStudentClass.InstitutionName;
-            objStudentLoginDetails.ClassName = GlobalStudentClass.ClassName;
-            studentdashboard.StudentGeneralDetails = objStudentLoginDetails;
-            return View(studentdashboard);
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
+
+            StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+            _studentDetails.BoardName = (String)studentUnderParentparsing["Table"][0]["BoardName"];
+            _studentDetails.CityName = (String)studentUnderParentparsing["Table"][0]["CityName"];
+            _studentDetails.ClassName = (String)studentUnderParentparsing["Table"][0]["ClassName"];
+            _studentDetails.DistrictName = (String)studentUnderParentparsing["Table"][0]["DistrictName"];
+            _studentDetails.EmailAddress = (String)studentUnderParentparsing["Table"][0]["EmailAddress"];
+            _studentDetails.Name = (String)studentUnderParentparsing["Table"][0]["FirstName"];
+            _studentDetails.PhoneNumber = (String)studentUnderParentparsing["Table"][0]["PhoneNumber"];
+            _studentDetails.StateName = (String)studentUnderParentparsing["Table"][0]["StateName"];
+            _studentDetails.StudentId = (Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+            _studentDetails.InstitutionName = (String)studentUnderParentparsing["Table"][0]["InstitutionName"];
+            _studentDashboar.StudentGeneralDetails = _studentDetails;
+            return View(_studentDashboar);
         }
         public JsonResult StudentLogin(String Username, String Password)
         {
@@ -538,7 +576,7 @@ namespace ELF_Trial1.Controllers
 
             LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
 
-            string _GetLessonReportString = StudentWeb.GetLessionWiseReport(GlobalStudentClass.StudentId, SubjectID);
+            string _GetLessonReportString = StudentWeb.GetLessionWiseReport( Convert.ToInt32( Session["UserId"].ToString()), SubjectID);
             JObject Studentparsing = JObject.Parse(_GetLessonReportString);
 
             int _lessionReportCount = (Int32)Studentparsing["Table"].Count();
@@ -605,9 +643,9 @@ namespace ELF_Trial1.Controllers
         {
             String _Result = "";
             // Check UserType 
-            if (GlobalStudentClass.UserType == "Student")
+            if (Session["UserType"].ToString() == "Student")
             {
-                string FeedBack = StudentWeb.SaveUserFeedback(GlobalStudentClass.StudentId, Feedback, GlobalStudentClass.UserType);
+                string FeedBack = StudentWeb.SaveUserFeedback( Convert.ToInt32( Session["UserId"].ToString()), Feedback, Session["UserType"].ToString());
                 JObject ParsingFeedback = JObject.Parse(FeedBack);
                 _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
 
@@ -624,8 +662,8 @@ namespace ELF_Trial1.Controllers
         public JsonResult SubmitCoupon(string CoupenCode)
         {
             // Validate the Coupon
-            StudentGeneralDetails _studentGeneralDetails = new StudentGeneralDetails();
-            string Coupon = StudentWeb.CheckCoupenCode(GlobalStudentClass.StudentId, CoupenCode);
+            StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
+            string Coupon = StudentWeb.CheckCoupenCode( Convert.ToInt32( Session["UserId"].ToString()), CoupenCode);
             JObject ParsingCoupon = JObject.Parse(Coupon);
             // Check the Json Result to validate the Coupon
             string _Result = (string)ParsingCoupon["Table"][0]["StatusCode"];

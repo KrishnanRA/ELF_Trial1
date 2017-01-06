@@ -12,8 +12,15 @@
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <script src="~/Script/aes.js"></script>
+    <script type="text/javascript">
+function disableBackButton()
+{
+window.history.forward();
+}
+setTimeout("disableBackButton()",0);
+    </script>
 </head>
-<body>
+<body >
     <style>
         body {
             overflow-x: hidden;
@@ -153,8 +160,8 @@
 
     </script>
 
-    <img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />
-    <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-900px; margin-left:-190px;" />
+    @*<img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />*@
+    <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-250px; margin-left:-190px;" />
 
     <div class="loginbody" style="margin-top:-640px;">
         <div class="col-md-6 col-md-offset-3">

@@ -6,10 +6,11 @@ using System.Web;
 namespace ELF_Trial1.Models.Student
 {
     
-    public class ReportModel : StudentGeneralDetails
+    public class ReportModel 
+
     {
-        public List<LessionWiseReportModel> LessonWiseReportList { get; set; }
         public StudentGeneralDetails StudentGeneralDetails { get; set; }
+        public List<LessionWiseReportModel> LessonWiseReportList { get; set; }
         public List<SubjectDetails> StudentSubjectList { get; set; }
 
         public List<CompletedTestList> CompletedTestList { get; set; }

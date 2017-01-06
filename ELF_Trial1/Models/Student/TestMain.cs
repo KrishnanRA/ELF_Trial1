@@ -13,11 +13,7 @@ namespace ELF_Trial1.Models.Student
         public List<PublicTest> PublicTest { get; set; }
         public List<SubjectDetails> GlobalStudentSubjectDetails { get; set; }
     }
-    public class GlobalStudentSubjectDetails
-    {
-       
-        public List<SubjectDetails> SubjectList { get; set; }
-    }
+   
     public class OverallTest
     {
         public String Description { get; set; }
