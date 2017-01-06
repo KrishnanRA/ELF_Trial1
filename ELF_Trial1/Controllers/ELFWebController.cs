@@ -53,7 +53,7 @@ namespace ELF_Trial1.Controllers
             string registration = "";
             if (User == "Student")
             {
-                registration = objweb.StudentRegistration(FirstName, "", Email, Password, Number, 1, 1, Class, 1, 1, 1, Group);
+                registration = objweb.StudentRegistration(FirstName, "", Email, Password, Number, 67, 1, Class, 1, 1, 1, Group);
 
             }
             else if (User == "Parent")

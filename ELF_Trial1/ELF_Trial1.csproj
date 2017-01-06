@@ -205,6 +205,8 @@
     <Content Include="Images\Student\Report\ColTrial_Brown.png" />
     <Content Include="Images\Student\Report\ColTrial_Green.png" />
     <Content Include="Images\Student\Report\ColTrial_Red.png" />
+    <Content Include="Images\Student\TestSummary\Right.png" />
+    <Content Include="Images\Student\TestSummary\Wrong.png" />
     <Content Include="Script\aes.js" />
     <Content Include="bin\ELF_Trial1.dll.config" />
     <Content Include="Images.zip" />

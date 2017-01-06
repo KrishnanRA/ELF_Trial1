@@ -359,16 +359,17 @@ namespace ELF_Trial1.Controllers
             }
 
             //StudentChosen
-            List<StudentChosen> _StudentChosenList = new List<StudentChosen>();
+            List<StudentAnswered> _StudentChosenList = new List<StudentAnswered>();
             for (int i = 0; i < _ParticularTestDetailsParsingCount; i++)
             {
-                StudentChosen _StudentChosen = new StudentChosen();
+                StudentAnswered _StudentChosen = new StudentAnswered();
                 _StudentChosen.QuestionID = i + 1;
                 _StudentChosen.TrueQuestionID = (Int32)ParticularTestDetailsParsing["Table"][i]["QuestionId"];
-                _StudentChosen.optionsSelected = "";
+                _StudentChosen.optionsSelected = null;
                 _StudentChosenList.Add(_StudentChosen);
             }
             _TestQuestionList.TestID = TestID;
+            _TestQuestionList.AnsweredList = _StudentChosenList;
             _TestQuestionList.QuestionLists = _GetParticularTestDetail;
             return View(_TestQuestionList);
         }
@@ -408,7 +409,6 @@ namespace ELF_Trial1.Controllers
         }
         public JsonResult SubmitTest(StudentAnswered[] QA)
         {
-
             Int32 _StudentID = Convert.ToInt32( Session["UserId"].ToString());
             SubmitTest _SubmitTest = new SubmitTest();
 

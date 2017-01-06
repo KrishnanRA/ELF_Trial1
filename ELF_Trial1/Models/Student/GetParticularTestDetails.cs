@@ -9,6 +9,7 @@ namespace ELF_Trial1.Models.Student
         public Int32 TestID { get;set;}
         public List<GetParticularTestDetail> QuestionLists { get; set; }
         
+        public List<StudentAnswered> AnsweredList { get; set; }
     }
     
     public class GetParticularTestDetail
@@ -30,14 +31,8 @@ namespace ELF_Trial1.Models.Student
 
         
     }
-    public class StudentAnswered {
-        public Int32 QuestionID{ get; set; }
-        public String optionsSelected{ get; set; }
-
-        public Int32 TrueQuestionID { get; set; }
-    }
-
-    public class StudentChosen
+ 
+    public class StudentAnswered
     {
         public Int32 QuestionID { get; set; }
         public String optionsSelected { get; set; }
