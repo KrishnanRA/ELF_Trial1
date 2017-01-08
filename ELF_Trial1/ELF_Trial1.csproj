@@ -45,10 +45,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -214,6 +210,7 @@
     <None Include="Properties\PublishProfiles\Build V1.0.1.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.2.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.3.pubxml" />
+    <None Include="Properties\PublishProfiles\Build V1.0.4.pubxml" />
     <None Include="Properties\PublishProfiles\Build V1.0.pubxml" />
     <None Include="Properties\PublishProfiles\build1.2.pubxml" />
     <None Include="Service References\web_ws\configuration91.svcinfo" />

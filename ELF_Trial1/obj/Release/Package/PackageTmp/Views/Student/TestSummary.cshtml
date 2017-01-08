@@ -49,36 +49,52 @@
             window.location.href='/Student/Dashboard';
         }
     </script>
+    <style>
+        .button {
+    background-color: dimgrey; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+.button1 {font-size: 12px;}
+    </style>
 </head>
 <body>
     <h1>Test Summary</h1>
-    <input type="button" onclick="GoToDashboard()" value="Go Home" />
+    <button type="button" onclick="GoToDashboard()">Go Home</button>
     <div ng-app="AppTestSummary">
         <div ng-controller="ControlTestSummary">
-             <table>
-                    <tr>
-                        <td>Subject Name</td>
-                        <td>Percentage</td>
-                        
-                    </tr>
-                <tr ng-repeat="x in Overview">
-                        <td>{{x.SubjectName}}</td> 
-                        <td>{{x.Percentage}}</td> 
-                 </tr>
-            </table>
-            <table id="QATable" style="margin-top:50px;">
-                <tr>
-                    <th>Question</th>
-                    <th>You Answered it</th>
-                    <th>Answer</th>
-                </tr>
-                <tr ng-repeat="quest in TestQADetails">
-                    <td style="display:block;">{{quest.Question}}</td>
-                    <td>{{quest.AnswerStatus}}</td>
-                    <td>{{quest.Answer}}</td>
-                </tr>
-
-            </table>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+            </div>
+           
+                <div ng-repeat="quest in TestQADetails">
+                    <div ng-if="quest.AnswerStatus=='Correct'">
+                        <div class="panel panel-success">
+                            <div class="panel-body">
+                                {{quest.Question}}
+                                <span style="float:right">You Answered it:{{quest.AnswerStatus}} <img src="~/Images/Student/TestSummary/Right.png" /></span>
+                                @*<span>{{quest.Answer}}</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-else-if="quest.AnswerStatus=='Wrong'">
+                        <div class="panel panel-danger">
+                            <div class="panel-body">
+                                {{quest.Question}}
+                                <span style="float:right">You Answered it:{{quest.AnswerStatus}} <img src="~/Images/Student/TestSummary/Wrong.png" /></span>
+                                @*<span>{{quest.Answer}}</span>*@
+                            </div>
+                        </div>
+                    </div>
+                    </div>
         </div>
     </div>
 </body>

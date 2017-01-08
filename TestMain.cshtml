@@ -1,0 +1,306 @@
+﻿@model ELF_Trial1.Models.Student.TestMain
+
+@{
+    ViewBag.Title = "Rerport";
+    Layout = "~/Views/Shared/_LayoutStudent.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test Main page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+            function navinside(page) {
+                window.location.href = '/Student/' + page;
+            }
+    </script>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            margin-left: 250px;
+        }
+
+        td, th {
+            border: 2px solid #dddddd;
+            text-align: left;
+            background-color: rgba(72,72,72,1);
+            color: white;
+            padding: 8px;
+            height: 50px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: yellow;
+            text-align: center;
+        }
+    </style>
+    <style>
+        input[type=button] {
+            background-color: black;
+            color: white;
+            border: 0.1px solid #ff6a00;
+            height: 40px;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        input.activesubbutton {
+            background-color: #ff6a00;
+            color: white;
+            border: 0.1px solid #ff6a00;
+            height: 40px;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .activesubbutton:hover {
+            background-color: #808080;
+            font-size: 20px;
+            color: white;
+        }
+
+        input.myFilter {
+            background-color: #ff6a00;
+            color: white;
+            border: 0.1px solid #ff6a00;
+            height: 40px;
+            width: 150px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .myFilter:hover {
+            background-color: #808080;
+            font-size: 20px;
+            color: white;
+        }
+
+        input[type="radio"]:checked + label {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 2px 5px 0 rgb(255, 0, 0);
+        }
+    </style>
+    <style>
+        .writetestbutn {
+            background-color: #808080; /* Green */
+            border: 0.5px solid #b9b9b9;
+            color: white;
+            padding: 8px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    <style>
+        input[type=text] {
+            width: 40%;
+            padding: 10px 15px;
+            margin: 4px 0;
+            box-sizing: border-box;
+            background-color: #d6d4d4;
+            border-color: #808080;
+        }
+
+        input[type=password] {
+            width: 40%;
+            padding: 10px 15px;
+            background-color: #d6d4d4;
+            border-color: #808080;
+            margin: 4px 0;
+            box-sizing: border-box;
+        }
+
+        .filtertextbox:focus {
+            font-size: 26px;
+            -webkit-transition-duration: 0.6s; /* Safari */
+            transition-duration: 0.6s;
+        }
+    </style>
+    <style>
+        .nav-tabs > li > a, .nav-tabs > li > a:hover, .nav-tabs > li > a:focus {
+            background-color: dimgrey;
+            color: white;
+            border-color: white;
+        }
+
+        .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+            background-color: #ff6a00;
+            color: white;
+        }
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 18px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
+    @*Heading Header*@
+  
+
+
+    <script>
+        function SearchStudent() {
+            var StudentID = document.getElementById('ELFStudentID').value;
+            $('#StudentDetails').show();
+
+        }
+        var app = angular.module('TestMainPage', []);
+
+        app.controller('Overall', function ($scope) {
+            @{
+                var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+                var OverallTestjson = serializer.Serialize(Model.OverallTest);
+                var SubjectListjson = serializer.Serialize(Model.GlobalStudentSubjectDetails);
+             }
+            
+            $scope.OverallTest =@Html.Raw(OverallTestjson);
+            $scope.myFunction = function (val) {
+
+                return (val.Subject != 2);
+            };
+          
+            
+            $scope.SubjectList=@Html.Raw(SubjectListjson);
+            $scope.tab = '@Model.GlobalStudentSubjectDetails[0].SubjectName';
+        });
+
+        app.controller('Recommended', function ($scope) {
+            $scope.RecommendedTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "Description": "Thermodynamics" },
+                { "Subject": "2", name: 'Chemistry', "TestID": "OT01", "Description": "Vector Algebra" },
+                { "Subject": "3", name: 'Maths', "TestID": "OT01", "Description": "Matrices" },
+                { "Subject": "4", name: 'Computer Science', "TestID": "OT01", "Description": "Trignomentry" }];
+        });
+
+        app.controller('Public', function ($scope) {
+            $scope.PublicTest = [{ "Subject": "1", name: 'Physics', "TestID": "OT01", "EndDate": "08-11-2016", "EndDateTime": "06:00 PM" },
+                { "Subject": "2", "name": "Chemistry", "TestID": "OT01", "EndDate": "19-11-2016", "EndDateTime": "06:00 PM" },
+                { "Subject": "3", "name": "Maths", "TestID": "OT01", "EndDate": "14-11-2016", "EndDateTime": "08:00 PM" },
+                    { "Subject": "4", "name": "Computer Science", "TestID": "OT01", "EndDate": "12-11-2016", "EndDateTime": "09:00 AM" }];
+        });
+
+    </script>
+    <script>
+        function PageNav(Page) {
+            window.location.href = '/Student/' + Page;
+        }
+    </script>
+    <script>
+        function GoToTest(TestID)
+        {
+            var TakeTest=confirm("Are you sure want to write Test now");
+            if(TakeTest==true){
+                window.location.href = '/Student/Test?TestID=' + TestID;
+            }
+            
+        }
+        </script>
+
+
+</head>
+<body>
+    
+    <div ng-app="TestMainPage">
+        <h1 style="color:black">Test</h1>
+        <div class="col-md-10 col-md-offset-1" style="margin-left:100px;margin-top:020px;">
+            <ul class="nav nav-tabs nav-justified" style="margin-top:50px;">
+                <li class="active"><a class="navbuttons" data-toggle="tab" href="#Overalls">Overall</a></li>
+                <li><a class="navbuttons" data-toggle="tab" href="#Recommended">Recommended</a></li>
+                <li><a class="navbuttons" data-toggle="tab" href="#Public">Public</a></li>
+            </ul>
+            <div class="tab-content" style="margin-top:30px;margin-left:-250px;">
+                <div id="Overalls" class="tab-pane fade in active" style="text-align:center"  >
+                    <div ng-controller="Overall">
+                       
+                        <table style="margin-top:30px;">
+                            <tr>
+                                <th>Subject</th>
+                                <th>Test ID</th>
+                                <th>Description</th>
+                                <th>Write Test</th>
+                            </tr>
+                            <tr ng-repeat="person in OverallTest">
+                                <td>{{person.SubjectName}}</td>
+                                <td>{{person.TestID}}</td>
+                                <td>{{person.Description}}</td>
+                                <td><button id="{{person.TestID}}" class="writetestbutn" onclick="GoToTest(this.id)">Write Test</button></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+                <div id="Recommended" class="tab-pane fade">
+                    <div ng-controller="Recommended">
+                        <table>
+                            <tr ng-repeat="person in RecommendedTest">
+                                <td>{{person.name}}</td>
+                                <td>{{person.Subject}}</td>
+                                <td>{{person.TestID}}</td>
+                                <td>{{person.Description}}</td>
+                                <td><button id="{{person.TestID}}" class="writetestbutn" onclick="alert(this.id)">Write Test</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="Public" class="tab-pane fade">
+                    <div style="margin-left:600px;">
+                        <input type="button" ng-click="myFilter = {Subject: 1}" value="Physics" />
+                        <input type="button" ng-click="myFilter = {Subject: 2}" value="Chemistry" />
+                        <input type="button" ng-click="myFilter = {Subject: 3}" value="Maths" />
+                        <input type="button" ng-click="myFilter = null" Value="No Filter" />
+                    </div>
+                    <div ng-controller="PublicTest">
+                        <table style="margin-top:50px;">
+                            <tr ng-repeat="person in PublicTest | filter:myFilter |  filter:{Description:FilteronDescription}" ">
+                                <td>{{person.name}}</td>
+                                <td>{{person.Subject}}</td>
+                                <td>{{person.TestID}}</td>
+                                <td>{{person.EndDate}}</td>
+                                <td>{{person.EndDateTime}}</td>
+                                <td><button id="{{person.TestID}}" class="writetestbutn" onclick="alert(this.id)">Write Test</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

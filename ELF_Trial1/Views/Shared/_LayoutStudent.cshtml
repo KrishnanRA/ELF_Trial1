@@ -13,7 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
     <title>Student Dashboard</title>
- <style>
+    <style>
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
@@ -32,9 +32,9 @@
         }
     </style>
     <script>
-            function navinside(page) {
-                window.location.href = '/Student/' + page;
-            }
+        function navinside(page) {
+            window.location.href = '/Student/' + page;
+        }
     </script>
     <style>
         canvas {
@@ -76,9 +76,9 @@
             margin-top: 89px;
         }
 
-      
+
     </style>
- 
+
 
     @*Panels*@
     <style>
@@ -123,89 +123,90 @@
             color: white;
         }
     </style>
-    
+  
 </head>
-<body >
+<body>
     @*<input type="button" id="Id_Logout" style="width:80px" name="Logout" onclick="Logout()"/>*@
     @*<div>
-        <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
-    </div>*@
-    <nav class="navbar navbar-inverse" >
+            <img src="~/Images/Student/Dashboard/Dashboard_Banner.png" />
+        </div>*@
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">ELF Student</a>
             </div>
             <ul class="nav navbar-nav">
                 <li><a onclick="navinside('Dashboard')">Home</a></li>
-                <li><a onclick="navinside('TestMain')">Take Test</a></li>
+                <li><a onclick="navinside('TestMain')">Write Test</a></li>
                 <li><a onclick="navinside('Report')">Report</a></li>
                 @*<li><a onclick="navinside('Notification')">Notification</a></li>*@
 
             </ul>
-            <button class="btn btn-danger navbar-btn" onclick="Logout()" id="Id_Logout">Log Out</button>
+                <button class="btn btn-danger navbar-btn" onclick="location.href='@Url.Action("Logout", "Student")'");" id="Id_Logout">Log Out</button>
+           
         </div>
     </nav>
-  
+
     <div style="margin-left:150px;margin-top:20px">
         <div class="icon_middletext">
             <span style="margin-top:-50px;margin-left:-100px;font-size:40px;color:saddlebrown">Hi @Model.StudentGeneralDetails.Name</span>
         </div>
-    </div>   
-        <div class="col-md-12" style="margin-top:25px">
-            <div class="col-md-3">
-                <div class="panel panel-info">
-                   
-                        <div class="panel-heading">Class</div>
-                        <div class="panel-body">@Model.StudentGeneralDetails.ClassName</div>
-                     </div>
-                </div>
-            <div class="col-md-3">
-                <div class="panel panel-info">
+    </div>
+    <div class="col-md-12" style="margin-top:25px">
+        <div class="col-md-3">
+            <div class="panel panel-info">
 
-                    <div class="panel-heading">BoardName</div>
-                    <div class="panel-body">@Model.StudentGeneralDetails.BoardName</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-info">
-
-                    <div class="panel-heading">InstitutionName</div>
-                    <div class="panel-body">@Model.StudentGeneralDetails.InstitutionName</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="panel panel-info">
-
-                    <div class="panel-heading">DistrictName</div>
-                    <div class="panel-body">@Model.StudentGeneralDetails.DistrictName</div>
-                </div>
-            </div>
-           
-        </div>
-        <div class="col-md-12">
-            <div class="col-md-4">
-                <div class="panel panel-default">
-
-                    <div class="panel-heading">State Rank</div>
-                    <div class="panel-body">0</div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                     <div class="panel-heading">Institution Rank</div>
-                    <div class="panel-body">0</div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">
-
-                    <div class="panel-heading">Board Rank</div>
-                    <div class="panel-body">0</div>
-                </div>
+                <div class="panel-heading">Class</div>
+                <div class="panel-body">@Model.StudentGeneralDetails.ClassName</div>
             </div>
         </div>
-        @*Chart*@
-      <div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">BoardName</div>
+                <div class="panel-body">@Model.StudentGeneralDetails.BoardName</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">InstitutionName</div>
+                <div class="panel-body">@Model.StudentGeneralDetails.InstitutionName</div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-info">
+
+                <div class="panel-heading">DistrictName</div>
+                <div class="panel-body">@Model.StudentGeneralDetails.DistrictName</div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">State Rank</div>
+                <div class="panel-body">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">Institution Rank</div>
+                <div class="panel-body">0</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+
+                <div class="panel-heading">Board Rank</div>
+                <div class="panel-body">0</div>
+            </div>
+        </div>
+    </div>
+    @*Chart*@
+    <div>
         @RenderBody()
     </div>
     <script type="text/javascript">
@@ -223,6 +224,6 @@
                 },
             });
         }
-</script>
+    </script>
 </body>
 </html>

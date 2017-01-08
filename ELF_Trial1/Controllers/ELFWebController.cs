@@ -78,6 +78,8 @@ namespace ELF_Trial1.Controllers
             string output = objweb.GetClasses(BoardId);
             return Json(output, JsonRequestBehavior.AllowGet);
         }
+
+       
         public JsonResult Login(String Username, String Password, String UserType)
         {
             string Result = "";

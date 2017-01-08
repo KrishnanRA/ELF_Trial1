@@ -7,11 +7,11 @@ using ELF_Trial1.Models.Student;
 using Newtonsoft.Json.Linq;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
-using RestSharp;
 
 namespace ELF_Trial1.Controllers
 {
-
+    [SessionExpire]
+    
     public class StudentController : Controller
     {
         //
@@ -21,14 +21,10 @@ namespace ELF_Trial1.Controllers
         public String String_GetStudentDashStudentWebboardDetails = "";
         public static Int32 GlobalTestID = 0;
         public static StudentDashboard _studentDashboar = new StudentDashboard();
+
         public ActionResult Dashboard()
         {
-            if (Session["UserType"] == null)
-            {
-                return RedirectToAction("Index", "ELFWeb");
-            }
-
-            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32(Session["UserId"].ToString()));
             JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
 
             // load login details in student general class
@@ -50,9 +46,9 @@ namespace ELF_Trial1.Controllers
             OverallAvailableTest _StudentOverallAvailableTest = new OverallAvailableTest();
             OverallLastFiveTest _StudentOverallLastFiveTest = new OverallLastFiveTest();
             // Get Dashboard Details with respect to student id form service
-            String _GetStudentDashboardDetails = StudentWeb.StudentDashboardDetails( Convert.ToInt32( Session["UserId"].ToString()));
+            String _GetStudentDashboardDetails = StudentWeb.StudentDashboardDetails(Convert.ToInt32(Session["UserId"].ToString()));
             // Get Student Rank Details form service with respect to student id
-            String _GetStudentDashboardDetails1 = StudentWeb.GetStudentDashboard( Convert.ToInt32( Session["UserId"].ToString()));
+            String _GetStudentDashboardDetails1 = StudentWeb.GetStudentDashboard(Convert.ToInt32(Session["UserId"].ToString()));
             // Parse the student dashbord details form Json Student dashboard
             JObject Studentparsing = JObject.Parse(_GetStudentDashboardDetails);
             // parse the student rank details form Json Student dashboard Details1
@@ -77,8 +73,14 @@ namespace ELF_Trial1.Controllers
                 _Subjectpercentage.SubjectName = (String)Studentparsing["Table1"][i]["SubjectName"];
                 _SubjectPercentageList.Add(_Subjectpercentage);
             }
+
             List<OverallLastFiveTest> _LastFiveTestList = new List<OverallLastFiveTest>();
             int _LastFiveTestCountCount = (Int32)Studentparsing["Table2"].Count();
+
+            if (_LastFiveTestCountCount > 5)
+            {
+                _LastFiveTestCountCount = 5;
+            }
 
             for (int i = 0; i < _LastFiveTestCountCount; i++)
             {
@@ -90,11 +92,20 @@ namespace ELF_Trial1.Controllers
                 _LastFiveTest.TestType = (String)Studentparsing["Table2"][i]["TestType"];
                 _LastFiveTestList.Add(_LastFiveTest);
             }
-
-
+            int _OverallAvailableTestCount = (Int32)Studentparsing["Table3"].Count();
+            //Studentparsing["Table3"].Count();
             List<OverallAvailableTest> _OverallAvailableTestList = new List<OverallAvailableTest>();
+            
+
+            //If Test Count is more than 5 show only  five test
+            //It is not last five test
+            if (_OverallAvailableTestCount > 5)
+            {
+                _OverallAvailableTestCount = 5;
+            }
+
             // adding five test details
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < _OverallAvailableTestCount; i++)
             {
                 OverallAvailableTest _OverallAvailableTest = new OverallAvailableTest();
                 _OverallAvailableTest.SubjectID = (Int32)Studentparsing["Table3"][i]["SubjectId"];
@@ -246,7 +257,12 @@ namespace ELF_Trial1.Controllers
 
         public ActionResult Test1()
         {
-            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
+
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32(Session["UserId"].ToString()));
             JObject studentUnderParentparsing = JObject.Parse(dashboardOutput);
 
             // load login details in student general class
@@ -266,12 +282,8 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult TestMain()
         {
-            if (Session["UserType"] == null)
-            {
-                return RedirectToAction("Index", "ELFWeb");
-            }
             // model student general details
-            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32(Session["UserId"].ToString()));
             JObject _StudentDetailsParsing = JObject.Parse(dashboardOutput);
 
             StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
@@ -334,6 +346,11 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult Test(int TestID)
         {
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
+
             GlobalTestID = TestID;
             string _GetParticularTestDetails = StudentWeb.GetTestQuestions(TestID);
 
@@ -375,11 +392,14 @@ namespace ELF_Trial1.Controllers
         }
         public ActionResult TestSummary(Int32 TestId)
         {
-
+            if (Session["UserType"] == null)
+            {
+                return RedirectToAction("Index", "ELFWeb");
+            }
             TestReport _TestReport = new TestReport();
 
-            String _GetTestReportOverviewDetails = StudentWeb.GetTestOverview( Convert.ToInt32( Session["UserId"].ToString()), TestId);
-            String _GetTestReportDetailsDetails = StudentWeb.GetDetailedTestReport( Convert.ToInt32( Session["UserId"].ToString()), TestId);
+            String _GetTestReportOverviewDetails = StudentWeb.GetTestOverview(Convert.ToInt32(Session["UserId"].ToString()), TestId);
+            String _GetTestReportDetailsDetails = StudentWeb.GetDetailedTestReport(Convert.ToInt32(Session["UserId"].ToString()), TestId);
 
             JObject StudentTestReportOverviewparsing = JObject.Parse(_GetTestReportOverviewDetails);
             JObject StudentTestReportDetailsparsing = JObject.Parse(_GetTestReportDetailsDetails);
@@ -409,7 +429,9 @@ namespace ELF_Trial1.Controllers
         }
         public JsonResult SubmitTest(StudentAnswered[] QA)
         {
-            Int32 _StudentID = Convert.ToInt32( Session["UserId"].ToString());
+           
+
+            Int32 _StudentID = Convert.ToInt32(Session["UserId"].ToString());
             SubmitTest _SubmitTest = new SubmitTest();
 
             String _TestSubmitResult = _SubmitTest.SubmitTestQuestions(_StudentID, GlobalTestID, QA);
@@ -421,11 +443,8 @@ namespace ELF_Trial1.Controllers
         {
 
             {
-                if (Session["UserType"] == null)
-                {
-                    return RedirectToAction("Index", "ELFWeb");
-                }
-                string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+              
+                string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32(Session["UserId"].ToString()));
                 JObject _StudentDashboardParsing = JObject.Parse(dashboardOutput);
 
                 StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
@@ -454,7 +473,7 @@ namespace ELF_Trial1.Controllers
                     SubjectDetails _SubjectDetails = new SubjectDetails();
                     _SubjectDetails.SubjectName = (String)_studentDashboardParse["Table4"][i]["SubjectName"];
                     _SubjectDetails.SubjectID = (Int32)_studentDashboardParse["Table4"][i]["SubjectId"];
-                    
+
                     _SubjectDetailsList.Add(_SubjectDetails);
                 }
 
@@ -549,7 +568,7 @@ namespace ELF_Trial1.Controllers
             {
                 return RedirectToAction("Index", "ELFWeb");
             }
-            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+            string dashboardOutput = StudentWeb.GetStudentDetails(Convert.ToInt32(Session["UserId"].ToString()));
             JObject StudentGeneralDetailsParse = JObject.Parse(dashboardOutput);
 
             StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
@@ -578,7 +597,7 @@ namespace ELF_Trial1.Controllers
 
             LessionWiseReportModel _StudentReportDetails = new LessionWiseReportModel();
 
-            string _GetLessonReportString = StudentWeb.GetLessionWiseReport( Convert.ToInt32( Session["UserId"].ToString()), SubjectID);
+            string _GetLessonReportString = StudentWeb.GetLessionWiseReport(Convert.ToInt32(Session["UserId"].ToString()), SubjectID);
             JObject Studentparsing = JObject.Parse(_GetLessonReportString);
 
             int _lessionReportCount = (Int32)Studentparsing["Table"].Count();
@@ -647,7 +666,7 @@ namespace ELF_Trial1.Controllers
             // Check UserType 
             if (Session["UserType"].ToString() == "Student")
             {
-                string FeedBack = StudentWeb.SaveUserFeedback( Convert.ToInt32( Session["UserId"].ToString()), Feedback, Session["UserType"].ToString());
+                string FeedBack = StudentWeb.SaveUserFeedback(Convert.ToInt32(Session["UserId"].ToString()), Feedback, Session["UserType"].ToString());
                 JObject ParsingFeedback = JObject.Parse(FeedBack);
                 _Result = (string)ParsingFeedback["Table"][0]["OutputStatus"];
 
@@ -665,7 +684,7 @@ namespace ELF_Trial1.Controllers
         {
             // Validate the Coupon
             StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
-            string Coupon = StudentWeb.CheckCoupenCode( Convert.ToInt32( Session["UserId"].ToString()), CoupenCode);
+            string Coupon = StudentWeb.CheckCoupenCode(Convert.ToInt32(Session["UserId"].ToString()), CoupenCode);
             JObject ParsingCoupon = JObject.Parse(Coupon);
             // Check the Json Result to validate the Coupon
             string _Result = (string)ParsingCoupon["Table"][0]["StatusCode"];
@@ -682,7 +701,8 @@ namespace ELF_Trial1.Controllers
         public ActionResult Logout()
         {
             Session.Abandon(); // it will clear the session
-            return Json("success");
+                               // return Json("success");
+            return RedirectToAction("index", "ELFWeb");
         }
 
 

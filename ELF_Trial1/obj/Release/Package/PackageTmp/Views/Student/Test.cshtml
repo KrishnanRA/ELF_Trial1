@@ -29,8 +29,8 @@
 
             .container ul {
                 list-style: none;
-                height: 100%;
-                width: 100%;
+                height: 60%;
+                width: 60%;
                 margin: 0;
                 padding: 0;
             }
@@ -43,7 +43,10 @@
             float: left;
             width: 100%;
             height: 100px;
-            border-bottom: 1px solid #111111;
+            border-bottom: 1px solid grey;
+        }
+        .checkbox_div label {
+            color:white
         }
 
             .checkbox_div .answer_div ul li input[type=radio] {
@@ -53,7 +56,7 @@
 
             .checkbox_div  .answer_div ul li label {
                 display: block;
-                color: #434343;
+                color: red;
                 position: relative;
                 font-weight: 300;
                 font-size: 1.35em;
@@ -65,14 +68,12 @@
                 -webkit-transition: all 0.25s linear;
             }
 
-            .checkbox_div  .answer_div ul li:hover label {
-                color: darkslateblue;
-            }
+          
 
             .checkbox_div  .answer_div ul li .check {
                 display: block;
                 position: absolute;
-                border: 5px solid #f7f2f2;
+                border: 1px solid wheat;
                 border-radius: 100%;
                 height: 25px;
                 width: 25px;
@@ -121,7 +122,7 @@
             }
 
             .checkbox_div .answer_div input[type=radio]:checked ~ label {
-                color: #48e303;
+                color: wheat;
             }
     </style>
     <style>
@@ -131,14 +132,14 @@
 
         .checkbox_div [type=radio] + label {
             color: #e16300;
-            border: 2px solid #e16300;
+            border: 1px solid #fceeed;
             padding: 0px 10px 0px 10px;
-            font-size: 20px;
+            font-size: 16px;
             margin-left: 3px;
         }
 
         .checkbox_div input[type=radio]:checked + label {
-            color: #6bff20;
+            color: red;
             border: 2px solid #6bff20;
         }
     </style>
@@ -157,7 +158,7 @@
        
         function TestSubmit()
         {
-            var Answers=AnswersSelected.QA;
+            var Answers=AnswersSelected;
             $.ajax({
                 type: "POST",
                 
@@ -201,7 +202,7 @@
         }
 
         window.onload = function () {
-            var fiveMinutes = 60 * 5,
+            var fiveMinutes = 60 * 20,
                 display = document.querySelector('#time');
             startTimer(fiveMinutes, display);
         };
@@ -224,55 +225,38 @@
             height: 50px;
         }
 
-        #Diagrambutn {
-            background-color: orangered;
-        }
-
-        #Referencebutn {
-            background-color: blueviolet;
-        }
-
+       
         #Quitbutn {
-            background-color: #4ea100;
+            background-color: indianred;
+            color: white;
+            padding: 10px 30px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 15px;
         }
     </style>
     @*Receiving Questions*@
     <script>
-        var AnswersSelected = {
-            "QA": [{ "QuestionID": "1","TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "2", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "3","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "4", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "5","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "6", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "7","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "8", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "9", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "10","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "11", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "12", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "13", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "14","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "15","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "16","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "17","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "18","TrueQuestionID": "" , "optionsSelected": ""},
-                { "QuestionID": "19", "TrueQuestionID": "" ,"optionsSelected": ""},
-                { "QuestionID": "20", "TrueQuestionID": "" ,"optionsSelected": ""}
-            ]
-        }
+          @{
+              var serializer1 = new System.Web.Script.Serialization.JavaScriptSerializer();
+              var AnswerListjson = serializer1.Serialize(Model.AnsweredList);
 
+          }
+        var AnswersSelected =@Html.Raw(AnswerListjson);
+       
+      
         //Question Number Radio Button Event handling
         $(document).ready(function () {
-            
+
             $(".checkbox_div .answer_div input:radio").change(function () {
                 var QuestioArrayNos = parseInt(($(this).attr('class')));
                 var QuestioNos=($(this).attr('class'));
 
                 //alert('Check: '+dd);
-                AnswersSelected.QA[QuestioArrayNos-1].QuestionID=QuestioNos;
-                AnswersSelected.QA[QuestioArrayNos-1].optionsSelected=($(this).val());
-                AnswersSelected.QA[QuestioArrayNos-1].TrueQuestionID=($(this).attr('name'));
+                AnswersSelected[QuestioArrayNos-1].QuestionID=QuestioNos;
+                AnswersSelected[QuestioArrayNos-1].optionsSelected=($(this).val());
+                AnswersSelected[QuestioArrayNos-1].TrueQuestionID=($(this).attr('name'));
 
             });
 
@@ -285,7 +269,7 @@
              var TestQuestionjson = serializer.Serialize(Model);
 
          }
-        
+
         $scope.TestQuestions =@Html.Raw(TestQuestionjson);
         $scope.TestID=$scope.TestQuestions.TestID;
     });
@@ -296,33 +280,22 @@
     <div ng-app="TestPage">
         
         <div ng-controller="Test">
-            <div style="color:white">
-                <h2>Rules</h2>
-                <ul style="list-style-type:disc">
-                    <p>You should never submit test withouy unattending a question </p>
-                    <p>Test Timing is 20 Minutes</p>
-                    <p>After Submit Button Click Leave on Pop up code</p>
-                </ul>
-                <span>Test ID</span><h3 ng-bind="TestID" style="color:white" id="TestIDName"></h3>
-            </div>
-            <div id="TimePanel" style="margin-top:50px;margin-left:100px;">
-                <img src="~/Images/Student/QuestionPaper/QuestionPaper_Top_Panel.png" />
-                <img src="~/Images/Student/QuestionPaper/QuestionPaper_Time_Panel.png" style="margin-left:-280px" />
-                <div id="actionbutns" style="margin-left:20px;margin-top:-120px;">
-                    <input type="button" id="Diagrambutn" disabled="true" value="Diagram" />
-
-                    <input type="button" id="Referencebutn" disabled="true" value="Reference" />
-
-                    <input type="button" id="Quitbutn" value="Submit" onclick="TestSubmit()"/>
-                </div>
-                <div style="margin-top:-00px;margin-left:920px;"><span style="font-size:40px;" id="time">05:00</span></div>
-            </div>
-            <div ng-repeat="Questions in TestQuestions.QuestionLists">
-                    <div class="checkbox_div" style="margin-top:10px;margin-left:50px;">
+          
+              <div class="col-md-12"  data-spy="affix"  style="background-color:white">
+                  <div class="col-md-3 col-md-offset-1">
+                      <span style="font-size:10px;">Test ID</span><span  ng-bind="TestID" style="color:black;font-size:26px" id="TestIDName"></span>
+                  </div>
+                  <div class="col-md-4 col-md-offset-1">
+                      <span style="font-size:10px;">Time Remainig</span><span style="color:black;font-size:26px" id="time">20:00</span>
+                  </div>
+                  <div class="col-md-2 col-md-offset-1">
+                      <input type="button" id="Quitbutn" value="Submit" onclick="TestSubmit()" />
+                  </div>
+              </div>
+              <div ng-repeat="Questions in TestQuestions.QuestionLists">
+                    <div class="checkbox_div" style="margin-top:1px;margin-left:50px;">
                         <div >
-                            <input class="QuestionID" type="radio" name="type" id="{{Questions.QuestionId}}" value="{{Questions.QuestionId}}" />
-                            <input style="display:none" class="QuestionNos" type="radio" name="type" id="{{Questions.QuestionNos}}" value="{{Questions.QuestionNos}}" />
-                            <label for="{{Questions.QuestionId}}">{{Questions.QuestionNos}}</label>
+                            <label for="{{Questions.QuestionId}}" >{{Questions.QuestionNos}}</label>
                         </div>
                         <div class="col-md-12" style="margin-top:50px;margin-left:50px;">
                             <div>
@@ -351,8 +324,7 @@
                                     <li>
                                         <input type="radio" class="{{Questions.QuestionNos}}" id="'Four-option'+{{Questions.QuestionId}}" value="d" name="{{Questions.QuestionId}}">
                                         <label id="choicelabeld" for="'Four-option'+{{Questions.QuestionId}}" style="color:whitesmoke">{{Questions.OptionD}}</label>
-
-                                        <div class="check"><div class="inside"></div></div>
+                                         <div class="check"><div class="inside"></div></div>
                                     </li>
                                 </ul>
                             </div>

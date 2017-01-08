@@ -10,3 +10,5 @@ F:\Project\ELF_Trial1\ELF_Trial1\bin\ELF_Trial1.pdb
 F:\Project\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.csprojResolveAssemblyReference.cache
 F:\Project\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.dll
 F:\Project\ELF_Trial1\ELF_Trial1\obj\Release\ELF_Trial1.pdb
+F:\Project\ELF_Trial1\ELF_Trial1\bin\RestSharp.dll
+F:\Project\ELF_Trial1\ELF_Trial1\bin\RestSharp.xml

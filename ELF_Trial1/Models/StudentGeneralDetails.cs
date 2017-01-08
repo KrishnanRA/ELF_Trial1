@@ -28,4 +28,16 @@ namespace ELF_Trial1.Models
         public String SubjectName { get; set; }
     }
 
+    public class ParentDetails
+    {
+        public string CityName { get; set; }
+        public string DistrictName { get; set; }
+        public string EmailAddress { get; set; }
+        public string Name { get; set; }
+        public string PhoneNumber { get; set; }
+        public string StateName { get; set; }
+        public int ParentId { get; set; }
+    }
+
+
 }

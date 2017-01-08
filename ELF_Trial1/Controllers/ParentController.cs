@@ -21,10 +21,6 @@ namespace ELF_Trial1.Controllers
 
         public ActionResult Dashboard()
         {
-            if (Session["UserType"]==null)
-            {
-               
-            }
             //  Get Student Under Parent
             string _studentUnderParent = ParentWeb.GetStudentUnderParent(Convert.ToInt32( Session["UserId"].ToString()));
             // Parse the value to string
@@ -36,18 +32,18 @@ namespace ELF_Trial1.Controllers
             // Get the table Count
             int _studentUnderParentCount = studentUnderParentparsing["Table"].Count();
 
-            if (_studentUnderParentCount > 0)
+            if (_studentUnderParentCount == 0)
             {
                 // Load the Student details in List Using For loop
-                for (int i = 0; i < _studentUnderParentCount; i++)
-                {
-                    StudentUnderParent _ParentUnderStudent = new StudentUnderParent();
-                    _ParentUnderStudent.StudentId = (Int32)studentUnderParentparsing["Table"][i]["StudentId"];
-                    _ParentUnderStudent.StudentName = (string)studentUnderParentparsing["Table"][i]["StudentName"];
-                    _ListStudentUnderParent.Add(_ParentUnderStudent);
-                }
+                //for (int i = 0; i < _studentUnderParentCount; i++)
+                //{
+                //    StudentUnderParent _ParentUnderStudent = new StudentUnderParent();
+                //    _ParentUnderStudent.StudentId = (Int32)studentUnderParentparsing["Table"][i]["StudentId"];
+                //    _ParentUnderStudent.StudentName = (string)studentUnderParentparsing["Table"][i]["StudentName"];
+                //    _ListStudentUnderParent.Add(_ParentUnderStudent);
+                //}
 
-                int StudentId = 260; //(Int32)studentUnderParentparsing["Table"][0]["StudentId"];
+                int StudentId = 403; //(Int32)studentUnderParentparsing["Table"][0]["StudentId"];
                 // Get Student Details
                 string _getStudentDetails = ParentWeb.GetStudentDetails(StudentId);
                 // Parse Json to String 
@@ -55,10 +51,11 @@ namespace ELF_Trial1.Controllers
                 // Load the Student Details
 
                 // Student Details from parent Dashboard module class
-                string dashboardOutput = ParentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+                //string dashboardOutput = ParentWeb.GetStudentDetails(Convert.ToInt32( Session["UserId"].ToString()));
+                string dashboardOutput = ParentWeb.GetStudentDetails(StudentId);
                 JObject studentDashboard = JObject.Parse(dashboardOutput);
 
-                StudentDetails _studentDetails = new StudentDetails();
+                StudentGeneralDetails _studentDetails = new StudentGeneralDetails();
                 _studentDetails.BoardName = (String)studentDashboard["Table"][0]["BoardName"];
                 _studentDetails.CityName = (String)studentDashboard["Table"][0]["CityName"];
                 _studentDetails.ClassName = (String)studentDashboard["Table"][0]["ClassName"];
@@ -257,7 +254,7 @@ namespace ELF_Trial1.Controllers
                 _parentDashboard.OverallLastFiveTest = _LastFiveTestList;
                 _parentDashboard.StudentRank = _StudentRankDetails;
                 _parentDashboard.SubjectPercentage = _SubjectPercentageList;
-                _parentDashboard.StudentDetails = _studentDetails;
+                _parentDashboard.StudentGeneralDetails = _studentDetails;
                 _parentDashboard.GoodPerformingSubject = _goodPerformingSubjectList;
                 _parentDashboard.AveragePerformingSubject = _averagePerformingSubjectList;
                 _parentDashboard.BadPerformingSubject = _badPerformingSubjectList;

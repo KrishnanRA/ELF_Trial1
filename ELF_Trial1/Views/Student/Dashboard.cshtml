@@ -7,7 +7,7 @@
 
 <br />
 <div>
-
+  
     <style>
         body {
             overflow-x: hidden;
@@ -34,9 +34,9 @@
         }
     </style>
     <script>
-            function navinside(page) {
-                window.location.href = '/Student/' + page;
-            }
+        function navinside(page) {
+            window.location.href = '/Student/' + page;
+        }
     </script>
     <style>
         canvas {
@@ -72,7 +72,7 @@
                     }
                 }
             });
-            
+
         });
         @{
             var serializer = new System.Web.Script.Serialization.JavaScriptSerializer();
@@ -83,10 +83,10 @@
         var SubjectNameList = [];
         var SubjectPercentageList = [];
         var subjectcount=SubjectList.length;
-      
+
         for(i=0;i<subjectcount;i++)
         {
-         
+
              SubjectNameList[i] = SubjectList[i].SubjectName;
             SubjectPercentageList[i] = SubjectList[i].Percentage;
 
@@ -128,7 +128,7 @@
                         }
                     ]
                 };
-              
+
     </script>
     <script>
             function PageNav(Page) {
@@ -136,56 +136,56 @@
             }
     </script>
     <script>
-            var app = angular.module('DashboardMainPage', []);
-            app.controller('ReportSubject1', function ($scope) {
+        var app = angular.module('DashboardMainPage', []);
+        app.controller('ReportSubject1', function ($scope) {
 
 
 
-                $scope.GetAllData = function () {
-                    $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
-                    .success(function (data, status, headers, config) {
-                        $scope.Details = data;
+            $scope.GetAllData = function () {
+                $http.get('/Student/StudentLogin', {params:{"StudentID":"1" }})
+                .success(function (data, status, headers, config) {
+                    $scope.Details = data;
 
-                    })
-                }
-            });
-        
-            app.controller('Performingbaddashboard', function ($scope) {
-                @{
+                })
+            }
+        });
+
+        app.controller('Performingbaddashboard', function ($scope) {
+            @{
                     var serializerBadPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var BadPerformingJson = serializerBadPerforming.Serialize(Model.BadPerformingSubject);
                 }
-                $scope.PerformingBad =@Html.Raw(BadPerformingJson);
-            });
-            app.controller('Performinggooddashboard', function ($scope) {
+            $scope.PerformingBad =@Html.Raw(BadPerformingJson);
+        });
+        app.controller('Performinggooddashboard', function ($scope) {
 
-                @{
+            @{
                     var serializerGoodPerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var GoodPerformingJson = serializerGoodPerforming.Serialize(Model.GoodPerformingSubject);
                 }
-                $scope.PerformingGood =@Html.Raw(GoodPerformingJson);
-            });  
-            app.controller('Needtobeconcentrateddashboard', function ($scope) {
-                 @{
+            $scope.PerformingGood =@Html.Raw(GoodPerformingJson);
+        });
+        app.controller('Needtobeconcentrateddashboard', function ($scope) {
+            @{
                      var serializerAveragePerforming = new System.Web.Script.Serialization.JavaScriptSerializer();
                      var AveragePerformingJson = serializerGoodPerforming.Serialize(Model.AveragePerformingSubject);
                  }
-                $scope.PerformingAverage =@Html.Raw(AveragePerformingJson);
-            });
+            $scope.PerformingAverage =@Html.Raw(AveragePerformingJson);
+        });
         app.controller('CompletedTestDashboard', function ($scope) {
-                @{
+            @{
                       var serializerLastFive = new System.Web.Script.Serialization.JavaScriptSerializer();
                       var LastFiveTestjson = serializerLastFive.Serialize(Model.OverallLastFiveTest);
                   }
-            
-                   $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
+
+            $scope.LastTestFiveTestList =@Html.Raw(LastFiveTestjson);
             $scope.TestSummaryPage=function(TestId){
                 window.location.href='/Student/TestSummary?TestId='+TestId;
             }
-            });
+        });
         app.controller('AvailableTestDashboard', function ($scope) {
             //Hello
-             
+
             @{
                     var serializerAvailableTest = new System.Web.Script.Serialization.JavaScriptSerializer();
                     var AvailableTestjson = serializerAvailableTest.Serialize(Model.OverallAvailableTest);
@@ -198,7 +198,7 @@
                     window.location.href = '/Student/Test?TestID=' + TestId;
                 }
             };
-            });
+        });
     </script>
     <style>
         .buttoncss {
@@ -224,7 +224,7 @@
     </style>
 
     @*Heading Header*@
-    
+
 
     @*Panels*@
     <style>
@@ -293,14 +293,14 @@
 
 
 
-  
+
     <div ng-app="DashboardMainPage">
         <h1 style="color:black">Dashboard</h1>
         @*Chart*@
         <div class="col-md-12">
-          <div id="canvas-holder2" width="400" height="300">
-             <canvas id="canvas"  ></canvas>
-          </div>
+            <div id="canvas-holder2" width="400" height="300">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
         <div style="margin-top:500px;">
             <div class="col-md-12" style="margin-top:10px;">
@@ -311,18 +311,20 @@
                             <div class="panel-body">
                                 <table>
                                     <tr>
-                                        <th>LessonId</th>
+                                        <th>SubjectName</th>
+                                        <th>Lesson Nos</th>
                                         <th>LessonName</th>
                                         <th>Percentage</th>
                                         <th>Topic</th>
-                                        <th>SubjectName</th>
+
                                     </tr>
                                     <tr ng-repeat="x in PerformingGood">
+                                        <td><span>{{x.SubjectName}}</span></td>
                                         <td><span>{{x.LessionId}}</span></td>
                                         <td>{{x.LessionName}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
                                         <td><span>{{x.Topic}}</span></td>
-                                        <td><span>{{x.SubjectName}}</span></td>
+
                                     </tr>
                                 </table>
                             </div>
@@ -336,103 +338,108 @@
                             <div class="panel-body">
                                 <table>
                                     <tr>
-                                        <th>LessionId</th>
+                                        <th>SubjectName</th>
+                                        <th>Lesson Nos</th>
                                         <th>LessionName</th>
                                         <th>Percentage</th>
                                         <th>Topic</th>
-                                        <th>SubjectName</th>
-                                        <th>SubjectID</th>
+
+
                                     </tr>
                                     <tr ng-repeat="x in PerformingAverage">
+                                        <td><span>{{x.SubjectName}}</span></td>
                                         <td><span>{{x.LessionId}}</span></td>
                                         <td>{{x.LessionName}}</td>
                                         <td><span>{{x.Percentage}}</span></td>
                                         <td><span>{{x.Topic}}</span></td>
-                                        <td><span>{{x.SubjectName}}</span></td>
-                                        <td><span>{{x.SubjectId}}</span></td>
+
+
                                     </tr>
                                 </table>
                             </div>
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="col-md-12">
-                    <div ng-controller="Performingbaddashboard">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading">Highly to be Concentrated</div>
-                            <div class="panel-body">
-                                <table>
-                                    <tr>
-                                        <th>LessionId</th>
-                                        <th>LessionName</th>
-                                        <th>Percentage</th>
-                                        <th>Topic</th>
-                                        <th>SubjectName</th>
-                                        <th>SubjectID</th>
-                                    </tr>
-                                    <tr ng-repeat="x in PerformingBad">
-                                        <td><span>{{x.LessionId}}</span></td>
-                                        <td>{{x.LessionName}}</td>
-                                        <td><span>{{x.Percentage}}</span></td>
-                                        <td><span>{{x.Topic}}</span></td>
-                                        <td><span>{{x.SubjectName}}</span></td>
-                                        <td><span>{{x.SubjectId}}</span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
-       
-       
             <div class="col-md-12">
-                <div class="col-md-6">
-                    <div ng-controller="CompletedTestDashboard">
-                        <div class="panel panel-danger">
-                            <div class="panel-heading" id="headlastfive">Last Five Test</div>
-                            <div class="panel-body">
-                                <table>
-                                    <tr>
-                                        <th>Subject Name</th>
-                                        <th>Test Type</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                    <tr ng-repeat="x in LastTestFiveTestList">
-                                        <td><span>{{x.SubjectName}}</span></td>
-                                        <td>{{x.TestType}}</td>
-                                        <td><span>{{x.Percentage}}</span></td>
-                                        <td><button ng-click="TestSummaryPage(x.TestId)" style="background-color:#808080;border-color:#808080">Get Detail</button></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              <div class="col-md-6">
-                    <div ng-controller="AvailableTestDashboard">
-                        <div class="panel panel-success">
-                            <div class="panel-heading" id="headavailabletest">Available Test</div>
-                            <div class="panel-body">
-                                <table>
-                                    <tr>
-                                        <th>Subject name</th>
-                                        <th>Lesson</th>
-                                        <th>Test Time</th>
-                                    </tr>
-                                    <tr ng-repeat="x in AvailableTest">
-                                        <td><span>{{x.SubjectName}}</span></td>
-                                        <td>{{x.TestType}}</td>
-                                        <td><button style="background-color:#808080;border-color:#808080" ng-click="WriteTest(x.TestId)">Write Test</button></td>
-                                    </tr>
-                                </table>
-                            </div>
+                <div ng-controller="Performingbaddashboard">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">Highly to be Concentrated</div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <th>Subject Name</th>
+                                    <th>Lesson Nos</th>
+                                    <th>LessionName</th>
+                                    <th>Percentage</th>
+                                    <th>Topic</th>
+
+
+                                </tr>
+                                <tr ng-repeat="x in PerformingBad">
+                                    <td><span>{{x.SubjectName}}</span></td>
+                                    <td><span>{{x.LessionId}}</span></td>
+                                    <td>{{x.LessionName}}</td>
+                                    <td><span>{{x.Percentage}}</span></td>
+                                    <td><span>{{x.Topic}}</span></td>
+
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-       
+
+
+        </div>
+
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div ng-controller="CompletedTestDashboard">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading" id="headlastfive">Last Five Test</div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <th>Subject Name</th>
+                                    <th>Test Type</th>
+                                    <th>Percentage</th>
+                                    <th>Test Summary</th>
+                                </tr>
+                                <tr ng-repeat="x in LastTestFiveTestList">
+                                    <td><span>{{x.SubjectName}}</span></td>
+                                    <td>{{x.TestType}}</td>
+                                    <td><span>{{x.Percentage}}</span></td>
+                                    <td><button ng-click="TestSummaryPage(x.TestId)" style="background-color:#808080;border-color:#808080">Get Detail</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div ng-controller="AvailableTestDashboard">
+                    <div class="panel panel-success">
+                        <div class="panel-heading" id="headavailabletest">Available Test</div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <th>Subject name</th>
+                                    <th>Lesson</th>
+                                    <th>Take Test</th>
+                                </tr>
+                                <tr ng-repeat="x in AvailableTest">
+                                    <td><span>{{x.SubjectName}}</span></td>
+                                    <td>{{x.TestType}}</td>
+                                    <td><button style="background-color:#808080;border-color:#808080" ng-click="WriteTest(x.TestId)">Write Test</button></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>

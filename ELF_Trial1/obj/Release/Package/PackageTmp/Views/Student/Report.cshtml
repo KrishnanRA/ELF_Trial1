@@ -98,7 +98,10 @@
              var ReportCompletedTestjson = serializerCompletedTest.Serialize(Model.CompletedTestList);
          }
         $scope.TestCompleted =@Html.Raw(ReportCompletedTestjson);
-
+        $scope.TestSummaryNavigate=function(TestId)
+        {
+            window.location.href='/Student/TestSummary?TestId='+TestId;
+        }
     }]);
       
 </script>
@@ -110,7 +113,7 @@
     }
 </script>
 <div ng-app="ReportMainPage" style="margin-top:60px">
-    <h1 style="color:white">Report</h1>
+    <h1 style="color:black">Report</h1>
     <div class="col-md-10 col-md-offset-1" style="margin-top:50px;">
         <ul class="nav nav-pills nav-justified">
             <li class="active"><a class="navbuttons" data-toggle="tab" href="#Subject">Subject</a></li>
@@ -133,8 +136,8 @@
                                 <tr>
                                     <th>Lesson Name</th>
                                     <th>Percentage</th>
-                                    <th>QuestionsAsked</th>
-                                    <th>CorrectAnswers</th>
+                                    <th>Questions Asked</th>
+                                    <th>Correct Answers</th>
                                     <th>Get Detail</th>
                                 </tr>
                             </thead>
@@ -178,7 +181,7 @@
                                 <td>20</td>
                                 <td>{{x.MarksScored}}</td>
                                 
-                                <td><button type="button" style="color:black" id="{{x.TestId}}" onclick="TestSummaryNavigate(this.id)">Detail SummaryQ & A Report</button></td>
+                                <td><button type="button" style="color:black" ng-click="TestSummaryNavigate(x.TestId)">Detail SummaryQ & A Report</button></td>
                             </tr>
                         </table>
                     </div>

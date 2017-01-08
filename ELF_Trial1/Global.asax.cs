@@ -21,4 +21,19 @@ namespace ELF_Trial1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
+
+    public class SessionExpireAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            HttpContext ctx = HttpContext.Current;
+
+            if (HttpContext.Current.Session["UserId"] == null)
+            {
+                filterContext.Result = new RedirectResult("~/ELFWeb/Index");
+                return;
+            }
+            base.OnActionExecuting(filterContext);
+        }
+    }
 }

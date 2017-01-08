@@ -170,12 +170,7 @@
                             alert("Enter Username and Password correctly");
                         }
                     },
-                    error: function (err) {
-                        if (err.status == 200) {
-                            ParseResult(err);
-                        }
-                        else { alert('Error:' + err.responseText + '  Status: ' + err.status); }
-                    }
+                    
                 });
             }
         }
