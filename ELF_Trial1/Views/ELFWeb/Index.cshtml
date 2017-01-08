@@ -153,9 +153,9 @@
         }
 
     </script>
-
+    
     @*<img src="../Images/LoginPage/ELF LOGIN PAGE back.jpg" style="width:1550px;height:760px;" />*@
-    <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-250px; margin-left:-190px;" />
+    <img src="../Images/LoginPage/ELF LOGo.png" style="margin-top:-250px; margin-left:-250px;" />
 
     <div class="loginbody" style="margin-top:-640px;">
         <div class="col-md-6 col-md-offset-3">
@@ -194,12 +194,10 @@
                 <input type="button" class="butnblacknobg" value="Log In" id="login" onclick="Login()"><img src="~/Images/LoginPage/Loading.gif" id="img" style="display:none">
             </div>
             <div class="row fields" style="margin-left:auto">
-                <a>
-                    <span onclick="location.href='@Url.Action("ForgotPassword","ELFWeb")'">Forgot Password</span>
-                </a>
+                <a class="btn btn-default" href="../ELFWeb/ForgotPassword">Forgot Password</a>
             </div>
             <div class="row fields" style="margin-left:auto">
-                <a class="btn btn-danger" href="../ELFWeb/NewRegistration">Sign Up</a>
+                <a class="btn btn-success" href="../ELFWeb/NewRegistration">Sign Up</a>
             </div>
         </div>
     </div>
